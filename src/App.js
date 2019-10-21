@@ -1,21 +1,31 @@
 import React, { Component } from 'react';
 import Connection from "./WatermelonApp/Components/Connection";
+import { LocalStorageGetter, LocalStorageSetter } from './WatermelonApp/Components/raccourci';
 import './App.css';
 
-class App extends Component {
+import users from './database/users';
 
+//localStorage.clear();
+
+if (users == null) {
+    LocalStorageSetter("users", users);
+}
+
+
+class App extends Component {
   state = {};
 
   render() {
     return (
       <div className="App">
-         {this.state.connect}
+            {this.state.connect}
         <header className="App-header">
           <p className="App-message">
            Welcome to WatermelonApp!
           </p>
-          <Connection/>	 
-        </header>
+                <Connection />	 
+                </header>
+
       </div>
     );
   }
