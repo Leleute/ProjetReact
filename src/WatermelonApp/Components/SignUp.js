@@ -17,10 +17,12 @@ class SignUp extends Component {
         this.state = {
             render: '',
             back: true,
+            id: 1,
             lastname: "",
             firstname: "",
             email: "",
-            password: ""
+            password: "",
+            is_admin: false
         }
     }
 
@@ -53,10 +55,14 @@ class SignUp extends Component {
             //Verification que l'email n'est pas deja inscrite
             if (user.email == this.state.email) { creavalide = false }
         });
+        //Mise en place de l'ID
+        users.map((user) => {
+            this.state.id++;
+        });
         if (creavalide == true) {
-            let newUser = { lastname: this.state.lastname, firstname: this.state.firstname, email: this.state.email, password: this.state.p1 };
-            LocalStorageSetter("lastname", newUser.lastname);
-            LocalStorageSetter("firstname", newUser.firstfame);
+            let newUser = {id: this.state.id, last_name: this.state.last_name, first_name: this.state.first_name, email: this.state.email, password: this.state.password, is_admin: this.state.is_admin };
+            LocalStorageSetter("last_name", newUser.last_name);
+            LocalStorageSetter("first_name", newUser.first_name);
             LocalStorageSetter("email", newUser.email);
             LocalStorageSetter("password", newUser.password);
             let allUsers = LocalStorageGetter("users");
@@ -70,10 +76,6 @@ class SignUp extends Component {
     testBDD = () => {
         let users = LocalStorageGetter("users");
         console.log(users)
-        users.map((user) => {
-            alert(user.firstname);
-            
-        });
     }
 
     render() {
@@ -86,11 +88,11 @@ class SignUp extends Component {
                         </div>
                         <div className="option-section">
                             <img src={name} className="logo" /><span>Last name</span>
-                        <input className="input-entry" name="lastname" onChange={this.saveData} type="text"></input>
+                        <input className="input-entry" name="last_name" onChange={this.saveData} type="text"></input>
                         </div>
                         <div className="option-section">
                             <img src={name} className="logo" /><span>First name</span>
-                        <input className="input-entry" name="firstname" onChange={this.saveData} type="text"></input>
+                        <input className="input-entry" name="first_name" onChange={this.saveData} type="text"></input>
                         </div>
                         <div className="option-section">
                             <img src={username} className="logo" /><span>Email</span>

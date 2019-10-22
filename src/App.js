@@ -7,7 +7,7 @@ import users from './database/users';
 
 //localStorage.clear();
 
-if (users == null) {
+if (LocalStorageGetter("users") == null) {
     LocalStorageSetter("users", users);
 }
 
