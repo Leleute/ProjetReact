@@ -1,0 +1,76 @@
+body {
+    background-image: url('https://media.giphy.com/media/112jVj3oFhHoHu/giphy.gif');
+    background-size: 100% 110%;
+    background-repeat: no-repeat; 
+    text-align: center;
+}
+
+.navigation {
+    position: fixed;
+    border-right: 5px white solid;
+    border-top-right-radius: 30%;
+    margin: 0;
+    padding: 0;
+    height:100%;
+    background-image: linear-gradient(to right top, #00c8ff, #8ad2ff, #c2deff, #e8ecff, #ffffff);
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    width: 15%;
+}
+
+.navigation li  {
+    list-style: none;   
+    padding: 0.5em 2em 0.5em 1em;
+    text-decoration: none ;
+    color: black ;    
+    font-size: 1.5em;
+    letter-spacing: 2px;
+}
+
+  
+.navigation li:hover {
+    background-image: linear-gradient(to right top, #00c8ff, #00abff, #0089ff, #005fff, #2100ff);
+    cursor:pointer; 
+    color: black;
+    border-left: 5px;
+    border-top: 5px;
+    border-bottom: 5px;
+    border-color: white;
+    border-style: solid;
+}
+
+.list-bottom{
+    width: 15%;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    bottom: 0;  
+}
+
+.list-bottom li:hover{
+    background-image: linear-gradient(to right top, #ac4949, #c3403f, #d93432, #ed2320, #ff0000);
+    color:black;
+}
+
+.navigation li img{
+    vertical-align: middle;
+    height: 40px;
+    margin-right: 0.8em;
+}
+
+.navigation .logo {
+    height:80px;
+    width:80px;
+}
+
+.navigation .logo-text {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 2em; 
+    padding-bottom: 20px;
+    letter-spacing: 5px;
+    text-shadow: 4px 1px green;
+}
+
+.logo-element{
+    padding-top:1em;
+    padding-bottom: 2.5em ;
+}
