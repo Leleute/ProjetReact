@@ -1,0 +1,59 @@
+.container {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 2em;
+    padding: 2% 2% 2% 2%;
+    margin-left:15%;
+}
+
+.ico {
+    height:75px;
+    vertical-align: middle; 
+}
+
+.ico-text {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 2em; 
+    letter-spacing: 5px;
+    margin:0;
+    color: black;
+}
+
+.container header {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color:blue;
+    padding-bottom:0.5em;  
+ }
+
+.container section {
+    margin: auto;
+    vertical-align: middle;
+    margin-bottom:1em;
+    width: 50%;
+    padding: 2% 10% 2% 10%;
+    text-align: center;
+    background-image: linear-gradient(to right top, #00c8ff, #8ad2ff, #c2deff, #e8ecff, #ffffff);
+    border: white 2px solid;
+    width: fit-content;
+}
+
+.container input, span, .display-value{
+    margin-right: 1em;
+    vertical-align: middle;
+    color: black;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}   
+
+.container span {
+    letter-spacing: 5px;
+}  
+
+.container input, .display-value{
+    color:black;
+    font-size: 0.7em;
+}   
+
+.container .display-value{
+    display: inline;    
+    font-weight: bold
+}
+

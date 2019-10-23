@@ -1,0 +1,25 @@
+
+.container .column-list{
+    background-image: linear-gradient(to right top, #00c8ff, #8ad2ff, #c2deff, #e8ecff, #ffffff);
+}
+.container .column-list .menu {
+    margin:0;
+    padding:0;
+    width: 33%;
+    border: white 2px solid;
+    display: inline-block;
+}
+
+.container .column-list .menu:hover {
+    background-image: linear-gradient(to right top, #00924c, #00a17a, #00afa6, #00bbcc, #12c5eb);   
+    cursor: pointer;
+}
+
+.container .sub-menu {
+    width:100%;
+    font-size: 0.8em;
+    color:turquoise; 
+    display: inline-block;
+    background-image: linear-gradient(to right top, #00924c, #00a17a, #00afa6, #00bbcc, #12c5eb);   
+    border: white 2px solid;
+}

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import Connection from "./WatermelonApp/Components/Connection";
-import Wallet from "./WatermelonApp/Components/Wallet"
-import { LocalStorageGetter, LocalStorageSetter } from './WatermelonApp/Shortcut';
-import './App.css';
+import Connection from "./Connection";
+import Wallet from "./Wallet"
+import { LocalStorageGetter, LocalStorageSetter } from '../Shortcut';
+import '../style/App.css';
 
-import users from './database/users';
+import users from '../../database/users';
+
 
 //localStorage.clear();
 
@@ -14,19 +15,29 @@ if (LocalStorageGetter("users") == null) {
 
 
 class App extends Component {
-
+  
   constructor(props) {
     super(props);
     this.state = {
-      connected: false
+      connected: false,
+      connectedUser: ''
     };
     this.handleChangeValue = this.handleChangeValue.bind(this);
   }
 
-
+  componentDidMount(){
+    document.title = "Watermelon Wallet"
+  }
+  
   handleChangeValue = (value) => {
     this.setState({
       connected: value
+    });
+  }
+
+  setConnection = (user) => {
+    this.setState({
+      connectedUser: user
     });
   }
 
@@ -37,13 +48,13 @@ class App extends Component {
           <div className="App">
             <header className="App-header">
               <p className="App-message">
-                Welcome to WatermelonApp!
+                Welcome to Watermelon Wallet!
           </p>
-              <Connection value={this.handleChangeValue} />
+              <Connection value={this.handleChangeValue} user={this.setConnection}/>
             </header>
           </div>}
         {this.state.connected &&
-          <Wallet />}
+          <Wallet user={this.state.connectedUser}/>}
       </div>
 
     );

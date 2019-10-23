@@ -8,7 +8,6 @@ body {
 .navigation {
     position: fixed;
     border-right: 5px white solid;
-    border-top-right-radius: 30%;
     margin: 0;
     padding: 0;
     height:100%;

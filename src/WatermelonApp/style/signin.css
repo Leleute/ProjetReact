@@ -4,6 +4,11 @@
     background-image: linear-gradient(to right top, #e90000, #cf0026, #af0035, #8b003c, #66003a);   
     border-radius: 20%;
 }
+
+.signin-form span{
+    color:white;
+}
+    
 .logo{
     vertical-align: middle;
     padding-right : 1em;
@@ -11,8 +16,9 @@
     height: 50px;
 }
 
-.option-section{
+.signin-form .option-section{
     padding: 1em 5em 1em 5em;
+    text-align: left;
 }
 
 .button-list{

@@ -39,6 +39,7 @@ class SignIn extends Component {
                 connectedUser = user;
                 this.setState({back:true});
                 this.props.connected(true);
+                this.props.connectedUser(connectedUser);
             }
         });
 
@@ -46,7 +47,6 @@ class SignIn extends Component {
             alert("Those infomations do not correspond to an account, please try again");
         } else {
             LocalStorageSetter("connectedUser", connectedUser);
-
         }
     }
 

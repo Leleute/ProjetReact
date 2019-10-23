@@ -21,18 +21,26 @@ class Connection extends Component {
             value: '',
             render: '',
             connected: false,
+            connectedUser: '',
             showMe: true
         }
         this.handleChangeValue = this.handleChangeValue.bind(this);
     }
-    
+
     handleChangeValue = (connected) => {
         if (connected == true) {
-            console.log(this);
-            console.log(this.props);
             this.props.value(true);
         } else {
-            this.setState({showMe:true})
+            this.setState({ showMe: true })
+        }
+    }
+
+    setConnection = (user) => {
+        if (user != '') {
+            this.setState({
+                connectedUser: user
+            });
+            this.props.user(user);
         }
     }
 
@@ -45,8 +53,8 @@ class Connection extends Component {
 
     _renderSubComp() {
         switch (this.state.render) {
-            case 'signin': return <SignIn connected={this.handleChangeValue} display={true} showMe={this.state.showMe}/>
-            case 'signup': return <SignUp connected={this.handleChangeValue} display={true} showMe={this.state.showMe}/>
+            case 'signin': return <SignIn connected={this.handleChangeValue} display={true} connectedUser={this.setConnection} showMe={this.state.showMe} />
+            case 'signup': return <SignUp connected={this.handleChangeValue} display={true} connectedUser={this.setConnection} showMe={this.state.showMe} />
         }
     }
 
