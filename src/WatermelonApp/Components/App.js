@@ -5,6 +5,10 @@ import { LocalStorageGetter, LocalStorageSetter } from '../Shortcut';
 import '../style/App.css';
 
 import users from '../../database/users';
+import cards from '../../database/cards';
+import payin from '../../database/payin';
+import payout from '../../database/payout';
+import wallet from '../../database/wallet';
 
 
 //localStorage.clear();
@@ -12,7 +16,24 @@ import users from '../../database/users';
 if (LocalStorageGetter("users") == null) {
   LocalStorageSetter("users", users);
 }
+if (LocalStorageGetter("cards") == null) {
+    LocalStorageSetter("cards", cards);
+}
+if (LocalStorageGetter("payin") == null) {
+    LocalStorageSetter("payin", payin);
+}
+if (LocalStorageGetter("payout") == null) {
+    LocalStorageSetter("payout", payout);
+}
+if (LocalStorageGetter("wallet") == null) {
+    LocalStorageSetter("wallet", wallet);
+}
 
+console.log(users);
+console.log(cards);
+console.log(payin);
+console.log(payout);
+console.log(wallet);
 
 class App extends Component {
   

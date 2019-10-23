@@ -43,12 +43,49 @@ class SettingsMenu extends Component {
             if (it.id == this.state.user.id)
                 if (data == 'last_name') {
                     //Modifier local storage pour le user (à partir de la valeur copyUser) puis reload user dans state avec celui modifier dans localStorage
+                    let users = LocalStorageGetter("users");
+                    users.map((u) => {
+                        if (u.id == this.state.user.id) {
+                            u.last_name = this.state.copyUser.last_name;
+                            console.log(u);
+                            LocalStorageSetter("users", users);
+                            this.state.user = u;
+                        }
+                    })
                 } else if (data == 'first_name') {
                     //Modifier local storage pour le user (à partir de la valeur copyUser) puis reload user dans state avec celui modifier dans localStorage
+                    let users = LocalStorageGetter("users");
+                    users.map((u) => {
+                        if (u.id == this.state.user.id) {
+                            u.first_name = this.state.copyUser.first_name;
+                            console.log(u);
+                            LocalStorageSetter("users", users);
+                            this.state.user = u;
+
+                        }
+                    })
                 } else if (data == 'email') {
                     //Modifier local storage pour le user (à partir de la valeur copyUser) puis reload user dans state avec celui modifier dans localStorage
+                    let users = LocalStorageGetter("users");
+                    users.map((u) => {
+                        if (u.id == this.state.user.id) {
+                            u.email = this.state.copyUser.email;
+                            console.log(u);
+                            LocalStorageSetter("users", users);
+                            this.state.user = u;
+                        }
+                    })
                 } else if (data == 'password') {
                     //Modifier local storage pour le user (à partir de la valeur copyUser) puis reload user dans state avec celui modifier dans localStorage
+                    let users = LocalStorageGetter("users");
+                    users.map((u) => {
+                        if (u.id == this.state.user.id) {
+                            u.password = this.state.copyUser.password;
+                            console.log(u);
+                            LocalStorageSetter("users", users);
+                            this.state.user = u;
+                        }
+                    })
                 } else {
                     //Modifier local storage pour le user (à partir de la valeur copyUser) puis reload user dans state avec celui modifier dans localStorage
                 }
