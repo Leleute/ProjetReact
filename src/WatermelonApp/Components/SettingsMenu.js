@@ -94,7 +94,6 @@ class SettingsMenu extends Component {
     }
 
     render() {
-        console.log(this.state.data);
         return (
             <div className="container">
                 <header><img src={icoSettings} className="ico" />MY ACCOUNT</header>
@@ -103,7 +102,10 @@ class SettingsMenu extends Component {
                     <li><img src={username} className="ico" /><span>First Name</span><input name='first_name' type="text" defaultValue={LocalStorageGetter("connectedUser").first_name} onChange={e => this.updateInputValue(e)} /><img src={icoEdit} onClick={this.saveChanges.bind(this, 'first_name')} className="ico-edit" /></li>
                     <li><img src={name} className="ico" /><span>Email</span><input name='email' type="text" defaultValue={LocalStorageGetter("connectedUser").email} onChange={e => this.updateInputValue(e)} /><img src={icoEdit} onClick={this.saveChanges.bind(this, 'email')} className="ico-edit" /></li>
                     <li><img src={psw} className="ico" /><span>Password</span><input name='password' type="password" defaultValue={LocalStorageGetter("connectedUser").password} onChange={e => this.updateInputValue(e)} /><img src={icoEdit} onClick={this.saveChanges.bind(this, 'password')} className="ico-edit" /></li>
-                    <li><img src={admin} className="ico" /><span>Admin rights</span><input name='is_admin' type="text" value={LocalStorageGetter("connectedUser").is_admin} /></li>
+                    {LocalStorageGetter("connectedUser").is_admin && <li><img src={admin} className="ico" /><span>Admin rights</span><input name='is_admin' type="text" value="Yes" /></li>}
+                    {!LocalStorageGetter("connectedUser").is_admin && <li><img src={admin} className="ico" /><span>Admin rights</span><input name='is_admin' type="text" value="No" /></li>}
+                  
+                    
                 </section>
             </div>
         );

@@ -91,25 +91,29 @@ class WalletMenu extends Component {
 
     deleteCardsLocalStorage(event) {
         let connectedCards = LocalStorageGetter("connectedCard");
-        let postDelete = new Array();
-        connectedCards.map((card) => {
-            if (card.id != event.target.name) {
-                postDelete.push(card);
-            }
+        if (connectedCards.length > 1) {
+            let postDelete = new Array();
+            connectedCards.map((card) => {
+                if (card.id != event.target.name) {
+                    postDelete.push(card);
+                }
 
-        });
-        LocalStorageSetter("connectedCard", postDelete);
+            });
+            LocalStorageSetter("connectedCard", postDelete);
 
-        let allCards = LocalStorageGetter("cards");
-        postDelete = new Array();
-        allCards.map((card) => {
-            if (card.id != event.target.name) {
-                postDelete.push(card);
-            }
+            let allCards = LocalStorageGetter("cards");
+            postDelete = new Array();
+            allCards.map((card) => {
+                if (card.id != event.target.name) {
+                    postDelete.push(card);
+                }
 
-        });
-        LocalStorageSetter("cards", postDelete);
-        this.forceUpdate();
+            });
+            LocalStorageSetter("cards", postDelete);
+            this.forceUpdate();
+        } else {
+            alert("You must have at least one credit card registered");
+        }
     }
 
     confirmCreation(event) {
@@ -137,6 +141,7 @@ class WalletMenu extends Component {
         let connectedCard = LocalStorageGetter('connectedCard');
         connectedCard.push(newCard);
         LocalStorageSetter('connectedCard', connectedCard);
+
 
         console.log(LocalStorageGetter('connectedCard', connectedCard));
         this.forceUpdate();
@@ -186,10 +191,6 @@ class WalletMenu extends Component {
         this.setState({ boolAdd: !this.state.boolAdd });
     }
 
-    deleteCard(event) {
-
-    }
-
     editCard(event) {
         LocalStorageGetter("connectedCard").map((card) => {
             if (card.id == event.target.name) {
@@ -204,7 +205,7 @@ class WalletMenu extends Component {
             console.log(this.state.valuePayIn);
             console.log(this.state.selectedCCPI);
             let newWallet = LocalStorageGetter("connectedWallet");
-            newWallet.balance = parseInt(newWallet.balance) + (parseInt(this.state.valuePayIn))*100;
+            newWallet.balance = parseInt(newWallet.balance) + (parseInt(this.state.valuePayIn)) * 100;
             LocalStorageSetter("connectedWallet", newWallet);
             console.log(newWallet);
             let newWallets = LocalStorageGetter("wallet");
@@ -214,7 +215,7 @@ class WalletMenu extends Component {
                     LocalStorageSetter("wallet", newWallets);
                     console.log(LocalStorageGetter("wallet"));
                 }
-                
+
             });
             let payins = LocalStorageGetter("payin");
             let idpayin = 0;
@@ -242,8 +243,8 @@ class WalletMenu extends Component {
             });
             LocalStorageSetter("connectedPayin", connectedPayin);
             console.log(LocalStorageGetter("connectedPayin"));
-            
-            this.setState({valuePayIn:'', selectedCCPI:'', displayPI:false})            
+
+            this.setState({ valuePayIn: '', selectedCCPI: '', displayPI: false })
         } else {
             alert("Please choose a card and/or select an amount")
         }
@@ -253,9 +254,9 @@ class WalletMenu extends Component {
     proceedPayOut(event) {
         console.log(this.state.valuePayOut);
         console.log(this.state.selectedCCPI);
-        if (this.state.selectedCCPO!= '' && this.state.valuePayOut != '') {
+        if (this.state.selectedCCPO != '' && this.state.valuePayOut != '') {
             let newWallet = LocalStorageGetter("connectedWallet");
-            newWallet.balance = parseInt(newWallet.balance) - (parseInt(this.state.valuePayOut))*100;
+            newWallet.balance = parseInt(newWallet.balance) - (parseInt(this.state.valuePayOut)) * 100;
             LocalStorageSetter("connectedWallet", newWallet);
             console.log(newWallet);
             let newWallets = LocalStorageGetter("wallet");
@@ -294,7 +295,7 @@ class WalletMenu extends Component {
             LocalStorageSetter("connectedPayout", connectedPayout);
             console.log(LocalStorageGetter("connectedPayout"));
 
-            this.setState({valuePayOut:'', selectedCCPO:'', displayPO:false})
+            this.setState({ valuePayOut: '', selectedCCPO: '', displayPO: false })
         } else {
             alert("Please choose a card and/or select an amount")
         }
@@ -347,24 +348,26 @@ class WalletMenu extends Component {
                 <header><img src={icoWallet} className="ico" />MY WALLET</header>
                 <section className="section-action">
                     <div className='section-header' onClick={this.display.bind(this, 'card')}><img src={icoCard} className="ico" /><span >My Cards</span></div>
-                    {this.state.displayC && LocalStorageGetter('connectedCard').map(function (object, i) {
-                        return (
-                            <div className='card-description'>
-                                {!this.state.boolEdit && <li><img src={icoCardBrand} className="ico" /> <p className="display-value">{object.brand.toUpperCase()}</p></li>}
-                                {this.state.boolEdit && this.state.idEdit != object.id && <li><img src={icoCardBrand} className="ico" /> <p className="display-value">{object.brand.toUpperCase()}</p></li>}
-                                {this.state.boolEdit && this.state.idEdit == object.id && <li><img src={icoCardBrand} className="ico" /> <input type="text" name="brand" defaultValue={object.brand.toUpperCase()} onChange={this.updateCardData} /></li>}
-                                {!this.state.boolEdit && <li><img src={icoCardDate} className="ico" /> <p className="display-value">{object.expired_at.slice(0, 10)}</p></li>}
-                                {this.state.boolEdit && this.state.idEdit != object.id && <li><img src={icoCardDate} className="ico" /> <p className="display-value">{object.expired_at.slice(0, 10)}</p></li>}
-                                {this.state.boolEdit && this.state.idEdit == object.id && <li><img src={icoCardDate} className="ico" /> <input type="date" name="expired_at" defaultValue={object.expired_at.slice(0, 10)} onChange={this.updateCardData} /></li>}
-                                {!this.state.boolEdit && <li><img src={icoCardL4} className="ico" /> <p className="display-value">**** **** **** {object.last_4}</p></li>}
-                                {this.state.boolEdit && this.state.idEdit != object.id && <li><img src={icoCardL4} className="ico" /> <p className="display-value">**** **** **** {object.last_4}</p></li>}
-                                {this.state.boolEdit && this.state.idEdit == object.id && <li><img src={icoCardL4} className="ico" /> <input type="text" name="last_four" defaultValue={object.last_4} onChange={this.updateCardData} /></li>}
-                                {!this.state.boolEdit && <img src={icoCardEditOption} className="ico_non_reverse" name={object.id} onClick={this.editCard} />}
-                                {this.state.boolEdit && this.state.idEdit == object.id && <img src={icoCardEditOption} className="ico_non_reverse" name={object.id} onClick={this.confirmEdit} />}
-                                {!this.state.boolEdit && <img src={icoCardTrashOption} className="ico_non_reverse" name={object.id} onClick={this.deleteCardsLocalStorage} />}
-                            </div>
-                        );
-                    }, this)}
+                    {LocalStorageGetter('connectedCard').length != 0 && <div>
+                        {this.state.displayC && LocalStorageGetter('connectedCard').map(function (object, i) {
+                            return (
+                                <div className='card-description'>
+                                    {!this.state.boolEdit && <li><img src={icoCardBrand} className="ico" /> <p className="display-value">{object.brand.toUpperCase()}</p></li>}
+                                    {this.state.boolEdit && this.state.idEdit != object.id && <li><img src={icoCardBrand} className="ico" /> <p className="display-value">{object.brand.toUpperCase()}</p></li>}
+                                    {this.state.boolEdit && this.state.idEdit == object.id && <li><img src={icoCardBrand} className="ico" /> <input type="text" name="brand" defaultValue={object.brand.toUpperCase()} onChange={this.updateCardData} /></li>}
+                                    {!this.state.boolEdit && <li><img src={icoCardDate} className="ico" /> <p className="display-value">{object.expired_at.slice(0, 10)}</p></li>}
+                                    {this.state.boolEdit && this.state.idEdit != object.id && <li><img src={icoCardDate} className="ico" /> <p className="display-value">{object.expired_at.slice(0, 10)}</p></li>}
+                                    {this.state.boolEdit && this.state.idEdit == object.id && <li><img src={icoCardDate} className="ico" /> <input type="date" name="expired_at" defaultValue={object.expired_at.slice(0, 10)} onChange={this.updateCardData} /></li>}
+                                    {!this.state.boolEdit && <li><img src={icoCardL4} className="ico" /> <p className="display-value">**** **** **** {object.last_4}</p></li>}
+                                    {this.state.boolEdit && this.state.idEdit != object.id && <li><img src={icoCardL4} className="ico" /> <p className="display-value">**** **** **** {object.last_4}</p></li>}
+                                    {this.state.boolEdit && this.state.idEdit == object.id && <li><img src={icoCardL4} className="ico" /> <input type="text" name="last_four" defaultValue={object.last_4} onChange={this.updateCardData} /></li>}
+                                    {!this.state.boolEdit && <img src={icoCardEditOption} className="ico_non_reverse" name={object.id} onClick={this.editCard} />}
+                                    {this.state.boolEdit && this.state.idEdit == object.id && <img src={icoCardEditOption} className="ico_non_reverse" name={object.id} onClick={this.confirmEdit} />}
+                                    {!this.state.boolEdit && <img src={icoCardTrashOption} className="ico_non_reverse" name={object.id} onClick={this.deleteCardsLocalStorage} />}
+                                </div>
+                            );
+                        }, this)}
+                    </div>}
                     {!this.state.boolEdit && !this.state.boolAdd && this.state.displayC && <img src={icoCardAddOption} className="ico_non_reverse" onClick={this.createCard} />}
                     {this.state.boolAdd && <form>
                         <li><img src={icoCardBrand} className="ico" /><span>Brand</span><input type="text" name="brand" onChange={this.updateInputValue} /></li>
@@ -374,48 +377,65 @@ class WalletMenu extends Component {
                         <img src={icoCardCrossption} className="ico_non_reverse" onClick={this.abordCreation} />
                     </form>}
                 </section>
+
+
                 <section className="section-action">
                     <div className='section-header' onClick={this.display.bind(this, 'payin')}><img src={icoPayIn} className="ico" /><span >Pay-In</span></div>
-                    {this.state.displayPI && <div className='payin-description'>
-                        <img src={ico1} className="ico_number" /> <p>Select a credit card</p>
-                        <div className="card-description">
-                            {LocalStorageGetter('connectedCard').map(function (object, i) {
-                                return (
-                                    <div onChange={this.setSelectedCardPayIn.bind(this)}>
-                                        <li> <input type="radio" name="card_selected_payin" value={object.id} /><img src={icoCardBrand} className="ico" /> <p className="display-value">{object.brand.toUpperCase()} **** **** **** {object.last_4}</p></li>
-                                    </div>
-                                );
-                            }, this)}
-                        </div>
-                        <img src={ico2} className="ico_number" /> <p>Select an amout to pay-in</p>
-                        <div className="section-element">
-                            <img src={icoEuro} className="ico" /><span>Amount</span><input name='amount' type="text" value={this.state.valuePayIn} onChange={this.updateInputPayIn} />
-                        </div>
-                        <div className="submit" onClick={this.proceedPayIn}>Confirm</div>
+                    {LocalStorageGetter('connectedCard').length != 0 && <div>
+                        {this.state.displayPI && <div className='payin-description'>
+                            <img src={ico1} className="ico_number" /> <p>Select a credit card</p>
+                            <div className="card-description">
+                                {LocalStorageGetter('connectedCard').map(function (object, i) {
+                                    return (
+                                        <div onChange={this.setSelectedCardPayIn.bind(this)}>
+                                            <li> <input type="radio" name="card_selected_payin" value={object.id} /><img src={icoCardBrand} className="ico" /> <p className="display-value">{object.brand.toUpperCase()} **** **** **** {object.last_4}</p></li>
+                                        </div>
+                                    );
+                                }, this)}
+                            </div>
+                            <img src={ico2} className="ico_number" /> <p>Select an amount of money</p>
+                            <div className="section-element">
+                                <img src={icoEuro} className="ico" /><span>Amount</span><input name='amount' type="text" value={this.state.valuePayIn} onChange={this.updateInputPayIn} />
+                            </div>
+                            <div className="submit" onClick={this.proceedPayIn}>Confirm</div>
+                        </div>}
                     </div>}
-                </section>
-                <section className="section-action">
-                    <div className='section-header' onClick={this.display.bind(this, 'payout')}><img src={icoPayOut} className="ico" /><span >Pay-Out</span></div>
-                    {this.state.displayPO && <div className='payout-description'>
-                        <img src={ico1} className="ico_number" /> <p>Select a credit card</p>
-                        <div className="card-description">
-                            {LocalStorageGetter('connectedCard').map(function (object, i) {
-                                return (
-                                    <div onChange={this.setSelectedCardPayOut.bind(this)}>
-                                        <li> <input type="radio" name="card_selected_payin" value={object.id} /><img src={icoCardBrand} className="ico" /> <p className="display-value">{object.brand.toUpperCase()} **** **** **** {object.last_4}</p></li>
-                                    </div>
-                                );
-                            }, this)}
-                        </div>
-                        <img src={ico2} className="ico_number" /> <p>Select an amout to pay-out</p>
-                        <div className="section-element">
-                            <img src={icoEuro} className="ico" /><span>Amount</span><input name='amount' type="text" value={this.state.valuePayOut} onChange={this.updateInputPayOut} />
-                        </div>
-                        <div className="submit" onClick={this.proceedPayOut}>Confirm</div>
-                    </div>}
+                    {this.state.displayPI && LocalStorageGetter('connectedCard').length == 0 &&
+                        <div className="element">
+                            <span className="display-none">You need at least one credit card registered to pay-in</span>
+                        </div>}
                 </section>
 
-            </div>
+
+                <section className="section-action">
+                    <div className='section-header' onClick={this.display.bind(this, 'payout')}><img src={icoPayOut} className="ico" /><span >Pay-Out</span></div>
+                    {LocalStorageGetter('connectedCard').length != 0 && <div>
+                        {this.state.displayPO && <div className='payout-description'>
+                            <img src={ico1} className="ico_number" /> <p>Select a credit card</p>
+                            <div className="card-description">
+                                {LocalStorageGetter('connectedCard').map(function (object, i) {
+                                    return (
+                                        <div onChange={this.setSelectedCardPayOut.bind(this)}>
+                                            <li> <input type="radio" name="card_selected_payin" value={object.id} /><img src={icoCardBrand} className="ico" /> <p className="display-value">{object.brand.toUpperCase()} **** **** **** {object.last_4}</p></li>
+                                        </div>
+                                    );
+                                }, this)}
+                            </div>
+                            <img src={ico2} className="ico_number" /> <p>Select an amount of money</p>
+                            <div className="section-element">
+                                <img src={icoEuro} className="ico" /><span>Amount</span><input name='amount' type="text" value={this.state.valuePayOut} onChange={this.updateInputPayOut} />
+                            </div>
+                            <div className="submit" onClick={this.proceedPayOut}>Confirm</div>
+                        </div>}
+                    </div>}
+                    {this.state.displayPO && LocalStorageGetter('connectedCard').length == 0 &&
+                        <div className="element">
+                            <span className="display-none">You need at least one credit card registered to pay-out</span>
+                        </div>}
+
+                </section>
+
+            </div >
         );
     }
 }

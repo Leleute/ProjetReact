@@ -41,3 +41,10 @@
 #pay{
     padding-top:0.5em;
 }
+
+#return{
+    color:white;
+    font-style: italic;
+    font-family: 'Haettenschweiler' , 'Arial Narrow Bold', sans-serif;
+    font-size:0.8em;
+}

@@ -61,7 +61,6 @@ class SignUp extends Component {
         if (creavalide == true) {
             //Creation du compte
             let newUser = { id: this.state.id, last_name: this.state.last_name, first_name: this.state.first_name, email: this.state.email, password: this.state.password, is_admin: this.state.is_admin };
-            let myData = new Object();
 
             let allUsers = LocalStorageGetter("users");
             allUsers.push(newUser);
@@ -71,7 +70,6 @@ class SignUp extends Component {
             this.setState({ connected: true });
             this.setState({ back: true });
             this.props.connected(true);
-            myData['user'] = newUser;
             LocalStorageSetter("connectedUser", newUser);
             //Creation du wallet
             let newWallet = {id: this.state.id, balance: 0, user_id: this.state.id};
@@ -81,11 +79,11 @@ class SignUp extends Component {
             LocalStorageSetter("connectedWallet", newWallet);
 
 
-            LocalStorageSetter("connectedPayin", null);
-            LocalStorageSetter("connectedPayout", null);
-            LocalStorageSetter("connectedCard", null);
-            LocalStorageSetter("connectedTransfIn", null);
-            LocalStorageSetter("connectedTransfOut", null);
+            LocalStorageSetter("connectedPayin", new Array());
+            LocalStorageSetter("connectedPayout", new Array());
+            LocalStorageSetter("connectedCard", new Array());
+            LocalStorageSetter("connectedTransfIn", new Array());
+            LocalStorageSetter("connectedTransfOut", new Array());
 
         }
         else {

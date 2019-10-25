@@ -14,5 +14,29 @@ export default [
         email: "userb@email",
         password: "bbb",
         is_admin: true
+    },
+    {
+        id: 3,
+        last_name: "dupond",
+        first_name: "henry",
+        email: "henry@email",
+        password: "123",
+        is_admin: false
+    },
+    {
+        id: 4,
+        last_name: "dupond",
+        first_name: "eric",
+        email: "eric@email",
+        password: "123",
+        is_admin: false
+    },
+    {
+        id: 5,
+        last_name: "martin",
+        first_name: "louis",
+        email: "louis@email",
+        password: "123",
+        is_admin: false
     }
 ];
