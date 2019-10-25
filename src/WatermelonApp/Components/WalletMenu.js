@@ -204,7 +204,7 @@ class WalletMenu extends Component {
             console.log(this.state.valuePayIn);
             console.log(this.state.selectedCCPI);
             let newWallet = LocalStorageGetter("connectedWallet");
-            newWallet.balance = parseInt(newWallet.balance) + parseInt(this.state.valuePayIn);
+            newWallet.balance = parseInt(newWallet.balance) + (parseInt(this.state.valuePayIn))*100;
             LocalStorageSetter("connectedWallet", newWallet);
             console.log(newWallet);
             let newWallets = LocalStorageGetter("wallet");
@@ -242,6 +242,8 @@ class WalletMenu extends Component {
             });
             LocalStorageSetter("connectedPayin", connectedPayin);
             console.log(LocalStorageGetter("connectedPayin"));
+            
+            this.setState({valuePayIn:'', selectedCCPI:'', displayPI:false})            
         } else {
             alert("Please choose a card and/or select an amount")
         }
@@ -249,11 +251,11 @@ class WalletMenu extends Component {
     }
 
     proceedPayOut(event) {
-        if (this.state.selectedCCPI != '' && this.state.valuePayOut != '') {
-            console.log(this.state.valuePayOut);
-            console.log(this.state.selectedCCPI);
+        console.log(this.state.valuePayOut);
+        console.log(this.state.selectedCCPI);
+        if (this.state.selectedCCPO!= '' && this.state.valuePayOut != '') {
             let newWallet = LocalStorageGetter("connectedWallet");
-            newWallet.balance = parseInt(newWallet.balance) - parseInt(this.state.valuePayOut);
+            newWallet.balance = parseInt(newWallet.balance) - (parseInt(this.state.valuePayOut))*100;
             LocalStorageSetter("connectedWallet", newWallet);
             console.log(newWallet);
             let newWallets = LocalStorageGetter("wallet");
@@ -291,6 +293,8 @@ class WalletMenu extends Component {
             });
             LocalStorageSetter("connectedPayout", connectedPayout);
             console.log(LocalStorageGetter("connectedPayout"));
+
+            this.setState({valuePayOut:'', selectedCCPO:'', displayPO:false})
         } else {
             alert("Please choose a card and/or select an amount")
         }
