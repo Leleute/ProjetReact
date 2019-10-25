@@ -201,6 +201,14 @@ body {
     font-weight: bold
 }
 
+.container .display-none{
+    text-align: center;
+    display: block;
+    margin:0;
+    color:red;
+    font-size:0.8em;
+}
+
 .submit{
     background-image: linear-gradient(to right top, #0c0a2c, #061758, #002187, #0029b8, #122eeb);
     width: 33%;

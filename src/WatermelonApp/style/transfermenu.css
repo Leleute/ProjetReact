@@ -18,7 +18,6 @@
 }
 
 .container section .user-choice{
-    min-width: 50%;
+    min-width:50%;
     float: left;
-    display:inline-block;
 }

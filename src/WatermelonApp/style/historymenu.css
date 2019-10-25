@@ -30,3 +30,14 @@
 
     vertical-align: middle;
 }
+
+#transfer {
+    border-bottom: white 5px solid;
+    border-width: medium;
+    margin-bottom: 0.5em;
+    padding-top: 0.5em;
+}
+
+#pay{
+    padding-top:0.5em;
+}

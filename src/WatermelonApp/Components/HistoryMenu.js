@@ -7,8 +7,10 @@ import icoTransfer from '../img/ico_exchange.png';
 import icoPayIn from '../img/ico_payin.png';
 import icoPayOut from '../img/ico_payout.png';
 import icoEuro from '../img/ico_euro.png';
-import icoCardAddOption from '../img/ico_add.png';
-import icoCardMinusOption from '../img/ico_minus.png';
+import icoAdd from '../img/ico_add.png';
+import icoMinus from '../img/ico_minus.png';
+import icoTransferIn from '../img/ico_transfer_in.png';
+import icoTransferOut from '../img/ico_transfer_out.png';
 
 import { LocalStorageGetter } from '../Shortcut';
 
@@ -42,43 +44,90 @@ class HistoryMenu extends Component {
                 <header><img src={icoHistory} className="ico" />HISTORY</header>
                 <section className="section-action" onClick={this.display.bind(this, 'payin')}>
                     <div className='section-header'><img src={icoPayIn} className="ico" /><span >Pay-in</span></div>
-                    {this.state.displayPI && LocalStorageGetter('connectedPayin').map(function (object, i) {
-                        return (
-                            <div className="history-container">
-                                {object.wallet_id != LocalStorageGetter('wallet').id &&
-                                    <div className="element">
-                                        <img src={icoCardAddOption} className="ico_non_reverse" /> <img src={icoEuro} className="ico" /> <span className="display-value">{object.amount}</span>
-                                    </div>
-                                }
+                    {LocalStorageGetter('connectedPayin') != null && <div>
+                        {this.state.displayPI && LocalStorageGetter('connectedPayin').map(function (object, i) {
+                            return (
+                                <div id="pay" className="history-container">
+                                    {object.wallet_id == LocalStorageGetter('connectedWallet').id &&
+                                        <div className="element">
+                                            <img src={icoAdd} className="ico_non_reverse" /> <img src={icoEuro} className="ico" /> <span className="display-value">{object.amount}</span>
+                                        </div>
+                                    }
+                                </div>
+                            );
+                        }, this)}
+                    </div>}
+                    {LocalStorageGetter('connectedPayin') == null && this.state.displayPI &&
+                        <div className="history-container">
+                            <div className="element">
+                                <span className="display-none">No pay-in has been found.</span>
                             </div>
-                        );
-                    }, this)}
+                        </div>
+                    }
                 </section>
                 <section className="section-action" onClick={this.display.bind(this, 'payout')}>
                     <div className='section-header'><img src={icoPayOut} className="ico" /><span >Pay-out</span></div>
-                    {this.state.displayPO && LocalStorageGetter('connectedPayout').map(function (object, i) {
-                        return (
-                            <div className="history-container">
-                                {object.wallet_id != LocalStorageGetter('wallet').id &&
-                                    <div className="element">
-                                        <img src={icoCardMinusOption} className="ico_non_reverse" /> <img src={icoEuro} className="ico" /> <span className="display-value">{object.amount}</span>
-                                    </div>
-                                }
+                    {LocalStorageGetter('connectedPayout') != null && <div>
+                        {this.state.displayPO && LocalStorageGetter('connectedPayout').map(function (object, i) {
+                            return (
+                                <div id="pay" className="history-container">
+                                    {object.wallet_id == LocalStorageGetter('connectedWallet').id &&
+                                        <div className="element">
+                                            <img src={icoMinus} className="ico_non_reverse" /> <img src={icoEuro} className="ico" /> <span className="display-value">{object.amount}</span>
+                                        </div>
+                                    }
+                                </div>
+                            );
+                        }, this)}
+                    </div>}
+                    {LocalStorageGetter('connectedPayout') == null && this.state.displayPO &&
+                        <div className="history-container">
+                            <div className="element">
+                                <span className="display-none">No pay-out has been found.</span>
                             </div>
-                        );
-                    }, this)}
+                        </div>
+                    }
                 </section>
                 <section className="section-action" onClick={this.display.bind(this, 'transfer')}>
                     <div className='section-header'><img src={icoTransfer} className="ico" /><span >Transfer</span></div>
+
                     {this.state.displayT && LocalStorageGetter('connectedTransfIn').map(function (object, i) {
                         return (
-                            <div className="history-container">
+                            <div id="transfer" className="history-container">
+                                {LocalStorageGetter('connectedTransfIn') != null && <div>
+                                    {object.credited_wallet_id == LocalStorageGetter('connectedUser').id &&
+                                        <div className="element">
+                                            <img src={icoTransferIn} className="ico_non_reverse" /> <img src={icoEuro} className="ico" /> <span className="display-value">{object.amount}</span>
+                                        </div>
+                                    }
+                                </div>}
+                                {LocalStorageGetter('connectedTransfIn') == null &&
+                                    <div className="history-container">
+                                        <div className="element">
+                                            <span className="display-none">No money has been received.</span>
+                                        </div>
+                                    </div>
+                                }
                             </div>
                         );
                     }, this)}
                     {this.state.displayT && LocalStorageGetter('connectedTransfOut').map(function (object, i) {
                         return (
-                            <div className="history-container">
+                            <div id="transfer" className="history-container">
+                                {LocalStorageGetter('connectedTransfOut') != null && <div>
+                                    {object.debited_wallet_id == LocalStorageGetter('connectedUser').id &&
+                                        <div className="element">
+                                            <img src={icoTransferOut} className="ico_non_reverse" /> <img src={icoEuro} className="ico" /> <span className="display-value">{object.amount}</span>
+                                        </div>
+                                    }
+                                </div>}
+                                {LocalStorageGetter('connectedTransfOut') == null && 
+                                    <div className="history-container">
+                                        <div className="element">
+                                            <span className="display-none">No money has been sent.</span>
+                                        </div>
+                                    </div>
+                                }
                             </div>
                         );
                     }, this)}

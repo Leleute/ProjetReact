@@ -131,17 +131,7 @@ class TransferMenu extends Component {
             alert("Please choose a card and/or select an amount")
         }
         */
-
-    
-
-
-            alert("transfer done");
-            //do Transfer
-
-
-
-
-            this.setState({ idReceiver: '', idCreditCard: '', amount: '' })
+           this.setState({ idReceiver: '', idCreditCard: '', amount: '' })
         } else {
             alert("Please choose a card and/or select an amount")
         }
