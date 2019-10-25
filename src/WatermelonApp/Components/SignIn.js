@@ -76,11 +76,28 @@ class SignIn extends Component {
                     connectedCard.push(card);
                 }
             });
+            var connectedTransfIn = new Array();
+            let transIns = LocalStorageGetter("transfer");
+            transIns.map((transIn) => {
+                if (transIn.credited_wallet_id == connectedWallet.id) {
+                    connectedTransfIn.push(transIn);
+                }
+            });
+            var connectedTransfOut = new Array();
+            let transOuts = LocalStorageGetter("transfer");
+            transOuts.map((transOut) => {
+                if (transOut.debited_wallet_id == connectedWallet.id) {
+                    connectedTransfOut.push(transOut);
+                }
+            });
             LocalStorageSetter("connectedUser", connectedUser);
             LocalStorageSetter("connectedWallet", connectedWallet);
             LocalStorageSetter("connectedPayin", connectedPayin);
             LocalStorageSetter("connectedPayout", connectedPayout);
             LocalStorageSetter("connectedCard", connectedCard);
+            LocalStorageSetter("connectedTransfIn", connectedTransfIn);
+            LocalStorageSetter("connectedTransfOut", connectedTransfOut);
+
         }
     }
 

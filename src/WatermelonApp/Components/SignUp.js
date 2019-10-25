@@ -80,11 +80,12 @@ class SignUp extends Component {
             LocalStorageSetter("wallet", allwallets);
             LocalStorageSetter("connectedWallet", newWallet);
 
-            //Creation payIn payOut vide
 
             LocalStorageSetter("connectedPayin", null);
             LocalStorageSetter("connectedPayout", null);
             LocalStorageSetter("connectedCard", null);
+            LocalStorageSetter("connectedTransfIn", null);
+            LocalStorageSetter("connectedTransfOut", null);
 
         }
         else {

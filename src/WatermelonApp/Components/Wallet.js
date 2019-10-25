@@ -26,7 +26,9 @@ class Wallet extends Component {
             user: LocalStorageGetter("connectedUser"),
             payin: LocalStorageGetter("connectedPayin"),
             payout: LocalStorageGetter("connectedPayout"),
-            card: LocalStorageGetter("connectedCard")
+            card: LocalStorageGetter("connectedCard"),
+            transferIn: LocalStorageGetter("connectedTransfIn"),
+            transferOut: LocalStorageGetter("connectedTransfOut")
         }
 
     }
@@ -43,6 +45,10 @@ class Wallet extends Component {
         console.log(this.state.payout);
         console.log("this.state.card");
         console.log(this.state.card);
+        console.log("this.state.transferIn");
+        console.log(this.state.transferIn);
+        console.log("this.state.transferOut");
+        console.log(this.state.transferOut);
     }
 
     render() {
