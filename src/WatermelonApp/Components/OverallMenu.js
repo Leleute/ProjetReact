@@ -11,10 +11,6 @@ class OverallMenu extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            user: LocalStorageGetter("connectedUser"),
-            wallet: LocalStorageGetter("connectedWallet")
-        }
     }
 
     render() {
@@ -24,12 +20,11 @@ class OverallMenu extends Component {
             <div className="container">
                 <section> <div className='section-header'>BALANCE</div>
                     <img src={icoEuro} className='ico' />
-                    {typeof this.state.wallet !== "undefined" && <span className="ico-text">{(this.state.wallet.balance / 100).toFixed(2)}</span>}
+                    {typeof LocalStorageGetter("connectedWallet") !== "undefined" && <span className="ico-text">{(LocalStorageGetter("connectedWallet").balance / 100).toFixed(2)}</span>}
                 </section>
                 <section> <div className='section-header'>ACCOUNT</div>
-                    <li><img src={username} className="ico" /><p className="display-value">{this.state.user.last_name}</p></li>
-                    <li><img src={username} className="ico" /><p className="display-value">{this.state.user.first_name}</p></li>
-                    <li><img src={name} className="ico" /><p className="display-value"> {this.state.user.email}</p></li>
+                    <li><img src={username} className="ico" /><p className="display-value">{LocalStorageGetter("connectedUser").last_name.toUpperCase()} {LocalStorageGetter("connectedUser").first_name}</p></li>
+                    <li><img src={name} className="ico" /><p className="display-value"> {LocalStorageGetter("connectedUser").email}</p></li>
                 </section>
             </div>
         );

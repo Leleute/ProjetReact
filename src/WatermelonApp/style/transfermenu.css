@@ -1,0 +1,23 @@
+
+.container section .user-choice .element .item, .container section .user-choice .selected .item{
+    font-size: 0.8em;
+}
+
+.container section .user-choice .element, .container section .user-choice .selected{
+    padding: 0.5em 0.5em 0.5em 0.5em;   
+    margin-top:1em;
+}
+
+.container section .user-choice .selected{
+    background-image: linear-gradient(to right top, #ff0000, #de012f, #b51f41, #892e47, #5b3341);
+}
+
+.container section .user-choice .element:hover, .selected:hover{
+    background-image: linear-gradient(to right top, #38b1b7, #00aecf, #00a9e5, #3d9ff3, #8190f4);
+    cursor: pointer;
+}
+
+.container section .user-choice{
+    min-width: 30%;
+    float: left;
+}
