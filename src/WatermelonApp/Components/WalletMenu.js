@@ -46,6 +46,8 @@ class WalletMenu extends Component {
             idEdit: ''
         }
 
+        this.cardArrayUpdate();
+
         this.updateInputPayIn = this.updateInputPayIn.bind(this);
         this.proceedPayIn = this.proceedPayIn.bind(this);
         this.setSelectedCardPayIn = this.setSelectedCardPayIn.bind(this);
@@ -90,6 +92,7 @@ class WalletMenu extends Component {
         let allCards = LocalStorageGetter("cards");
         allCards.push(newCard);
         LocalStorageSetter("cards", allCards);
+        console.log(LocalStorageGetter("cards"));
         this.cardArrayUpdate();
 
 
@@ -110,7 +113,7 @@ class WalletMenu extends Component {
 
     cardArrayUpdate() {
         let myCards = []
-        LocalStorageGetter("card").map((card) => {
+        LocalStorageGetter("cards").map((card) => {
             if (LocalStorageGetter("connectedUser").id == card.user_id) {
                 myCards.push(card);
             }
@@ -126,11 +129,19 @@ class WalletMenu extends Component {
         console.log("4 : " + this.state.copyCards.last_4);
 
 
+            //Modifier local storage pour le user (à partir de la valeur copyUser) puis reload user dans state avec celui modifier dans localStorage
+            let cards = LocalStorageGetter("cards");
+        cards.map((card) => {
+            if (card.id == event.target.id) {
+                card.brand = this.state.copyCards.brand;
+                card.expired_at = this.state.copyCards.expired_at;
+                card.last_4 = this.state.copyCards.last_4;
+                console.log(cards);
+                LocalStorageSetter("cards", cards);
+                this.cardArrayUpdate();
 
-        //Check if input are as asked
-        //Save data in LocalStorage for id=event.target.name 
-        //For each data brand, expired_at, last_4 + reload in cards (pour afficher à l'écran après modif)
-        
+            }
+        });
 
         this.setState({ boolEdit: false, idEdit: '', copyCards: '' });
 
@@ -149,6 +160,7 @@ class WalletMenu extends Component {
     }
 
     updateCardData(event) {
+
         console.log("updateCardData");
         console.log(this.state);
         if (event.target.name == 'brand') {
@@ -166,11 +178,15 @@ class WalletMenu extends Component {
 
     deleteCard(event) {
         let allCards = LocalStorageGetter("cards");
-        let postDelete;
+        let postDelete = new Array();
         allCards.map((card) => {
-            if (card.id != event.target.name) postDelete.push(card);
+            if (card.id != event.target.name) {
+                postDelete.push(card);
+            }
+            
         });
-        LocalStorageGetter("")
+        LocalStorageSetter("cards", postDelete);
+        this.cardArrayUpdate();
         //delete card with id event.target.name in LocalStorage + reload cards
     }
 

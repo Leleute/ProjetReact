@@ -23,7 +23,7 @@ class OverallMenu extends Component {
             <div className="container">
                 <section> <div className='section-header'>BALANCE</div>
                     <img src={icoEuro} className='ico' />
-                    {typeof this.state.data['wallet'] !== "undefined" && <span className="ico-text">{LocalStorageGetter("connectedWallet").balance}</span>}
+                    {typeof this.state.data['wallet'] !== "undefined" && <span className="ico-text">{(LocalStorageGetter("connectedWallet").balance / 100).toFixed(2)}</span>}
                 </section>
                 <section> <div className='section-header'>ACCOUNT</div>
                     <li><img src={username} className="ico" /><p className="display-value">{LocalStorageGetter("connectedUser").last_name}</p></li>

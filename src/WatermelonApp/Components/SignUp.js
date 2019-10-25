@@ -74,7 +74,7 @@ class SignUp extends Component {
             myData['user'] = newUser;
             LocalStorageSetter("connectedUser", newUser);
             //Creation du wallet
-            let newWallet = {id: this.state.id, balance: 40, user_id: this.state.id};
+            let newWallet = {id: this.state.id, balance: 0, user_id: this.state.id};
             let allwallets = LocalStorageGetter("wallet");
             allwallets.push(newWallet);
             LocalStorageSetter("wallet", allwallets);

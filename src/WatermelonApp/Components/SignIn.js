@@ -111,7 +111,6 @@ class SignIn extends Component {
             cards.map((card) => {
                 //alert(card.user_id + " " + connectedUser.id)
                 if (card.user_id == connectedUser.id) {
-                    alert("aaa")
                     connectedCards.push(card);
                 }
             });
@@ -120,7 +119,6 @@ class SignIn extends Component {
             LocalStorageSetter("connectedPayin", connectedPayin);
             LocalStorageSetter("connectedPayout", connectedPayout);
             LocalStorageSetter("connectedCard", connectedCards);
-            alert(LocalStorageGetter("connectedCard"));
         }
     }
 
