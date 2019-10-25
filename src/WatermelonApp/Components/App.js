@@ -12,7 +12,7 @@ import wallet from '../../database/wallet';
 import transfer from '../../database/transfer';
 
 
-//localStorage.clear();
+localStorage.clear();
 
 if (LocalStorageGetter("users") == null) {
   LocalStorageSetter("users", users);

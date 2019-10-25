@@ -11,7 +11,8 @@ import ico1 from '../img/ico_1.png';
 import ico2 from '../img/ico_2.png';
 import icoCardBrand from '../img/ico_card_brand.png';
 
-import { LocalStorageGetter } from '../Shortcut';
+import { LocalStorageGetter, LocalStorageSetter } from '../Shortcut';
+import wallet from '../../database/wallet';
 
 class TransferMenu extends Component {
 
@@ -32,8 +33,113 @@ class TransferMenu extends Component {
             console.log(this.state.idCreditCard);
             console.log(this.state.idReceiver);
             console.log(this.state.amount);
+            console.log("----------------");
+            console.log(LocalStorageGetter("wallet"));
+            console.log(LocalStorageGetter("connectedWallet"));
+            console.log(LocalStorageGetter("transfer"));
+            console.log(LocalStorageGetter("connectedTransfOut"));
+            /// --------------------------------------------------------
+            let idtransfer = 0;
+            let listTransfer = LocalStorageGetter("transfer");
+            listTransfer.map((t) => {
+                if (t.id > idtransfer) idtransfer = t.id;
+            });
+
+            let newTransfer = {
+                id: idtransfer + 1,
+                debited_wallet_id: LocalStorageGetter("connectedWallet").id,
+                credited_wallet_id: this.state.idReceiver.id,
+                amount: parseInt(this.state.amount)
+            }
+            listTransfer.push(newTransfer);
+            LocalStorageSetter("transfer", listTransfer);
+            let actifTransf = LocalStorageGetter("connectedTransfOut");
+            actifTransf.push(newTransfer);
+            LocalStorageSetter("connectedTransfOut", actifTransf);
+
+            //recuperation du wallet cible
+            let balanceCible = 0;
+            let listWallet = LocalStorageGetter("wallet");
+            listWallet.map((w) => {
+                if (w.id == this.state.idReceiver) {
+                    balanceCible = w.balance;
+                }
+            });
+            this.state.amount = this.state.amount * 100;
+            let walletPresent = LocalStorageGetter("connectedWallet");
+            walletPresent.balance = parseInt(walletPresent.balance) - parseInt(this.state.amount);
+            balanceCible = parseInt(balanceCible) + parseInt(this.state.amount);
+            listWallet.map((w) => {
+                if (w.id == walletPresent.id) {
+                    w.balance = walletPresent.balance;
+                }
+                if (w.id == this.state.idReceiver) {
+                    w.balance = balanceCible;
+
+                }
+            });
+            LocalStorageSetter("wallet", listWallet);
+            LocalStorageSetter("connectedWallet", walletPresent);
+            console.log("--------------------------")
+            console.log("----------------");
+            console.log(LocalStorageGetter("wallet"));
+            console.log(LocalStorageGetter("connectedWallet"));
+            console.log(LocalStorageGetter("transfer"));
+            console.log(LocalStorageGetter("connectedTransfOut"));
+
+
+            /*
+            newWallet.balance = parseInt(newWallet.balance) - parseInt(this.state.valuePayOut);
+            LocalStorageSetter("connectedWallet", newWallet);
+            console.log(newWallet);
+            let newWallets = LocalStorageGetter("wallet");
+            newWallets.map((w) => {
+                if (w.id == newWallet.id) {
+                    w.balance = newWallet.balance;
+                    LocalStorageSetter("wallet", newWallets);
+                    console.log(LocalStorageGetter("wallet"));
+                }
+
+            });
+            let payouts = LocalStorageGetter("payout");
+            let idpayout = 0;
+            payouts.map((payout) => {
+                if (payout.id > idpayout) idpayout = payout.id;
+            });
+            idpayout++;
+            let newPayout = {
+                id: idpayout,
+                wallet_id: LocalStorageGetter("connectedWallet").id,
+                amount: parseInt(this.state.valuePayOut)
+            }
+            let allPayouts = LocalStorageGetter("payout");
+            allPayouts.push(newPayout);
+            LocalStorageSetter("payout", allPayouts);
+            console.log(LocalStorageGetter("payout"));
+            //do payIn into wallet corresponding to credit card selected
+            //cardCCPI
+            var connectedPayout = new Array();
+            payouts = LocalStorageGetter("payout");
+            payouts.map((payout) => {
+                if (payout.wallet_id == LocalStorageGetter("connectedWallet").id) {
+                    connectedPayout.push(payout);
+                }
+            });
+            LocalStorageSetter("connectedPayout", connectedPayout);
+            console.log(LocalStorageGetter("connectedPayout"));
+        } else {
+            alert("Please choose a card and/or select an amount")
+        }
+        */
+
+    
+
+
             alert("transfer done");
             //do Transfer
+
+
+
 
             this.setState({ idReceiver: '', idCreditCard: '', amount: '' })
         } else {
