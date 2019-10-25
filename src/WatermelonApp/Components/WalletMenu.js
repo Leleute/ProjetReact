@@ -203,8 +203,45 @@ class WalletMenu extends Component {
         if (this.state.selectedCCPI != '' && this.state.valuePayIn != '') {
             console.log(this.state.valuePayIn);
             console.log(this.state.selectedCCPI);
+            let newWallet = LocalStorageGetter("connectedWallet");
+            newWallet.balance = parseInt(newWallet.balance) + parseInt(this.state.valuePayIn);
+            LocalStorageSetter("connectedWallet", newWallet);
+            console.log(newWallet);
+            let newWallets = LocalStorageGetter("wallet");
+            newWallets.map((w) => {
+                if (w.id == newWallet.id) {
+                    w.balance = newWallet.balance;
+                    LocalStorageSetter("wallet", newWallets);
+                    console.log(LocalStorageGetter("wallet"));
+                }
+                
+            });
+            let payins = LocalStorageGetter("payin");
+            let idpayin = 0;
+            payins.map((payin) => {
+                if (payin.id > idpayin) idpayin = payin.id;
+            });
+            idpayin++;
+            let newPayin = {
+                id: idpayin,
+                wallet_id: LocalStorageGetter("connectedWallet").id,
+                amount: parseInt(this.state.valuePayIn)
+            }
+            let allPayins = LocalStorageGetter("payin");
+            allPayins.push(newPayin);
+            LocalStorageSetter("payin", allPayins);
+            console.log(LocalStorageGetter("payin"));
             //do payIn into wallet corresponding to credit card selected
             //cardCCPI
+            var connectedPayin = new Array();
+            payins = LocalStorageGetter("payin");
+            payins.map((payin) => {
+                if (payin.wallet_id == LocalStorageGetter("connectedWallet").id) {
+                    connectedPayin.push(payin);
+                }
+            });
+            LocalStorageSetter("connectedPayin", connectedPayin);
+            console.log(LocalStorageGetter("connectedPayin"));
         } else {
             alert("Please choose a card and/or select an amount")
         }
@@ -212,14 +249,52 @@ class WalletMenu extends Component {
     }
 
     proceedPayOut(event) {
-        if (this.state.selectedCCPO != '' && this.state.valuePayOut != '') {
+        if (this.state.selectedCCPI != '' && this.state.valuePayOut != '') {
             console.log(this.state.valuePayOut);
-            console.log(this.state.selectedCCPO);
-            //do payOut into wallet corresponding to credit card selected
-            //cardCCPO
+            console.log(this.state.selectedCCPI);
+            let newWallet = LocalStorageGetter("connectedWallet");
+            newWallet.balance = parseInt(newWallet.balance) + parseInt(this.state.valuePayOut);
+            LocalStorageSetter("connectedWallet", newWallet);
+            console.log(newWallet);
+            let newWallets = LocalStorageGetter("wallet");
+            newWallets.map((w) => {
+                if (w.id == newWallet.id) {
+                    w.balance = newWallet.balance;
+                    LocalStorageSetter("wallet", newWallets);
+                    console.log(LocalStorageGetter("wallet"));
+                }
+
+            });
+            let payouts = LocalStorageGetter("payout");
+            let idpayout = 0;
+            payouts.map((payout) => {
+                if (payout.id > idpayout) idpayout = payout.id;
+            });
+            idpayout++;
+            let newPayout = {
+                id: idpayout,
+                wallet_id: LocalStorageGetter("connectedWallet").id,
+                amount: parseInt(this.state.valuePayOut)
+            }
+            let allPayouts = LocalStorageGetter("payout");
+            allPayouts.push(newPayout);
+            LocalStorageSetter("payout", allPayouts);
+            console.log(LocalStorageGetter("payout"));
+            //do payIn into wallet corresponding to credit card selected
+            //cardCCPI
+            var connectedPayout = new Array();
+            payouts = LocalStorageGetter("payout");
+            payouts.map((payout) => {
+                if (payout.wallet_id == LocalStorageGetter("connectedWallet").id) {
+                    connectedPayout.push(payout);
+                }
+            });
+            LocalStorageSetter("connectedPayout", connectedPayout);
+            console.log(LocalStorageGetter("connectedPayout"));
         } else {
             alert("Please choose a card and/or select an amount")
         }
+
 
     }
 
@@ -228,9 +303,9 @@ class WalletMenu extends Component {
             alert(event.target.value + " is not a number");
         } else if (Number(event.target.value) < Number(0)) {
             alert(event.target.value + " must be greater than 0");
-        } else if (Number(event.target.value) > Number(((LocalStorageGetter("connectedWallet").balance) / 100).toFixed(2))) {
+        } /*else if (Number(event.target.value) > Number(((LocalStorageGetter("connectedWallet").balance) / 100).toFixed(2))) {
             alert(event.target.value + " must not exceed wallet's balance");
-        }
+        }*/
         else {
             this.setState({ valuePayIn: event.target.value });
         }
