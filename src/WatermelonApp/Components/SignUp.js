@@ -50,30 +50,46 @@ class SignUp extends Component {
             if (user.email == this.state.email) { creavalide = false }
         });
         //Mise en place de l'ID
+        var newId = 0;
         users.map((user) => {
-            this.state.id++;
+            if (user.id > newId) {
+                newId = user.id;
+            }
         });
+        newId++;
+        this.state.id = newId;
         if (creavalide == true) {
+            //Creation du compte
             let newUser = { id: this.state.id, last_name: this.state.last_name, first_name: this.state.first_name, email: this.state.email, password: this.state.password, is_admin: this.state.is_admin };
             let myData = new Object();
-            LocalStorageSetter("last_name", newUser.last_name);
-            LocalStorageSetter("first_name", newUser.first_name);
-            LocalStorageSetter("email", newUser.email);
-            LocalStorageSetter("password", newUser.password);
+
             let allUsers = LocalStorageGetter("users");
             allUsers.push(newUser);
             console.log(newUser);
             LocalStorageSetter("users", allUsers);
             alert("Creation valide !");
             this.setState({ connected: true });
-            this.setState({back:true});
+            this.setState({ back: true });
             this.props.connected(true);
-
             myData['user'] = newUser;
-            
+            LocalStorageSetter("connectedUser", newUser);
+            //Creation du wallet
+            let newWallet = {id: this.state.id, balance: 40, user_id: this.state.id};
+            let allwallets = LocalStorageGetter("wallet");
+            allwallets.push(newWallet);
+            LocalStorageSetter("wallet", allwallets);
+            LocalStorageSetter("connectedWallet", newWallet);
+
+            //Creation payIn payOut vide
+
+            LocalStorageSetter("connectedPayin", null);
+            LocalStorageSetter("connectedPayout", null);
+
+        }
+        else {
+            alert("Un compte utilise deja cette adresse email");
         }
     }
-
     testBDD = () => {
         let users = LocalStorageGetter("users");
         console.log(users)

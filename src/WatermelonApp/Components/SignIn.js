@@ -42,7 +42,6 @@ class SignIn extends Component {
                 connectedUser = user;
                 this.setState({ back: true });
                 this.props.connected(true);
-                console.log(user);
                 myData['user'] = connectedUser;
 
                 //Get all data
@@ -50,7 +49,7 @@ class SignIn extends Component {
                 let payinTab = LocalStorageGetter('payin');
                 let payoutTab = LocalStorageGetter('payout');
                 let walletTab = LocalStorageGetter('wallet');
-                
+
                 let myCards = []
                 cardsTab.map((card) => {
                     if (connectedUser.id == card.user_id) {
@@ -80,13 +79,37 @@ class SignIn extends Component {
 
                 this.props.data(myData);
             }
-        });
 
+        });
 
         if (connexionfonctionne == false) {
             alert("Those infomations do not correspond to an account, please try again");
         } else {
+            let connectedWallet;
+            let wallets = LocalStorageGetter("wallet");
+            wallets.map((wallet) => {
+                if (wallet.user_id == connectedUser.id) {
+                    connectedWallet = wallet;
+                }
+            });
+            var connectedPayin = new Array();
+            let payins = LocalStorageGetter("payin");
+            payins.map((payin) => {
+                if (payin.wallet_id == connectedWallet.id) {
+                    connectedPayin.push(payin);
+                }
+            });
+            var connectedPayout = new Array();
+            let payouts = LocalStorageGetter("payout");
+            payouts.map((payout) => {
+                if (payout.wallet_id == connectedWallet.id) {
+                    connectedPayout.push(payout);
+                }
+            });
             LocalStorageSetter("connectedUser", connectedUser);
+            LocalStorageSetter("connectedWallet", connectedWallet);
+            LocalStorageSetter("connectedPayin", connectedPayin);
+            LocalStorageSetter("connectedPayout", connectedPayout);
         }
     }
 

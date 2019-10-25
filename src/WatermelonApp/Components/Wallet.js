@@ -14,13 +14,18 @@ import icoHistory from '../img/ico_history.png';
 import icoSettings from '../img/ico_settings.png';
 import icoSignOut from '../img/ico_sign_out.png';
 import logo from '../img/logo.png';
+import { LocalStorageGetter } from '../Shortcut';
 
 class Wallet extends Component {
     constructor(props) {
         super(props);
         this.state = {
             data : this.props.data,
-            menuOption: 0
+            menuOption: 0,
+            wallet: LocalStorageGetter("connectedWallet"),
+            user: LocalStorageGetter("connectedUser"),
+            payin: LocalStorageGetter("connectedPayin"),
+            payout: LocalStorageGetter("connectedPayout")
         }
     
     }
@@ -28,7 +33,8 @@ class Wallet extends Component {
     changeMenu(choice, e){
        this.setState({menuOption:choice});
        console.log("this.state");
-       console.log(this.state);
+        console.log(this.state);
+        console.log(this.state.wallet, this.state.user, this.state.payin, this.state.payout);
     }
 
     render() {

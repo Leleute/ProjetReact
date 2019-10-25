@@ -50,6 +50,7 @@ class SettingsMenu extends Component {
                             console.log(u);
                             LocalStorageSetter("users", users);
                             this.state.data['user'] = u;
+                            LocalStorageSetter("connectedUser", u);
                         }
                     })
                 } else if (data == 'first_name') {
@@ -61,6 +62,7 @@ class SettingsMenu extends Component {
                             console.log(u);
                             LocalStorageSetter("users", users);
                             this.state.data['user'] = u;
+                            LocalStorageSetter("connectedUser", u);
 
                         }
                     })
@@ -73,6 +75,7 @@ class SettingsMenu extends Component {
                             console.log(u);
                             LocalStorageSetter("users", users);
                             this.state.data['user'] = u;
+                            LocalStorageSetter("connectedUser", u);
                         }
                     })
                 } else if (data == 'password') {
@@ -84,11 +87,13 @@ class SettingsMenu extends Component {
                             console.log(u);
                             LocalStorageSetter("users", users);
                             this.state.data['user'] = u;
+                            LocalStorageSetter("connectedUser", u);
                         }
                     })
                 } else {
                     //Modifier local storage pour le user (à partir de la valeur copyUser) puis reload user dans state avec celui modifier dans localStorage
                 }
+
         });
     }
 
@@ -98,11 +103,11 @@ class SettingsMenu extends Component {
             <div className="container">
                 <header><img src={icoSettings} className="ico" />MY ACCOUNT</header>
                 <section>
-                    <li><img src={username} className="ico" /><span>Last Name</span><input name='last_name' type="text" defaultValue={this.state.data['user'].last_name} onChange={e => this.updateInputValue(e)} /><img src={icoEdit} onClick={this.saveChanges.bind(this, 'last_name')} className="ico-edit" /></li>
-                    <li><img src={username} className="ico" /><span>First Name</span><input name='first_name' type="text" defaultValue={this.state.data['user'].first_name} onChange={e => this.updateInputValue(e)} /><img src={icoEdit} onClick={this.saveChanges.bind(this, 'first_name')} className="ico-edit" /></li>
-                    <li><img src={name} className="ico" /><span>Email</span><input name='email' type="text" defaultValue={this.state.data['user'].email} onChange={e => this.updateInputValue(e)} /><img src={icoEdit} onClick={this.saveChanges.bind(this, 'email')} className="ico-edit" /></li>
-                    <li><img src={psw} className="ico" /><span>Password</span><input name='password' type="password" defaultValue={this.state.data['user'].password} onChange={e => this.updateInputValue(e)} /><img src={icoEdit} onClick={this.saveChanges.bind(this, 'password')} className="ico-edit" /></li>
-                    <li><img src={admin} className="ico" /><span>Admin rights</span><input name='is_admin' type="text" value={this.state.data['user'].is_admin} /></li>
+                    <li><img src={username} className="ico" /><span>Last Name</span><input name='last_name' type="text" defaultValue={LocalStorageGetter("connectedUser").last_name} onChange={e => this.updateInputValue(e)} /><img src={icoEdit} onClick={this.saveChanges.bind(this, 'last_name')} className="ico-edit" /></li>
+                    <li><img src={username} className="ico" /><span>First Name</span><input name='first_name' type="text" defaultValue={LocalStorageGetter("connectedUser").first_name} onChange={e => this.updateInputValue(e)} /><img src={icoEdit} onClick={this.saveChanges.bind(this, 'first_name')} className="ico-edit" /></li>
+                    <li><img src={name} className="ico" /><span>Email</span><input name='email' type="text" defaultValue={LocalStorageGetter("connectedUser").email} onChange={e => this.updateInputValue(e)} /><img src={icoEdit} onClick={this.saveChanges.bind(this, 'email')} className="ico-edit" /></li>
+                    <li><img src={psw} className="ico" /><span>Password</span><input name='password' type="password" defaultValue={LocalStorageGetter("connectedUser").password} onChange={e => this.updateInputValue(e)} /><img src={icoEdit} onClick={this.saveChanges.bind(this, 'password')} className="ico-edit" /></li>
+                    <li><img src={admin} className="ico" /><span>Admin rights</span><input name='is_admin' type="text" value={LocalStorageGetter("connectedUser").is_admin} /></li>
                 </section>
             </div>
         );

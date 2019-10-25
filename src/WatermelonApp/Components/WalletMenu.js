@@ -17,6 +17,7 @@ import icoCardEditOption from '../img/ico_edit.png';
 import icoCardAddOption from '../img/ico_add.png';
 import icoCardTickOption from '../img/ico_tick.png';
 import icoCardCrossption from '../img/ico_cross.png';
+import { LocalStorageGetter, LocalStorageSetter } from '../Shortcut';
 
 
 class WalletMenu extends Component {
@@ -27,9 +28,9 @@ class WalletMenu extends Component {
             cards: this.props.data['cards'],
             copyCards: '',
             emptyCard: {
+                last_4: '',
                 brand: '',
-                expired_at: '',
-                last_4: ''
+                expired_at: '',        
             },
             payin: this.props.data['payin'],
             payout: this.props.data['payout'],
@@ -73,6 +74,25 @@ class WalletMenu extends Component {
         //Check if input are as asked
         //Save data in LocalStorage incremented id
         //For each data brand, expired_at, last_4 + reload in cards (pour afficher à l'écran après modif)
+        let cards = LocalStorageGetter("cards");
+        let idcard = 0;
+        cards.map((card) => {
+            if (card.id > idcard) idcard = card.id;
+        });
+        idcard++;
+        let newCard = {
+            id: idcard,
+            last_4: this.state.emptyCard.last_4,
+            brand: this.state.emptyCard.brand,
+            expired_at: this.state.emptyCard.expired_at,
+            user_id: LocalStorageGetter("connectedUser").id
+        }
+        let allCards = LocalStorageGetter("cards");
+        allCards.push(newCard);
+        LocalStorageSetter("cards", allCards);
+        this.cardArrayUpdate();
+
+
 
         this.setState({ boolAdd: !this.state.boolAdd });
         this.state.emptyCard.brand = '';
@@ -82,9 +102,21 @@ class WalletMenu extends Component {
 
     abordCreation(event) {
         this.setState({ boolAdd: !this.state.boolAdd });
+
         this.state.emptyCard.brand = '';
         this.state.emptyCard.expired_at = '';
         this.state.emptyCard.last_4 = '';
+    }
+
+    cardArrayUpdate() {
+        let myCards = []
+        LocalStorageGetter("card").map((card) => {
+            if (LocalStorageGetter("connectedUser").id == card.user_id) {
+                myCards.push(card);
+            }
+            this.state.cards = myCards;
+        });
+
     }
 
     confirmEdit(event) {
@@ -93,9 +125,12 @@ class WalletMenu extends Component {
         console.log("date : " + this.state.copyCards.expired_at);
         console.log("4 : " + this.state.copyCards.last_4);
 
+
+
         //Check if input are as asked
         //Save data in LocalStorage for id=event.target.name 
         //For each data brand, expired_at, last_4 + reload in cards (pour afficher à l'écran après modif)
+        
 
         this.setState({ boolEdit: false, idEdit: '', copyCards: '' });
 
@@ -130,7 +165,12 @@ class WalletMenu extends Component {
     }
 
     deleteCard(event) {
-        console.log(event.target.name);
+        let allCards = LocalStorageGetter("cards");
+        let postDelete;
+        allCards.map((card) => {
+            if (card.id != event.target.name) postDelete.push(card);
+        });
+        LocalStorageGetter("")
         //delete card with id event.target.name in LocalStorage + reload cards
     }
 
