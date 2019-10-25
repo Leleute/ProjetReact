@@ -90,7 +90,7 @@ class SettingsMenu extends Component {
                 }
 
         });
-        this.setState({copyUser: LocalStorageGetter("connectedUser")});
+        
     }
 
     render() {

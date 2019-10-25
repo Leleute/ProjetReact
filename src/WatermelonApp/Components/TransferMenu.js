@@ -48,7 +48,7 @@ class TransferMenu extends Component {
             let newTransfer = {
                 id: idtransfer + 1,
                 debited_wallet_id: LocalStorageGetter("connectedWallet").id,
-                credited_wallet_id: this.state.idReceiver.id,
+                credited_wallet_id: this.state.idReceiver,
                 amount: parseInt(this.state.amount)
             }
             listTransfer.push(newTransfer);

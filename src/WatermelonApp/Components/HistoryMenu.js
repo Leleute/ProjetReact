@@ -95,7 +95,7 @@ class HistoryMenu extends Component {
                         return (
                             <div id="transfer" className="history-container">
                                 {LocalStorageGetter('connectedTransfIn') != null && <div>
-                                    {object.credited_wallet_id == LocalStorageGetter('connectedUser').id &&
+                                    {object.credited_wallet_id = LocalStorageGetter('connectedWallet').id &&
                                         <div className="element">
                                             <img src={icoTransferIn} className="ico_non_reverse" /> <img src={icoEuro} className="ico" /> <span className="display-value">{object.amount}</span>
                                         </div>
@@ -115,7 +115,7 @@ class HistoryMenu extends Component {
                         return (
                             <div id="transfer" className="history-container">
                                 {LocalStorageGetter('connectedTransfOut') != null && <div>
-                                    {object.debited_wallet_id == LocalStorageGetter('connectedUser').id &&
+                                    {object.debited_wallet_id == LocalStorageGetter('connectedWallet').id &&
                                         <div className="element">
                                             <img src={icoTransferOut} className="ico_non_reverse" /> <img src={icoEuro} className="ico" /> <span className="display-value">{object.amount}</span>
                                         </div>
