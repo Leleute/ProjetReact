@@ -253,7 +253,7 @@ class WalletMenu extends Component {
             console.log(this.state.valuePayOut);
             console.log(this.state.selectedCCPI);
             let newWallet = LocalStorageGetter("connectedWallet");
-            newWallet.balance = parseInt(newWallet.balance) + parseInt(this.state.valuePayOut);
+            newWallet.balance = parseInt(newWallet.balance) - parseInt(this.state.valuePayOut);
             LocalStorageSetter("connectedWallet", newWallet);
             console.log(newWallet);
             let newWallets = LocalStorageGetter("wallet");
