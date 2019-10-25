@@ -34,10 +34,6 @@ class OverallMenu extends Component {
             </div>
         );
     }
-    //this.state.data['user'].last_name
-    //this.state.data['user'].first_name
-    //this.state.data['user'].email
-    //(this.state.data['wallet'].balance / 100).toFixed(2)
 }
 
 export default OverallMenu;

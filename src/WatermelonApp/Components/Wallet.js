@@ -4,6 +4,7 @@ import App from './App';
 import OverallMenu from './OverallMenu';
 import SettingsMenu from './SettingsMenu';
 import WalletMenu from './WalletMenu';
+import TransferMenu from './TransferMenu';
 
 import '../style/wallet.css';
 
@@ -64,7 +65,7 @@ class Wallet extends Component {
                 <div>
                     {this.state.menuOption == 0 && <OverallMenu/>}
                     {this.state.menuOption == 1 && <WalletMenu/>}
-                    {this.state.menuOption == 2 && <div>Exchange</div>}
+                    {this.state.menuOption == 2 && <TransferMenu/>}
                     {this.state.menuOption == 3 && <div>History</div>}
                     {this.state.menuOption == 4 && <SettingsMenu/>}
                     {this.state.menuOption == 5 && <App />}
