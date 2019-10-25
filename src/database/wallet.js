@@ -1,11 +1,13 @@
 ﻿export default [
     {
         id: 1,
-        ballance: "1200",
+        balance: "12512",
+        user_id: 1
 
     },
     {
         id: 2,
-        ballance: "1500",
+        balance: "1569",
+        user_id: 2
     }
 ];

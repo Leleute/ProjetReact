@@ -41,7 +41,7 @@ class App extends Component {
     super(props);
     this.state = {
       connected: false,
-      connectedUser: ''
+      data: ''
     };
     this.handleChangeValue = this.handleChangeValue.bind(this);
   }
@@ -56,11 +56,12 @@ class App extends Component {
     });
   }
 
-  setConnection = (user) => {
+  setData = (myData) => {
     this.setState({
-      connectedUser: user
+      data: myData
     });
   }
+
 
   render() {
     return (
@@ -69,13 +70,13 @@ class App extends Component {
           <div className="App">
             <header className="App-header">
               <p className="App-message">
-                Welcome to Watermelon Wallet!
+                Welcome to Watermelon Wallet App!
           </p>
-              <Connection value={this.handleChangeValue} user={this.setConnection}/>
+              <Connection value={this.handleChangeValue} data={this.setData}/>
             </header>
           </div>}
         {this.state.connected &&
-          <Wallet user={this.state.connectedUser}/>}
+          <Wallet data={this.state.data}/>}
       </div>
 
     );

@@ -1,8 +1,11 @@
 body {
-    background-image: url('https://media.giphy.com/media/112jVj3oFhHoHu/giphy.gif');
-    background-size: 100% 110%;
-    background-repeat: no-repeat; 
-    text-align: center;
+    background-image: url('https://media.giphy.com/media/1BfRG8cK5SPOer97aK/giphy.gif');
+    background-repeat : no-repeat;
+    background-size: cover;
+    background-attachment: fixed; 
+    width: 100%;
+    height: 100%;
+    
 }
 
 .navigation {
@@ -11,7 +14,7 @@ body {
     margin: 0;
     padding: 0;
     height:100%;
-    background-image: linear-gradient(to right top, #00c8ff, #8ad2ff, #c2deff, #e8ecff, #ffffff);
+    background-image: linear-gradient(to right top, #0c0a2c, #061758, #002187, #0029b8, #122eeb);
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     width: 15%;
 }
@@ -20,16 +23,16 @@ body {
     list-style: none;   
     padding: 0.5em 2em 0.5em 1em;
     text-decoration: none ;
-    color: black ;    
+    color: white ;    
     font-size: 1.5em;
     letter-spacing: 2px;
 }
 
   
 .navigation li:hover {
-    background-image: linear-gradient(to right top, #00c8ff, #00abff, #0089ff, #005fff, #2100ff);
+    background-image: linear-gradient(to right top, #3026bc, #0063df, #007db4, #008d65, #449619);
     cursor:pointer; 
-    color: black;
+    color: white;
     border-left: 5px;
     border-top: 5px;
     border-bottom: 5px;
@@ -47,13 +50,14 @@ body {
 
 .list-bottom li:hover{
     background-image: linear-gradient(to right top, #ac4949, #c3403f, #d93432, #ed2320, #ff0000);
-    color:black;
+    color:white;
 }
 
 .navigation li img{
     vertical-align: middle;
     height: 40px;
     margin-right: 0.8em;
+    -webkit-filter: invert(100%);   
 }
 
 .navigation .logo {
@@ -64,12 +68,140 @@ body {
 .navigation .logo-text {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 2em; 
+    color:white;
+    margin: 0;
     padding-bottom: 20px;
     letter-spacing: 5px;
-    text-shadow: 4px 1px green;
+    text-shadow: 5px 2px green;
 }
 
 .logo-element{
     padding-top:1em;
     padding-bottom: 2.5em ;
 }
+
+
+
+
+
+
+
+
+
+
+
+.container {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 2em;
+    padding: 2% 2% 2% 2%;
+    margin-left:15%;
+}
+
+.container .ico, .ico_number{
+     -webkit-filter: invert(100%);
+     vertical-align: middle;
+     
+}
+
+.container .ico_non_reverse {
+    height: 50px;
+    padding-right: 0.5em;
+}
+
+.container .ico_non_reverse:hover{
+    height: 60px;    
+}
+
+.container .ico{
+    height: 50px;
+    padding-right : 1em;
+}
+
+.container .ico_number{
+    height: 30px;
+    padding-right: 5%;
+}
+
+
+.ico-text {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 2em; 
+    letter-spacing: 5px;
+    margin:0;
+    color: black;
+}
+
+.container .section-header {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color:white;
+    letter-spacing: 5px;
+    padding-bottom:0.5em;  
+    border-bottom: white 5px solid;
+    border-width: medium;
+    margin-bottom: 0.5em;
+ }
+
+.container header{
+    background-image: linear-gradient(to right top, #0c0a2c, #061758, #002187, #0029b8, #122eeb);
+    border: white 2px solid;
+    color:white;
+    padding : 5px 5px 5px 5px;
+    margin-bottom: 1em;
+ }
+
+.container section {
+    margin: auto;
+    min-width: 30%;
+    color:white;
+    vertical-align: middle;
+    margin-bottom:1em;
+    width: 50%;
+    padding: 2% 10% 2% 10%;
+    text-align: center;
+    background-image: linear-gradient(to right top, #000b83, #002a84, #003676, #003c62, #00404e);
+    border: white 2px solid;
+    width: fit-content;
+}
+
+.container input, span, .display-value{
+    margin-right: 1em;
+    vertical-align: middle;   
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}   
+
+.container span {
+    color: white;
+    letter-spacing: 5px;
+}  
+
+.container input {
+    color:blue;
+}
+
+.container input, .display-value{
+    font-size: 0.7em;
+}   
+
+.container .display-value{
+    font-family: 'Arial', sans-serif;
+    color:turquoise;
+    display: inline;    
+    font-weight: bold
+}
+
+.submit{
+    background-image: linear-gradient(to right top, #0c0a2c, #061758, #002187, #0029b8, #122eeb);
+    width: 33%;
+    display: inline-block;
+    margin: auto;
+    padding: 0em 1em 0em 1em;
+    vertical-align: middle;
+    letter-spacing: 4px;
+}
+.submit:hover{
+    background-image: linear-gradient(to right top, #ff0000, #de012f, #b51f41, #892e47, #5b3341);
+}
+
+
+
+

@@ -31,7 +31,7 @@
     padding: 5px 2em 5  px 2em;
 }
 
-button {
+.button-list button {
     background-image: linear-gradient(to right top, #053709, #236114, #488d1b, #75bc1c, #a8eb12);
     padding: 0em 2em 0em 2em;
     color:white;
@@ -39,7 +39,7 @@ button {
     font-size:1em;  
 }
 
-button:hover{
+.button-list button:hover{
     background-image: linear-gradient(to right top, #e90000, #ea0210, #eb061c, #eb0c26, #eb122e);
     cursor: pointer;
 }

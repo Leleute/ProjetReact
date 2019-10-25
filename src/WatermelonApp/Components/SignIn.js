@@ -25,23 +25,63 @@ class SignIn extends Component {
     }
 
     back = () => {
-        this.setState({back:true});
+        this.setState({ back: true });
         this.props.connected(false);
     }
 
     connection = () => {
         var connexionfonctionne = false;
         let users = LocalStorageGetter("users");
+
         let connectedUser;
+        let myData = new Object();
+        //Get user
         users.map((user) => {
             if (this.state.email != '' && this.state.password != '' && this.state.email == user.email && this.state.password == user.password) {
                 connexionfonctionne = true;
                 connectedUser = user;
-                this.setState({back:true});
+                this.setState({ back: true });
                 this.props.connected(true);
-                this.props.connectedUser(connectedUser);
+                console.log(user);
+                myData['user'] = connectedUser;
+
+                //Get all data
+                let cardsTab = LocalStorageGetter('cards');
+                let payinTab = LocalStorageGetter('payin');
+                let payoutTab = LocalStorageGetter('payout');
+                let walletTab = LocalStorageGetter('wallet');
+                
+                let myCards = []
+                cardsTab.map((card) => {
+                    if (connectedUser.id == card.user_id) {
+                        myCards.push(card);
+                    }
+                });
+                myData['cards'] = myCards;
+                walletTab.map((wallet) => {
+                    if (connectedUser.id == wallet.user_id) {
+                        myData['wallet'] = wallet;
+                    }
+                });
+                let myPayIn = []
+                payinTab.map((payin) => {
+                    if (myData['wallet'].id == payin.wallet_id) {
+                        myPayIn.push(payin);
+                    }
+                });
+                myData['payin'] = myPayIn;
+                let myPayOut = []
+                payoutTab.map((payout) => {
+                    if (myData['wallet'].id == payout.wallet_id) {
+                        myPayOut.push(payout);
+                    }
+                });
+                myData['payout'] = myPayOut;
+
+                this.props.data(myData);
             }
         });
+
 
         if (connexionfonctionne == false) {
             alert("Those infomations do not correspond to an account, please try again");
@@ -82,7 +122,7 @@ class SignIn extends Component {
                             <button onClick={this.back}>Back</button>
                             <button onClick={this.testConnexion}>Test</button>
                         </div>
-                    </div>} 
+                    </div>}
             </div>
         );
     }

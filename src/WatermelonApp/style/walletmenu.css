@@ -1,25 +1,55 @@
-
-.container .column-list{
-    background-image: linear-gradient(to right top, #00c8ff, #8ad2ff, #c2deff, #e8ecff, #ffffff);
-}
-.container .column-list .menu {
-    margin:0;
-    padding:0;
-    width: 33%;
-    border: white 2px solid;
-    display: inline-block;
+.card-description{
+    letter-spacing: 5px;
+    border-bottom: white 5px solid;
+    border-width: medium;
+    margin-bottom: 0.5em;
 }
 
-.container .column-list .menu:hover {
-    background-image: linear-gradient(to right top, #00924c, #00a17a, #00afa6, #00bbcc, #12c5eb);   
+.section-element{
+    padding-top: 0.5em;
+}
+
+section .section-element input{
+    font-size: 0.5em;
+}
+
+section .section-element{
+    border-bottom: white 5px solid;
+    border-width: medium;
+    padding-bottom: 0.5em;
+    margin-bottom: 0.5em;
+}
+.section-element span{
+    font-family: 'Arial', sans-serif;
+    font-size: 0.7em;
+    margin-right: 1em;
+    width: 100%;
+}
+
+
+.section-action:hover {
     cursor: pointer;
+    background-image: linear-gradient(to right top, #38b1b7, #00aecf, #00a9e5, #3d9ff3, #8190f4);
 }
 
-.container .sub-menu {
-    width:100%;
-    font-size: 0.8em;
-    color:turquoise; 
-    display: inline-block;
-    background-image: linear-gradient(to right top, #00924c, #00a17a, #00afa6, #00bbcc, #12c5eb);   
-    border: white 2px solid;
+.payin-description p {
+    letter-spacing: 5px;
+    color:white;
+    display: inline;
+    font-size: 0.8em;    
+}
+
+.payout-description p {
+    letter-spacing: 5px;
+    color:white;
+    display: inline;    
+    font-size: 0.8em;    
+}
+
+#add:hover{
+    background-image: linear-gradient(to right top, #067a57, #009660, #00b266, #00ce68, #00eb66);
+}
+
+#edit:hover{
+    background-image: linear-gradient(to right top, #199bd5, #148ac1, #0e79ae, #07689a, #005887);   
 }

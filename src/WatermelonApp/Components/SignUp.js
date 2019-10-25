@@ -55,6 +55,7 @@ class SignUp extends Component {
         });
         if (creavalide == true) {
             let newUser = { id: this.state.id, last_name: this.state.last_name, first_name: this.state.first_name, email: this.state.email, password: this.state.password, is_admin: this.state.is_admin };
+            let myData = new Object();
             LocalStorageSetter("last_name", newUser.last_name);
             LocalStorageSetter("first_name", newUser.first_name);
             LocalStorageSetter("email", newUser.email);
@@ -67,6 +68,9 @@ class SignUp extends Component {
             this.setState({ connected: true });
             this.setState({back:true});
             this.props.connected(true);
+
+            myData['user'] = newUser;
+            
         }
     }
 

@@ -19,7 +19,7 @@ class Wallet extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            user : this.props.user,
+            data : this.props.data,
             menuOption: 0
         }
     
@@ -44,16 +44,16 @@ class Wallet extends Component {
                     <li onClick={this.changeMenu.bind(this, 2)}><img src={icoExchange}/>Exchange</li>
                     <li onClick={this.changeMenu.bind(this, 3)}><img src={icoHistory}/>History</li>
                     <div className="list-bottom">
-                        <li onClick={this.changeMenu.bind(this, 4)}><img src={icoSettings} />Settings</li>
+                        <li onClick={this.changeMenu.bind(this, 4)}><img src={icoSettings} />Account</li>
                         <li onClick={this.changeMenu.bind(this, 5)}><img src={icoSignOut} />Sign-out</li>
                     </div>
                 </div>}
                 <div>
-                   {this.state.menuOption == 0 && <OverallMenu userMenu={this.state.user}/>}
-                   {this.state.menuOption == 1 && <WalletMenu/> }
+                   {this.state.menuOption == 0 && <OverallMenu data={this.state.data}/>}
+                   {this.state.menuOption == 1 && <WalletMenu data={this.state.data}/> }
                    {this.state.menuOption == 2 && <div>Exchange</div>}
                    {this.state.menuOption == 3 && <div>History</div>}
-                   {this.state.menuOption == 4 && <SettingsMenu userMenu={this.state.user}/>}
+                   {this.state.menuOption == 4 && <SettingsMenu data={this.state.data}/>}
                    {this.state.menuOption == 5 && <App/>}                   
                 </div>
             </div>
