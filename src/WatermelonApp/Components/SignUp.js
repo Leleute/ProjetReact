@@ -84,6 +84,7 @@ class SignUp extends Component {
 
             LocalStorageSetter("connectedPayin", null);
             LocalStorageSetter("connectedPayout", null);
+            LocalStorageSetter("connectedCard", null);
 
         }
         else {
