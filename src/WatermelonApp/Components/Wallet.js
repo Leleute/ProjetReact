@@ -5,6 +5,7 @@ import OverallMenu from './OverallMenu';
 import SettingsMenu from './SettingsMenu';
 import WalletMenu from './WalletMenu';
 import TransferMenu from './TransferMenu';
+import HistoryMenu from './HistoryMenu';
 
 import '../style/wallet.css';
 
@@ -72,7 +73,7 @@ class Wallet extends Component {
                     {this.state.menuOption == 0 && <OverallMenu/>}
                     {this.state.menuOption == 1 && <WalletMenu/>}
                     {this.state.menuOption == 2 && <TransferMenu/>}
-                    {this.state.menuOption == 3 && <div>History</div>}
+                    {this.state.menuOption == 3 && <HistoryMenu/>}
                     {this.state.menuOption == 4 && <SettingsMenu/>}
                     {this.state.menuOption == 5 && <App />}
                 </div>

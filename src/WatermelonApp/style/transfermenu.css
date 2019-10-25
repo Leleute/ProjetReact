@@ -18,6 +18,7 @@
 }
 
 .container section .user-choice{
-    min-width: 30%;
+    min-width: 50%;
     float: left;
+    display:inline-block;
 }

@@ -1,5 +1,5 @@
 body {
-    background-image: url('https://media.giphy.com/media/1BfRG8cK5SPOer97aK/giphy.gif');
+    background-image:url('../img/bg.gif');
     background-repeat : no-repeat;
     background-size: cover;
     background-attachment: fixed; 

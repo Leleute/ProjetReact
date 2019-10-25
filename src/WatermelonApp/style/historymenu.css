@@ -1,0 +1,32 @@
+.section-action:hover {
+    cursor: pointer;
+    background-image: linear-gradient(to right top, #38b1b7, #00aecf, #00a9e5, #3d9ff3, #8190f4);
+}
+
+.container .section-action .history-container .element {
+    min-width: 50%;
+    display: inline-block;
+    vertical-align: middle;
+    margin-bottom: 0.5em;
+    padding-bottom: 0.5em;
+}
+
+.container .section-action .history-container .element .display-value{
+    font-size: 0.8em;
+    font-family: 'Haettenschweiler' , 'Arial Narrow Bold', sans-serif;
+    font-weight: none;
+}
+
+.container .section-action .history-container .element img{
+    padding-right:0.5em;
+    float: left;
+}
+
+.container .section-action .history-container .element .ico_non_reverse:hover{
+    height:50px;
+}
+
+.container .section-action .history-container .element span{
+
+    vertical-align: middle;
+}

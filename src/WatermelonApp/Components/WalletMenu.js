@@ -307,10 +307,7 @@ class WalletMenu extends Component {
             alert(event.target.value + " is not a number");
         } else if (Number(event.target.value) < Number(0)) {
             alert(event.target.value + " must be greater than 0");
-        } /*else if (Number(event.target.value) > Number(((LocalStorageGetter("connectedWallet").balance) / 100).toFixed(2))) {
-            alert(event.target.value + " must not exceed wallet's balance");
-        }*/
-        else {
+        } else {
             this.setState({ valuePayIn: event.target.value });
         }
     }
@@ -319,7 +316,7 @@ class WalletMenu extends Component {
             alert(event.target.value + " is not a number");
         } else if (Number(event.target.value) < Number(0)) {
             alert(event.target.value + " must be greater than 0");
-        } else if (Number(event.target.value) > Number((LocalStorageGetter("connectedWallet").balance / 100).toFixed(2))) {
+        } else if (Number(event.target.value) > Number(Math.trunc(LocalStorageGetter("connectedWallet").balance / 100))) {
             alert(event.target.value + " must not exceed wallet's balance");
         } else {
             this.setState({ valuePayOut: event.target.value });
