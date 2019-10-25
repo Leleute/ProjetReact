@@ -34,7 +34,6 @@ class SignIn extends Component {
         let users = LocalStorageGetter("users");
 
         let connectedUser;
-        let myData = new Object();
         //Get user
         users.map((user) => {
             if (this.state.email != '' && this.state.password != '' && this.state.email == user.email && this.state.password == user.password) {
@@ -42,42 +41,6 @@ class SignIn extends Component {
                 connectedUser = user;
                 this.setState({ back: true });
                 this.props.connected(true);
-                myData['user'] = connectedUser;
-
-                //Get all data
-                let cardsTab = LocalStorageGetter('cards');
-                let payinTab = LocalStorageGetter('payin');
-                let payoutTab = LocalStorageGetter('payout');
-                let walletTab = LocalStorageGetter('wallet');
-
-                let myCards = []
-                cardsTab.map((card) => {
-                    if (connectedUser.id == card.user_id) {
-                        myCards.push(card);
-                    }
-                });
-                myData['cards'] = myCards;
-                walletTab.map((wallet) => {
-                    if (connectedUser.id == wallet.user_id) {
-                        myData['wallet'] = wallet;
-                    }
-                });
-                let myPayIn = []
-                payinTab.map((payin) => {
-                    if (myData['wallet'].id == payin.wallet_id) {
-                        myPayIn.push(payin);
-                    }
-                });
-                myData['payin'] = myPayIn;
-                let myPayOut = []
-                payoutTab.map((payout) => {
-                    if (myData['wallet'].id == payout.wallet_id) {
-                        myPayOut.push(payout);
-                    }
-                });
-                myData['payout'] = myPayOut;
-
-                this.props.data(myData);
             }
 
         });
@@ -106,19 +69,18 @@ class SignIn extends Component {
                     connectedPayout.push(payout);
                 }
             });
-            var connectedCards = new Array();
+            var connectedCard = new Array();
             let cards = LocalStorageGetter("cards");
             cards.map((card) => {
-                //alert(card.user_id + " " + connectedUser.id)
                 if (card.user_id == connectedUser.id) {
-                    connectedCards.push(card);
+                    connectedCard.push(card);
                 }
             });
             LocalStorageSetter("connectedUser", connectedUser);
             LocalStorageSetter("connectedWallet", connectedWallet);
             LocalStorageSetter("connectedPayin", connectedPayin);
             LocalStorageSetter("connectedPayout", connectedPayout);
-            LocalStorageSetter("connectedCard", connectedCards);
+            LocalStorageSetter("connectedCard", connectedCard);
         }
     }
 

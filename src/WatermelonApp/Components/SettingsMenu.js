@@ -18,8 +18,7 @@ class SettingsMenu extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: this.props.data,
-            copyUser: this.props.data['user']
+            copyUser: LocalStorageGetter("connectedUser")
         }
     }
 
@@ -40,16 +39,15 @@ class SettingsMenu extends Component {
     saveChanges(data, e) {
         let allUsers = LocalStorageGetter("users");
         allUsers.map((it) => {
-            if (it.id == this.state.data['user'].id)
+            if (it.id == LocalStorageGetter("connectedUser").id)
                 if (data == 'last_name') {
                     //Modifier local storage pour le user (à partir de la valeur copyUser) puis reload user dans state avec celui modifier dans localStorage
                     let users = LocalStorageGetter("users");
                     users.map((u) => {
-                        if (u.id == this.state.data['user'].id) {
+                        if (u.id == LocalStorageGetter("connectedUser").id) {
                             u.last_name = this.state.copyUser.last_name;
                             console.log(u);
                             LocalStorageSetter("users", users);
-                            this.state.data['user'] = u;
                             LocalStorageSetter("connectedUser", u);
                         }
                     })
@@ -57,11 +55,10 @@ class SettingsMenu extends Component {
                     //Modifier local storage pour le user (à partir de la valeur copyUser) puis reload user dans state avec celui modifier dans localStorage
                     let users = LocalStorageGetter("users");
                     users.map((u) => {
-                        if (u.id == this.state.data['user'].id) {
+                        if (u.id == LocalStorageGetter("connectedUser").id) {
                             u.first_name = this.state.copyUser.first_name;
                             console.log(u);
                             LocalStorageSetter("users", users);
-                            this.state.data['user'] = u;
                             LocalStorageSetter("connectedUser", u);
 
                         }
@@ -70,11 +67,10 @@ class SettingsMenu extends Component {
                     //Modifier local storage pour le user (à partir de la valeur copyUser) puis reload user dans state avec celui modifier dans localStorage
                     let users = LocalStorageGetter("users");
                     users.map((u) => {
-                        if (u.id == this.state.data['user'].id) {
+                        if (u.id == LocalStorageGetter("connectedUser").id) {
                             u.email = this.state.copyUser.email;
                             console.log(u);
                             LocalStorageSetter("users", users);
-                            this.state.data['user'] = u;
                             LocalStorageSetter("connectedUser", u);
                         }
                     })
@@ -82,11 +78,10 @@ class SettingsMenu extends Component {
                     //Modifier local storage pour le user (à partir de la valeur copyUser) puis reload user dans state avec celui modifier dans localStorage
                     let users = LocalStorageGetter("users");
                     users.map((u) => {
-                        if (u.id == this.state.data['user'].id) {
+                        if (u.id == LocalStorageGetter("connectedUser").id) {
                             u.password = this.state.copyUser.password;
                             console.log(u);
                             LocalStorageSetter("users", users);
-                            this.state.data['user'] = u;
                             LocalStorageSetter("connectedUser", u);
                         }
                     })
@@ -95,6 +90,7 @@ class SettingsMenu extends Component {
                 }
 
         });
+        this.setState({copyUser: LocalStorageGetter("connectedUser")});
     }
 
     render() {
