@@ -158,7 +158,6 @@ class WalletMenu extends Component {
 
 
     confirmEdit(event) {
-        //Modifier local storage pour le user (à partir de la valeur copyUser) puis reload user dans state avec celui modifier dans localStorage
         this.editCardsLocalStorage(event.target.name);
         this.setState({ boolEdit: false, idEdit: '', copyCards: '', card: LocalStorageGetter('connectedCard') });
     }
@@ -228,8 +227,7 @@ class WalletMenu extends Component {
             allPayins.push(newPayin);
             LocalStorageSetter("payin", allPayins);
             console.log(LocalStorageGetter("payin"));
-            //do payIn into wallet corresponding to credit card selected
-            //cardCCPI
+
             var connectedPayin = new Array();
             payins = LocalStorageGetter("payin");
             payins.map((payin) => {
@@ -279,8 +277,7 @@ class WalletMenu extends Component {
             allPayouts.push(newPayout);
             LocalStorageSetter("payout", allPayouts);
             console.log(LocalStorageGetter("payout"));
-            //do payIn into wallet corresponding to credit card selected
-            //cardCCPI
+
             var connectedPayout = new Array();
             payouts = LocalStorageGetter("payout");
             payouts.map((payout) => {

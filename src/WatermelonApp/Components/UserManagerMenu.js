@@ -38,7 +38,6 @@ class UserManagerMenu extends Component {
             }
         });
         LocalStorageSetter("users", postDelete);
-        //delete User with idUser 
         this.setState({ idUser: '' });
     }
 

@@ -12,8 +12,6 @@ import wallet from '../../database/wallet';
 import transfer from '../../database/transfer';
 
 
-//localStorage.clear();
-
 if (LocalStorageGetter("users") == null) {
   LocalStorageSetter("users", users);
 }
@@ -32,12 +30,6 @@ if (LocalStorageGetter("wallet") == null) {
 if (LocalStorageGetter("transfer") == null) {
     LocalStorageSetter("transfer", transfer);
 }
-
-console.log(users);
-console.log(cards);
-console.log(payin);
-console.log(payout);
-console.log(wallet);
 
 class App extends Component {
   
