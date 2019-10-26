@@ -67,12 +67,67 @@ class TransferManagerMenu extends Component {
     }
 
     deleteTransfer(event) {
-        alert(this.state.idTransfer);
+        //idTransfer
+        let walletReceiverid = 0;
+        let walletSenderid = 0;
+        let amount = 0;
+        let listTransfer = LocalStorageGetter("transfer")
+        listTransfer.map((t) => {
+            if (t.id = this.state.idTransfer) {
+                walletSenderid = t.debited_wallet_id;
+                walletReceiverid = t.credited_wallet_id;
+                amount = t.amount * 100;
+            }
+        });      
+        //recuperation des wallet et modification des balances
+        let listWallet = LocalStorageGetter("wallet");
+        listWallet.map((w) => {
+            if (w.id == walletReceiverid) {
+                w.balance = parseInt(w.balance) - parseInt(amount);
+            }
+            if (w.id == walletSenderid) {
+                w.balance = parseInt(w.balance) + parseInt(amount);
+            }
+        });
+        //mise a jour du local Storage des transfer et wallet
+        let alltransfer = LocalStorageGetter("transfer");
+        let postDelete = new Array();
+        alltransfer.map((u) => {
+            if (u.id != this.state.idTransfer) {
+                postDelete.push(u);
+            }
+        });
+        LocalStorageSetter("transfer", postDelete);
+        LocalStorageSetter("wallet", listWallet);
+        let connectedWallet;
 
-        //delete transfer with id=idTransfer
+        //actualisation des transfers actif et de la balance active
+        let wallets = LocalStorageGetter("wallet");
+        wallets.map((wallet) => {
+            if (wallet.user_id == LocalStorageGetter("connectedUser").id) {
+                connectedWallet = wallet;
+            }
+        });
+        var connectedTransfIn = new Array();
+        let transIns = LocalStorageGetter("transfer");
+        transIns.map((transIn) => {
+            if (transIn.credited_wallet_id == LocalStorageGetter("connectedWallet").id) {
+                connectedTransfIn.push(transIn);
+            }
+        });
+        var connectedTransfOut = new Array();
+        let transOuts = LocalStorageGetter("transfer");
+        transOuts.map((transOut) => {
+            if (transOut.debited_wallet_id == LocalStorageGetter("connectedWallet").id) {
+                connectedTransfOut.push(transOut);
+            }
+        });
 
+        LocalStorageSetter("connectedWallet", connectedWallet);
+        LocalStorageSetter("connectedTransfIn", connectedTransfIn);
+        LocalStorageSetter("connectedTransfOut", connectedTransfOut);
+        alert("Transfert annulée");
         this.setState({ idTransfer: '' });
-
     }
 
     render() {

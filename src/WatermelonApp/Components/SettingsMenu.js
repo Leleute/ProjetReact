@@ -30,6 +30,15 @@ class SettingsMenu extends Component {
     deleteAccount = (e) => {
         //deleteAccount
         //Empty connectedUser + his data
+        let allUsers = LocalStorageGetter("users");
+        let postDelete = new Array();
+        allUsers.map((u) => {
+            if (u.id != LocalStorageGetter("connectedUser").id) {
+                postDelete.push(u);
+            }
+        });
+        LocalStorageSetter("users", postDelete);
+        this.setState({ idUser: '' });
         
         alert("Account successfully deleted");
         this.props.isDeleted(true);
