@@ -117,10 +117,6 @@ class WalletMenu extends Component {
     }
 
     confirmCreation(event) {
-
-        //Check if input are as asked
-        //Save data in LocalStorage incremented id
-        //For each data brand, expired_at, last_4 + reload in cards (pour afficher à l'écran après modif)
         let cards = LocalStorageGetter("cards");
         let idcard = 0;
         cards.map((card) => {
@@ -346,7 +342,7 @@ class WalletMenu extends Component {
         return (
             <div className="container">
                 <header><img src={icoWallet} className="ico" />MY WALLET</header>
-                <section className="section-action">
+                <section className="section-action" id="min-width">
                     <div className='section-header' onClick={this.display.bind(this, 'card')}><img src={icoCard} className="ico" /><span >My Cards</span></div>
                     {LocalStorageGetter('connectedCard').length != 0 && <div>
                         {this.state.displayC && LocalStorageGetter('connectedCard').map(function (object, i) {
@@ -379,7 +375,7 @@ class WalletMenu extends Component {
                 </section>
 
 
-                <section className="section-action">
+                <section className="section-action" id="min-width">
                     <div className='section-header' onClick={this.display.bind(this, 'payin')}><img src={icoPayIn} className="ico" /><span >Pay-In</span></div>
                     {LocalStorageGetter('connectedCard').length != 0 && <div>
                         {this.state.displayPI && <div className='payin-description'>
@@ -407,7 +403,7 @@ class WalletMenu extends Component {
                 </section>
 
 
-                <section className="section-action">
+                <section className="section-action" id="min-width">
                     <div className='section-header' onClick={this.display.bind(this, 'payout')}><img src={icoPayOut} className="ico" /><span >Pay-Out</span></div>
                     {LocalStorageGetter('connectedCard').length != 0 && <div>
                         {this.state.displayPO && <div className='payout-description'>

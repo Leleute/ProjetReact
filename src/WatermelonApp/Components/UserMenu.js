@@ -70,7 +70,7 @@ class UserMenu extends Component {
                 {this.state.idUser != '' &&
                     <section>
                         <div className='section-header'><img src={icoOperation} className="ico" /><span >Operation</span></div>
-                        <img src={icoTrashOption} className="ico_non_reverse" onClick={this.deleteUser} />
+                        <div className="operation"><img src={icoTrashOption} className="ico_non_reverse" onClick={this.deleteUser} /><p>Delete the user</p></div>
                      </section>}
             </div>
         );

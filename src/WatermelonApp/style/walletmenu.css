@@ -53,3 +53,7 @@ section .section-element{
 #edit:hover{
     background-image: linear-gradient(to right top, #199bd5, #148ac1, #0e79ae, #07689a, #005887);   
 }
+
+#min-width{
+    min-width: 30%;
+}

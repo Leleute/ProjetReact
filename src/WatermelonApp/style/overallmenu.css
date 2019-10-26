@@ -1,0 +1,22 @@
+#inline{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#inline-section{
+    display: inline-block;
+    margin:1em 1em 1em 1em;
+}
+
+#inline section:hover{
+    background-image: linear-gradient(to right top, #38b1b7, #00aecf, #00a9e5, #3d9ff3, #8190f4);
+    cursor: pointer;
+}
+.overall-field{
+    color: turquoise;
+    font-size: 0.8em;
+    font-weight: bold;
+    font-family: 'Arial', sans-serif;
+    display: inline-block;
+}
