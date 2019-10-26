@@ -53,8 +53,8 @@ class HistoryMenu extends Component {
     render() {
         return (
             <div className="container">
-                <header><img src={icoHistory} className="ico" />HISTORY</header>
-                <section className="section-action" onClick={this.display.bind(this, 'payin')}>
+                <header><img src={icoHistory} className="ico" /><span>HISTORY</span></header>
+                <section className="section-action" id="min-width" onClick={this.display.bind(this, 'payin')}>
                     <div className='section-header'><img src={icoPayIn} className="ico" /><span >Pay-in</span></div>
                     {LocalStorageGetter('connectedPayin').length != 0 && <div>
                         {this.state.displayPI && LocalStorageGetter('connectedPayin').map(function (object, i) {
@@ -77,7 +77,7 @@ class HistoryMenu extends Component {
                         </div>
                     }
                 </section>
-                <section className="section-action" onClick={this.display.bind(this, 'payout')}>
+                <section className="section-action" id="min-width" onClick={this.display.bind(this, 'payout')}>
                     <div className='section-header'><img src={icoPayOut} className="ico" /><span >Pay-out</span></div>
                     {LocalStorageGetter('connectedPayout').length != 0 && <div>
                         {this.state.displayPO && LocalStorageGetter('connectedPayout').map(function (object, i) {
@@ -100,7 +100,7 @@ class HistoryMenu extends Component {
                         </div>
                     }
                 </section>
-                <section className="section-action" onClick={this.display.bind(this, 'transfer')}>
+                <section className="section-action" id="min-width" onClick={this.display.bind(this, 'transfer')}>
                     <div className='section-header'><img src={icoTransfer} className="ico" /><span >Transfer</span></div>
                     {LocalStorageGetter('connectedTransfIn').length != 0 && <div>
                         {this.state.displayT && LocalStorageGetter('connectedTransfIn').map(function (object, i) {

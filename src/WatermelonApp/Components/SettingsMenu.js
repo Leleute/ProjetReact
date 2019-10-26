@@ -2,12 +2,16 @@ import React, { Component } from 'react';
 
 import '../style/settingsmenu.css';
 
+import App from './App';
+
 import icoSettings from '../img/ico_settings.png';
 import username from "../img/username.png";
 import psw from "../img/psw.png";
 import name from "../img/name.png";
 import admin from '../img/admin.png';
 import icoEdit from '../img/ico_edit.png';
+import icoModify from '../img/ico_modify.png';
+import icoDelete from '../img/ico_delete.png';
 
 import { LocalStorageGetter, LocalStorageSetter } from '../Shortcut';
 
@@ -18,8 +22,22 @@ class SettingsMenu extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            boolEdit: false,
             copyUser: LocalStorageGetter("connectedUser")
         }
+    }
+
+    deleteAccount = (e) => {
+        //deleteAccount
+        //Empty connectedUser + his data
+        
+        alert("Account successfully deleted");
+        this.props.isDeleted(true);
+    }
+    
+
+    display = (e) => {
+        this.setState({ boolEdit: !this.state.boolEdit })
     }
 
     updateInputValue = (e) => {
@@ -90,22 +108,26 @@ class SettingsMenu extends Component {
                 }
 
         });
-        
+
     }
 
     render() {
         return (
             <div className="container">
-                <header><img src={icoSettings} className="ico" />MY ACCOUNT</header>
-                <section>
-                    <li><img src={username} className="ico" /><span>Last Name</span><input name='last_name' type="text" defaultValue={LocalStorageGetter("connectedUser").last_name} onChange={e => this.updateInputValue(e)} /><img src={icoEdit} onClick={this.saveChanges.bind(this, 'last_name')} className="ico-edit" /></li>
-                    <li><img src={username} className="ico" /><span>First Name</span><input name='first_name' type="text" defaultValue={LocalStorageGetter("connectedUser").first_name} onChange={e => this.updateInputValue(e)} /><img src={icoEdit} onClick={this.saveChanges.bind(this, 'first_name')} className="ico-edit" /></li>
-                    <li><img src={name} className="ico" /><span>Email</span><input name='email' type="text" defaultValue={LocalStorageGetter("connectedUser").email} onChange={e => this.updateInputValue(e)} /><img src={icoEdit} onClick={this.saveChanges.bind(this, 'email')} className="ico-edit" /></li>
-                    <li><img src={psw} className="ico" /><span>Password</span><input name='password' type="password" defaultValue={LocalStorageGetter("connectedUser").password} onChange={e => this.updateInputValue(e)} /><img src={icoEdit} onClick={this.saveChanges.bind(this, 'password')} className="ico-edit" /></li>
-                    {LocalStorageGetter("connectedUser").is_admin && <li><img src={admin} className="ico" /><span>Admin rights</span><input name='is_admin' type="text" value="Yes" /></li>}
-                    {!LocalStorageGetter("connectedUser").is_admin && <li><img src={admin} className="ico" /><span>Admin rights</span><input name='is_admin' type="text" value="No" /></li>}
-                  
-                    
+                <header><img src={icoSettings} className="ico" /><span>MY ACCOUNT</span></header>
+                <section className="section-action" id="min-width">
+                    <div className='section-header' onClick={this.display}><img src={icoModify} className="ico" /><span >Edit my account</span></div>
+                    {this.state.boolEdit && <div className='settings-container'>
+                        <li><img src={username} className="ico" /><span>Last Name</span><input name='last_name' type="text" defaultValue={LocalStorageGetter("connectedUser").last_name} onChange={e => this.updateInputValue(e)} /><img src={icoEdit} onClick={this.saveChanges.bind(this, 'last_name')} className="ico-edit" /></li>
+                        <li><img src={username} className="ico" /><span>First Name</span><input name='first_name' type="text" defaultValue={LocalStorageGetter("connectedUser").first_name} onChange={e => this.updateInputValue(e)} /><img src={icoEdit} onClick={this.saveChanges.bind(this, 'first_name')} className="ico-edit" /></li>
+                        <li><img src={name} className="ico" /><span>Email</span><input name='email' type="text" defaultValue={LocalStorageGetter("connectedUser").email} onChange={e => this.updateInputValue(e)} /><img src={icoEdit} onClick={this.saveChanges.bind(this, 'email')} className="ico-edit" /></li>
+                        <li><img src={psw} className="ico" /><span>Password</span><input name='password' type="password" defaultValue={LocalStorageGetter("connectedUser").password} onChange={e => this.updateInputValue(e)} /><img src={icoEdit} onClick={this.saveChanges.bind(this, 'password')} className="ico-edit" /></li>
+                        {LocalStorageGetter("connectedUser").is_admin && <li><img src={admin} className="ico" /><span>Admin rights</span><input name='is_admin' type="text" value="Yes" /></li>}
+                        {!LocalStorageGetter("connectedUser").is_admin && <li><img src={admin} className="ico" /><span>Admin rights</span><input name='is_admin' type="text" value="No" /></li>}
+                    </div>}
+                </section>
+                <section className="section-action" onClick={this.deleteAccount} id="delete-account">
+                    <div className='section-header'><img src={icoDelete} className="ico" /><span>Delete my account</span></div>
                 </section>
             </div>
         );

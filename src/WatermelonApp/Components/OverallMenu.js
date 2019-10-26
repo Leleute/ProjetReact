@@ -18,7 +18,7 @@ class OverallMenu extends Component {
     render() {
         return (
             <div className="container" id='inline-container'>
-                <header id="inline-header"><img src={icoOverall} className="ico" />OVERALL</header>
+                <header id="inline-header"><img src={icoOverall} className="ico" /><span>OVERALL</span></header>
                 <div id="inline">
                     <section id="inline-section">
                         <div className='section-header'>BALANCE</div>
@@ -33,7 +33,7 @@ class OverallMenu extends Component {
                     <section id="inline-section">
                         <div className='section-header'>CARDS</div>
                         <div className='payout-description'>
-                            <div className="card-description">
+                            <div className="card-description" id="border-bottom-less">
                                 {LocalStorageGetter('connectedCard').map(function (object, i) {
                                     return (
                                         <li><img src={icoCardBrand} className="ico" /> <p className="display-value">{object.brand.toUpperCase()} **** **** **** {object.last_4} [{object.expired_at.slice(0, 10)}]</p></li>

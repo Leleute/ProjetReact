@@ -165,7 +165,7 @@ class TransferMenu extends Component {
     render() {
         return (
             <div className="container">
-                <header><img src={icoTransfer} className="ico" />TRANSFER</header>
+                <header><img src={icoTransfer} className="ico" /><span>TRANSFER</span></header>
                 <section>
                     {LocalStorageGetter('connectedCard').length != 0 && <div>
                         <div className='section-header'><img src={icoTransferReceiver} className="ico" /><span >Transfer receiver</span></div>

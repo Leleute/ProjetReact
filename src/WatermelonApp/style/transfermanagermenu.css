@@ -1,0 +1,42 @@
+.container section .transfer-choice .element .item .display-value{
+    margin-right:0;
+}
+
+
+.container section .transfer-choice .element .item{
+    font-size: 0.8em;
+    vertical-align: middle;
+}
+
+.container section .transfer-choice .element{
+    padding: 0.5em 0.5em 0.5em 0.5em; 
+    margin: 0.5em 0.5em 0.5em 0.5em;  
+    margin-top:1em;
+    overflow: hidden;
+}
+
+.container section .transfer-choice .element:hover {
+    background-image: linear-gradient(to right top, #38b1b7, #00aecf, #00a9e5, #3d9ff3, #8190f4);
+    cursor: pointer;
+}
+
+.container section .transfer-choice{
+    display: inline-block;
+}
+
+#ico-stable{
+    margin-right: 0.5em;
+}
+#ico-stable:hover{
+    height:50px;
+}
+
+#list {
+    float: left;
+    margin-top: 0.5em;
+}
+
+#amount{
+    font-size: 1em;
+}
+

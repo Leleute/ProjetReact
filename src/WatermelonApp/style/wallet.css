@@ -5,14 +5,11 @@ body {
     background-attachment: fixed; 
     width: 100%;
     height: 100%;
-    
 }
 
 .navigation {
     position: fixed;
     border-right: 5px white solid;
-    margin: 0;
-    padding: 0;
     height:100%;
     background-image: linear-gradient(to right top, #0c0a2c, #061758, #002187, #0029b8, #122eeb);
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
@@ -20,8 +17,10 @@ body {
 }
 
 .navigation li  {
+    margin-left: auto;
+    margin-right: auto;
     list-style: none;   
-    padding: 0.5em 2em 0.5em 1em;
+    padding: 0.5em 0em 0.5em 0.5em;
     text-decoration: none ;
     color: white ;    
     font-size: 1.5em;
@@ -30,7 +29,7 @@ body {
 
   
 .navigation li:hover {
-    background-image: linear-gradient(to right top, #3026bc, #0063df, #007db4, #008d65, #449619);
+    background-image: linear-gradient(to right top, #08002a, #020942, #000b5a, #000973, #0c008c);
     cursor:pointer; 
     color: white;
     border-left: 5px;
@@ -49,7 +48,7 @@ body {
 }
 
 .list-bottom li:hover{
-    background-image: linear-gradient(to right top, #ac4949, #c3403f, #d93432, #ed2320, #ff0000);
+    background-image: linear-gradient(to right top, #ff0000, #e5001e, #c9002a, #ab002f, #8c0031);
     color:white;
 }
 
@@ -57,7 +56,8 @@ body {
     vertical-align: middle;
     height: 40px;
     margin-right: 0.8em;
-    -webkit-filter: invert(100%);   
+    -webkit-filter: invert(100%); 
+ 
 }
 
 .navigation .logo {
@@ -66,27 +66,51 @@ body {
 }
 
 .navigation .logo-text {
+    display: block;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 2em; 
     color:white;
     margin: 0;
-    padding-bottom: 20px;
     letter-spacing: 5px;
     text-shadow: 5px 2px green;
 }
 
 .logo-element{
     padding-top:1em;
-    padding-bottom: 2.5em ;
+    padding-bottom: 2.5em;
+    overflow: hidden;
 }
 
-#admin {
-    color:turquoise;
+#admin:hover{
+    background-image: linear-gradient(to right top, #08002a, #020942, #000b5a, #000973, #0c008c);
 }
-#admin:hover {
+
+#admin-text-color{
+    background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%),
+    radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
+    -webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+#admin-selected {
     background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%),
     radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
 }
+
+#text-ico-below{
+    display: block;
+    margin-left: auto;
+    margin-right: auto; 
+    text-align: center;
+    margin-bottom:0.2em;
+    background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%),
+    radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
+    -webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+
+
 
 
 
@@ -103,37 +127,44 @@ body {
     font-size: 2em;
     padding: 2% 2% 2% 2%;
     margin-left: 15%;
-    }
+}
 
 .container .ico, .ico_number{
-     -webkit-filter: invert(100%);
-     vertical-align: middle;
-     
+    -webkit-filter: invert(100%);
+    vertical-align: middle; 
+    margin-left: auto;
+    margin-right: auto;     
 }
 
 .container .ico_non_reverse {
     height: 50px;
+    vertical-align: middle; 
+    margin-left: auto;
+    margin-right: auto;  
 }
 
 .container .ico_non_reverse:hover{
     height: 60px;    
+
 }
 
 .container .ico{
     height: 50px;
     padding-right : 1em;
+    padding-left:0.5em;
 }
 
 .container .ico_number{
     height: 30px;
     padding-right: 5%;
+    padding-left:2.5%;
 }
 
 .container li  {
     list-style: none; 
     display: block;
     text-align: left;
-    padding: 0.5em 2em 0.5em 1em;
+    padding: 0.5em 1em 0.5em 1em;
     text-decoration: none ;
     color: black ;    
     font-size: 0.8em;
@@ -157,15 +188,23 @@ body {
     border-bottom: white 5px solid;
     border-width: medium;
     margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
  }
+
 
 .container header{
     background-image: linear-gradient(to right top, #0c0a2c, #061758, #002187, #0029b8, #122eeb);
     border: white 2px solid;
+    font-size: 1.2em;
     color:white;
     margin: 0 auto;
     padding : 0.5em 0.5em 0.5em 0.5em;
     margin-bottom: 1em;
+ }
+
+ .container header span{
+    letter-spacing: 0px;
  }
 
 .container section {
@@ -228,6 +267,18 @@ body {
     background-image: linear-gradient(to right top, #ff0000, #de012f, #b51f41, #892e47, #5b3341);
 }
 
+#min-width, #delete-account{
+    min-width: 50%;
+}
 
+#delete-account:hover{
+    background-image: linear-gradient(to right top, #ff0000, #e5001e, #c9002a, #ab002f, #8c0031);
+}
 
+#ico-margin{
+    margin-right: 0.5em;
+}
 
+#border-bottom-less{
+    border-bottom: none;
+}

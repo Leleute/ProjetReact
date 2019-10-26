@@ -341,7 +341,7 @@ class WalletMenu extends Component {
     render() {
         return (
             <div className="container">
-                <header><img src={icoWallet} className="ico" />MY WALLET</header>
+                <header><img src={icoWallet} className="ico" /><span>MY WALLET</span></header>
                 <section className="section-action" id="min-width">
                     <div className='section-header' onClick={this.display.bind(this, 'card')}><img src={icoCard} className="ico" /><span >My Cards</span></div>
                     {LocalStorageGetter('connectedCard').length != 0 && <div>
@@ -357,9 +357,9 @@ class WalletMenu extends Component {
                                     {!this.state.boolEdit && <li><img src={icoCardL4} className="ico" /> <p className="display-value">**** **** **** {object.last_4}</p></li>}
                                     {this.state.boolEdit && this.state.idEdit != object.id && <li><img src={icoCardL4} className="ico" /> <p className="display-value">**** **** **** {object.last_4}</p></li>}
                                     {this.state.boolEdit && this.state.idEdit == object.id && <li><img src={icoCardL4} className="ico" /> <input type="text" name="last_four" defaultValue={object.last_4} onChange={this.updateCardData} /></li>}
-                                    {!this.state.boolEdit && <img src={icoCardEditOption} className="ico_non_reverse" name={object.id} onClick={this.editCard} />}
-                                    {this.state.boolEdit && this.state.idEdit == object.id && <img src={icoCardEditOption} className="ico_non_reverse" name={object.id} onClick={this.confirmEdit} />}
-                                    {!this.state.boolEdit && <img src={icoCardTrashOption} className="ico_non_reverse" name={object.id} onClick={this.deleteCardsLocalStorage} />}
+                                    {!this.state.boolEdit && <img src={icoCardEditOption} id='ico-margin' className="ico_non_reverse" name={object.id} onClick={this.editCard} />}
+                                    {this.state.boolEdit && this.state.idEdit == object.id && <img src={icoCardEditOption} id='ico-margin' className="ico_non_reverse" name={object.id} onClick={this.confirmEdit} />}
+                                    {!this.state.boolEdit && <img src={icoCardTrashOption} id='ico-margin' className="ico_non_reverse" name={object.id} onClick={this.deleteCardsLocalStorage} />}
                                 </div>
                             );
                         }, this)}

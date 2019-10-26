@@ -1,24 +1,32 @@
 import React, { Component } from 'react';
 
-import '../style/usermenu.css';
+import '../style/usermanagermenu.css';
 
-import icoUserManager from '../img/ico_users_manager.png'
-import icoUser from '../img/ico_users.png'
+import icoManagerUser from '../img/ico_manager_users.png';
+import icoUsers from '../img/ico_users.png';
 import icoUsername from "../img/username.png";
-import icoEmail from "../img/name.png"; 
+import icoEmail from "../img/name.png";
 import icoTrashOption from '../img/ico_trash.png';
 import icoOperation from '../img/ico_operation.png';
 
 import { LocalStorageGetter, LocalStorageSetter } from '../Shortcut';
 
-class UserMenu extends Component {
+class UserManagerMenu extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            idUser : ''
+            idUser: '',
+            boolUser: false
         }
         this.setUser = this.setUser.bind(this);
         this.deleteUser = this.deleteUser.bind(this);
+    }
+    componentDidMount() {
+        LocalStorageGetter("users").map((user) => {
+            if (!user.is_admin) {
+                this.setState({ boolUser: true });
+            }
+        });
     }
 
     deleteUser(event) {
@@ -31,8 +39,7 @@ class UserMenu extends Component {
         });
         LocalStorageSetter("users", postDelete);
         //delete User with idUser 
-        this.setState({idUser:''});
-        alert("deleted");
+        this.setState({ idUser: '' });
     }
 
     setUser = (e, object) => {
@@ -45,12 +52,12 @@ class UserMenu extends Component {
     render() {
         return (
             <div className="container">
-                <header><img src={icoUserManager} className="ico" />USERS MANAGER</header>
+                <header id="admin-background"><img src={icoManagerUser} className="ico" /><span id="admin-text-color">USER MANAGER</span></header>
                 <section>
-                    <div className='section-header'><img src={icoUser} className="ico" /><span >All Users</span></div>
+                    <div className='section-header'><img src={icoUsers} className="ico" /><span >All Users</span></div>
                     {LocalStorageGetter('users').map(function (object, i) {
                         return (
-                            <div className="user-choice"> 
+                            <div className="user-choice">
                                 {!object.is_admin && object.id != this.state.idUser &&
                                     <div className="element" name={object.id} onClick={((e) => this.setUser(e, object))}>
                                         <div className="item"><img src={icoUsername} className="ico" /> <p className="display-value">{object.last_name.toUpperCase()} {object.first_name}</p></div>
@@ -58,23 +65,28 @@ class UserMenu extends Component {
                                     </div>
                                 }
                                 {!object.is_admin && object.id == this.state.idUser &&
-                                        <div className="selected" id="admin-selected" name={object.id} onClick={((e) => this.setUser(e, object))}>
-                                            <div className="item"><img src={icoUsername} className="ico" /> <p className="display-value">{object.last_name.toUpperCase()} {object.first_name}</p></div>
-                                            <div className="item"><img src={icoEmail} className="ico" /><p className="display-value"> {object.email}</p></div>
-                                        </div>
+                                    <div className="element" id="admin-selected" name={object.id} onClick={((e) => this.setUser(e, object))}>
+                                        <div className="item"><img src={icoUsername} className="ico" /> <p className="display-value">{object.last_name.toUpperCase()} {object.first_name}</p></div>
+                                        <div className="item"><img src={icoEmail} className="ico" /><p className="display-value"> {object.email}</p></div>
+                                    </div>
                                 }
                             </div>
                         );
                     }, this)}
+                    {!this.state.boolUser &&
+                        <div className="element">
+                            <span className="display-none">No user has been registered yet</span>
+                        </div>
+                    }
                 </section>
                 {this.state.idUser != '' &&
                     <section>
                         <div className='section-header'><img src={icoOperation} className="ico" /><span >Operation</span></div>
-                        <div className="operation"><img src={icoTrashOption} className="ico_non_reverse" onClick={this.deleteUser} /><p>Delete the user</p></div>
-                     </section>}
+                        <div className="operation"><img src={icoTrashOption} className="ico_non_reverse" onClick={this.deleteUser} id="ico-margin"/><p>Delete the selected user</p></div>
+                    </section>}
             </div>
         );
     }
 }
 
-export default UserMenu;
+export default UserManagerMenu;

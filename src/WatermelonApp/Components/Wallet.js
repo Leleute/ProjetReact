@@ -6,7 +6,8 @@ import SettingsMenu from './SettingsMenu';
 import WalletMenu from './WalletMenu';
 import TransferMenu from './TransferMenu';
 import HistoryMenu from './HistoryMenu';
-import UserMenu from './UserMenu';
+import UserManagerMenu from './UserManagerMenu';
+import TransferManagerMenu from './TransferManagerMenu';
 
 import '../style/wallet.css';
 
@@ -16,7 +17,8 @@ import icoTransfer from '../img/ico_exchange.png';
 import icoHistory from '../img/ico_history.png';
 import icoSettings from '../img/ico_settings.png';
 import icoSignOut from '../img/ico_sign_out.png';
-import icoUserManager from '../img/ico_users_manager.png';
+import icoUserManager from '../img/ico_manager_users.png';
+import icoTransferManager from '../img/ico_manager_transaction.png';
 import logo from '../img/logo.png';
 import { LocalStorageGetter } from '../Shortcut';
 
@@ -34,6 +36,9 @@ class Wallet extends Component {
             transferOut: LocalStorageGetter("connectedTransfOut")
         }
 
+    }
+    logOut = (e) => {
+        this.setState({ menuOption: 5 });
     }
 
     changeMenu(choice, e) {
@@ -62,14 +67,15 @@ class Wallet extends Component {
                         <div className="logo-element">
                             <img src={logo} className="logo" /><span className="logo-text">Watermelon</span>
                         </div>
-                        <li onClick={this.changeMenu.bind(this, 0)}><img src={icoOverall} />Overall</li>
-                        <li onClick={this.changeMenu.bind(this, 1)}><img src={icoWallet} />Wallet</li>
-                        <li onClick={this.changeMenu.bind(this, 2)}><img src={icoTransfer} />Transfer</li>
-                        <li onClick={this.changeMenu.bind(this, 3)}><img src={icoHistory} />History</li>
+                        <li onClick={this.changeMenu.bind(this, 0)}><img src={icoOverall} /><span>Overall</span></li>
+                        <li onClick={this.changeMenu.bind(this, 1)}><img src={icoWallet} /><span>Wallet</span></li>
+                        <li onClick={this.changeMenu.bind(this, 2)}><img src={icoTransfer} /><span>Transfer</span></li>
+                        <li onClick={this.changeMenu.bind(this, 3)}><img src={icoHistory} /><span>History</span></li>
                         <div className="list-bottom">
-                            {LocalStorageGetter("connectedUser").is_admin  && <li id="admin" onClick={this.changeMenu.bind(this, 6)}><img src={icoUserManager} />Users</li>}
-                            <li onClick={this.changeMenu.bind(this, 4)}><img src={icoSettings} />Account</li>
-                            <li onClick={this.changeMenu.bind(this, 5)}><img src={icoSignOut} />Sign-out</li>
+                            {LocalStorageGetter("connectedUser").is_admin && <li id="admin" onClick={this.changeMenu.bind(this, 6)}><img id="text-ico-below" src={icoUserManager} /><span id="text-ico-below">User Manager</span></li>}
+                            {LocalStorageGetter("connectedUser").is_admin && <li id="admin" onClick={this.changeMenu.bind(this, 7)}><img id="text-ico-below" src={icoTransferManager} /><span id="text-ico-below">Transfer Manager</span></li>}
+                            <li onClick={this.changeMenu.bind(this, 4)}><img src={icoSettings} /><span>Account</span></li>
+                            <li onClick={this.changeMenu.bind(this, 5)}><img src={icoSignOut} /><span>Sign-out</span></li>
                         </div>
                     </div>}
                 <div>
@@ -77,8 +83,9 @@ class Wallet extends Component {
                     {this.state.menuOption == 1 && <WalletMenu />}
                     {this.state.menuOption == 2 && <TransferMenu />}
                     {this.state.menuOption == 3 && <HistoryMenu />}
-                    {this.state.menuOption == 4 && <SettingsMenu />}
-                    {this.state.menuOption == 6 && <UserMenu />}
+                    {this.state.menuOption == 4 && <SettingsMenu isDeleted={this.logOut}/>}
+                    {this.state.menuOption == 6 && <UserManagerMenu />}
+                    {this.state.menuOption == 7 && <TransferManagerMenu />}
                     {this.state.menuOption == 5 && <App />}
                 </div>
             </div>
