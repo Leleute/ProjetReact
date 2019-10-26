@@ -22,6 +22,14 @@ class UserMenu extends Component {
     }
 
     deleteUser(event) {
+        let allUsers = LocalStorageGetter("users");
+        let postDelete = new Array();
+        allUsers.map((u) => {
+            if (u.id != this.state.idUser) {
+                postDelete.push(u);
+            }
+        });
+        LocalStorageSetter("users", postDelete);
         //delete User with idUser 
         this.setState({idUser:''});
         alert("deleted");

@@ -90,10 +90,6 @@ class SignUp extends Component {
             alert("Un compte utilise deja cette adresse email");
         }
     }
-    testBDD = () => {
-        let users = LocalStorageGetter("users");
-        console.log(users)
-    }
 
     render() {
         console.log(this.props)
@@ -123,7 +119,6 @@ class SignUp extends Component {
                         <div className="button-list">
                             <button onClick={this.AccountCreation}>Sign-up</button>
                             <button onClick={this.back}>Back</button>
-                            <button onClick={this.testBDD}>Test BDD</button>
                         </div>
                     </div>}
             </div>

@@ -107,9 +107,6 @@ class SignIn extends Component {
         });
     }
 
-    testConnexion = () => {
-        console.log(LocalStorageGetter("connectedUser"));
-    }
 
     render() {
         console.log(this);
@@ -131,7 +128,6 @@ class SignIn extends Component {
                         <div className="button-list">
                             <button onClick={this.connection}>Sign-in</button>
                             <button onClick={this.back}>Back</button>
-                            <button onClick={this.testConnexion}>Test</button>
                         </div>
                     </div>}
             </div>
