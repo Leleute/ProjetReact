@@ -1,7 +1,7 @@
 .signin-form{
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size:1em;  
-    background-image: linear-gradient(to right top, #e90000, #cf0026, #af0035, #8b003c, #66003a);   
+    background-image: linear-gradient(to right top, #ff0000, #e5001e, #c9002a, #ab002f, #8c0031);
     border-radius: 20%;
 }
 
@@ -16,13 +16,27 @@
     height: 50px;
 }
 
+.signin-form .logo{
+    -webkit-filter: invert(100%); 
+}
+
 .signin-form .option-section{
     padding: 1em 5em 1em 5em;
     text-align: left;
+    display: block;
+}
+
+.signin-form input{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 0.7em;
 }
 
 .button-list{
     padding: 1em 1em 1em 1em;
+}
+
+.signin-form button {
+    min-width: 30%;
 }
 
 .input-entry{
@@ -37,10 +51,17 @@
     color:white;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size:1em;  
+    margin-bottom:0.5em;  
 }
 
 .button-list button:hover{
-    background-image: linear-gradient(to right top, #e90000, #ea0210, #eb061c, #eb0c26, #eb122e);
+    background-image: linear-gradient(to right top, #08002a, #020942, #000b5a, #000973, #0c008c);
     cursor: pointer;
 }
 
+.signin-form header{
+    padding-bottom:0.5em;  
+    border-bottom: white 5px solid;
+    border-width: medium;
+    margin-top:0.5em;
+}

@@ -115,7 +115,7 @@ class SignIn extends Component {
                 {this.props.display && !this.props.showMe &&
                     <div className="signin-form">
                         <div className="option-section">
-                            Please provide your information to sign-in
+                            <header>Please provide your information to sign-in</header>
                         </div>
                         <div className="option-section">
                             <img src={username} className="logo" /><span>Email</span>

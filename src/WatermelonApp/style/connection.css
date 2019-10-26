@@ -1,12 +1,13 @@
 .connection-header {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size:1.2em;
+    font-size:1.5em;
     background-image: linear-gradient(to right top, #053709, #236114, #488d1b, #75bc1c, #a8eb12);
-    border-radius:  50%;
+    border-radius: 50%;
     overflow: hidden;  
+    margin-bottom:20%;
 }
 
-.connection-header :hover {
+.connection-header .option-section:hover {
     background-color:red;
     cursor: pointer; 
     border-radius: 50%;
@@ -18,8 +19,9 @@
     height: 50px;
 }
 
-.logo:hover{
-    border:none;
+
+.connection-header .logo{
+    -webkit-filter: invert(100%); 
 }
 
 .option-section{

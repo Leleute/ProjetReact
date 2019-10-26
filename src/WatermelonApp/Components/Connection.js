@@ -58,9 +58,6 @@ class Connection extends Component {
                         <div className="option-section" onClick={this.handleClick.bind(this, 'signup')}>
                             <img src={signUp} className="logo" />Sign up
                     </div>
-                        <div className="option-section" onClick={this.handleClick.bind(this, 'about')}>
-                            <img src={about} className="logo" />About Watermelon
-                    </div>
                     </div>
                 }
                 {this._renderSubComp()}
