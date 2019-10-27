@@ -11,7 +11,8 @@ import icoTrashOption from '../img/ico_trash.png';
 import icoOperation from '../img/ico_operation.png';
 
 
-import { LocalStorageGetter, LocalStorageSetter } from '../shortcut';
+import {localStorageGetter, localStorageSetter
+} from '../shortcut';
 
 class TransferManagerMenu extends Component {
     constructor(props) {
@@ -27,7 +28,7 @@ class TransferManagerMenu extends Component {
 
     getUser(idWallet) {
         let foundUser;
-        LocalStorageGetter("users").map((user) => {
+        localStorageGetter("users").map((user) => {
             if (user.id == idWallet) {
                 foundUser = user;
             }
@@ -37,7 +38,7 @@ class TransferManagerMenu extends Component {
 
     getName(idWallet) {
         let name;
-        LocalStorageGetter("users").map((user) => {
+        localStorageGetter("users").map((user) => {
             if (user.id == idWallet) {
                 name = user.last_name.toUpperCase() + " " + user.first_name;
 
@@ -68,7 +69,7 @@ class TransferManagerMenu extends Component {
         let walletReceiverid = 0;
         let walletSenderid = 0;
         let amount = 0;
-        let listTransfer = LocalStorageGetter("transfer")
+        let listTransfer = localStorageGetter("transfer")
         listTransfer.map((t) => {
             if (t.id = this.state.idTransfer) {
                 walletSenderid = t.debited_wallet_id;
@@ -77,7 +78,7 @@ class TransferManagerMenu extends Component {
             }
         });
         //recuperation des wallet et modification des balances
-        let listWallet = LocalStorageGetter("wallet");
+        let listWallet = localStorageGetter("wallet");
         listWallet.map((w) => {
             if (w.id == walletReceiverid) {
                 w.balance = parseInt(w.balance) - parseInt(amount);
@@ -87,42 +88,42 @@ class TransferManagerMenu extends Component {
             }
         });
         //mise a jour du local Storage des transfer et wallet
-        let alltransfer = LocalStorageGetter("transfer");
+        let alltransfer = localStorageGetter("transfer");
         let postDelete = new Array();
         alltransfer.map((u) => {
             if (u.id != this.state.idTransfer) {
                 postDelete.push(u);
             }
         });
-        LocalStorageSetter("transfer", postDelete);
-        LocalStorageSetter("wallet", listWallet);
+        localStorageSetter("transfer", postDelete);
+        localStorageSetter("wallet", listWallet);
         let connectedWallet;
 
         //actualisation des transfers actif et de la balance active
-        let wallets = LocalStorageGetter("wallet");
+        let wallets = localStorageGetter("wallet");
         wallets.map((wallet) => {
-            if (wallet.user_id == LocalStorageGetter("connectedUser").id) {
+            if (wallet.user_id == localStorageGetter("connectedUser").id) {
                 connectedWallet = wallet;
             }
         });
         var connectedTransfIn = new Array();
-        let transIns = LocalStorageGetter("transfer");
+        let transIns = localStorageGetter("transfer");
         transIns.map((transIn) => {
-            if (transIn.credited_wallet_id == LocalStorageGetter("connectedWallet").id) {
+            if (transIn.credited_wallet_id == localStorageGetter("connectedWallet").id) {
                 connectedTransfIn.push(transIn);
             }
         });
         var connectedTransfOut = new Array();
-        let transOuts = LocalStorageGetter("transfer");
+        let transOuts = localStorageGetter("transfer");
         transOuts.map((transOut) => {
-            if (transOut.debited_wallet_id == LocalStorageGetter("connectedWallet").id) {
+            if (transOut.debited_wallet_id == localStorageGetter("connectedWallet").id) {
                 connectedTransfOut.push(transOut);
             }
         });
 
-        LocalStorageSetter("connectedWallet", connectedWallet);
-        LocalStorageSetter("connectedTransfIn", connectedTransfIn);
-        LocalStorageSetter("connectedTransfOut", connectedTransfOut);
+        localStorageSetter("connectedWallet", connectedWallet);
+        localStorageSetter("connectedTransfIn", connectedTransfIn);
+        localStorageSetter("connectedTransfOut", connectedTransfOut);
         this.setState({ idTransfer: '' });
     }
 
@@ -132,8 +133,8 @@ class TransferManagerMenu extends Component {
                 <header ><img src={icoManagerTransfer} className="ico" /><span id="admin-text-color">TRANSFER MANAGER</span></header>
                 <section>
                     <div className='section-header'><img src={icoTransfer} className="ico" /><span >User & Administrator Transfers</span></div>
-                    {LocalStorageGetter("transfer").length != 0 && <div>
-                        {LocalStorageGetter("transfer").map(function (object, i) {
+                    {localStorageGetter("transfer").length != 0 && <div>
+                        {localStorageGetter("transfer").map(function (object, i) {
                             return (
                                 <div className="transfer-choice">
                                     {object.id != this.state.idTransfer && (!this.getUser(object.credited_wallet_id).is_admin && !this.getUser(object.debited_wallet_id).is_admin) &&
@@ -161,7 +162,7 @@ class TransferManagerMenu extends Component {
                             );
                         }, this)}
                     </div>}
-                    {LocalStorageGetter("transfer").length == 0 &&
+                    {localStorageGetter("transfer").length == 0 &&
                         <div className="element">
                             <span className="display-none">No transfer has been recorded yet</span>
                         </div>

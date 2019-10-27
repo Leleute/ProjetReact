@@ -9,7 +9,8 @@ import icoEmail from "../img/name.png";
 import icoTrashOption from '../img/ico_trash.png';
 import icoOperation from '../img/ico_operation.png';
 
-import { LocalStorageGetter, LocalStorageSetter } from '../shortcut';
+import {localStorageGetter, localStorageSetter
+} from '../shortcut';
 
 class UserManagerMenu extends Component {
     constructor(props) {
@@ -22,14 +23,14 @@ class UserManagerMenu extends Component {
     }
 
     deleteUser(event) {
-        let allUsers = LocalStorageGetter("users");
+        let allUsers = localStorageGetter("users");
         let postDelete = new Array();
         allUsers.map((u) => {
             if (u.id != this.state.user.id) {
                 postDelete.push(u);
             }
         });
-        LocalStorageSetter("users", postDelete);
+        localStorageSetter("users", postDelete);
         this.setState({ user: '' });
     }
 
@@ -46,7 +47,7 @@ class UserManagerMenu extends Component {
                 <header id="admin-background"><img src={icoManagerUser} className="ico" /><span id="admin-text-color">USER MANAGER</span></header>
                 <section>
                     <div className='section-header'><img src={icoUsers} className="ico" /><span >Users & Administrators</span></div>
-                    {LocalStorageGetter('users').map(function (object, i) {
+                    {localStorageGetter('users').map(function (object, i) {
                         return (
                             <div className="user-choice">
                                 {!object.is_admin && object.id != this.state.user.id &&
