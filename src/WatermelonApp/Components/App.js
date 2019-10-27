@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Connection from "./Connection";
 import Wallet from "./Wallet"
-import { LocalStorageGetter, LocalStorageSetter } from '../Shortcut';
+import { LocalStorageGetter, LocalStorageSetter } from '../shortcut';
 import '../style/App.css';
 
 import users from '../../database/users';

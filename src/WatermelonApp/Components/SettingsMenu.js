@@ -13,7 +13,7 @@ import icoEdit from '../img/ico_edit.png';
 import icoModify from '../img/ico_modify.png';
 import icoDelete from '../img/ico_delete.png';
 
-import { LocalStorageGetter, LocalStorageSetter } from '../Shortcut';
+import { LocalStorageGetter, LocalStorageSetter } from '../shortcut';
 
 
 

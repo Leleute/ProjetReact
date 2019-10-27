@@ -8,7 +8,7 @@ import { Redirect, Link } from 'react-router-dom';
 import username from "../img/username.png";
 import psw from "../img/psw.png";
 import name from "../img/name.png"
-import { LocalStorageGetter, LocalStorageSetter } from '../Shortcut';
+import { LocalStorageGetter, LocalStorageSetter } from '../shortcut';
 
 
 class SignUp extends Component {
@@ -22,7 +22,7 @@ class SignUp extends Component {
             firstname: "",
             email: "",
             password: "",
-            is_admin: false
+            isAdmin: false
         }
     }
 
@@ -41,7 +41,7 @@ class SignUp extends Component {
         });
     }
 
-    AccountCreation = () => {
+    accountCreation = () => {
 
         let users = LocalStorageGetter("users");
         var creavalide = true;
@@ -60,7 +60,7 @@ class SignUp extends Component {
         this.state.id = newId;
         if (creavalide == true) {
             //Creation du compte
-            let newUser = { id: this.state.id, last_name: this.state.last_name, first_name: this.state.first_name, email: this.state.email, password: this.state.password, is_admin: this.state.is_admin };
+            let newUser = { id: this.state.id, last_name: this.state.last_name, first_name: this.state.first_name, email: this.state.email, password: this.state.password, is_admin: this.state.isAdmin };
 
             let allUsers = LocalStorageGetter("users");
             allUsers.push(newUser);
@@ -117,7 +117,7 @@ class SignUp extends Component {
                             <input className="input-entry" name="password" onChange={this.saveData} type="password"></input>
                         </div>
                         <div className="button-list">
-                            <button onClick={this.AccountCreation}>Sign-up</button>
+                            <button onClick={this.accountCreation}>Sign-up</button>
                             <button onClick={this.back}>Back</button>
                         </div>
                     </div>}

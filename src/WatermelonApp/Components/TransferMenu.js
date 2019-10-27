@@ -11,7 +11,7 @@ import ico1 from '../img/ico_1.png';
 import ico2 from '../img/ico_2.png';
 import icoCardBrand from '../img/ico_card_brand.png';
 
-import { LocalStorageGetter, LocalStorageSetter } from '../Shortcut';
+import { LocalStorageGetter, LocalStorageSetter } from '../shortcut';
 
 class TransferMenu extends Component {
 

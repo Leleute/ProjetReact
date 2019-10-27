@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Redirect, Link } from 'react-router-dom';
 
 import SignIn from './SignIn';
 import SignUp from './SignUp'
@@ -7,11 +6,6 @@ import SignUp from './SignUp'
 import '../style/connection.css';
 import signIn from '../img/sign_in.png';
 import signUp from '../img/sign_up.png';
-import about from '../img/about.png';
-import { isTSTypeAliasDeclaration } from '@babel/types';
-
-
-
 
 class Connection extends Component {
 
@@ -40,7 +34,7 @@ class Connection extends Component {
         this.setState({ showMe: !this.state.showMe })
     }
 
-    _renderSubComp() {
+    renderSubComp() {
         switch (this.state.render) {
             case 'signin': return <SignIn connected={this.handleChangeValue} display={true} showMe={this.state.showMe} />
             case 'signup': return <SignUp connected={this.handleChangeValue} display={true} showMe={this.state.showMe} />
@@ -60,7 +54,7 @@ class Connection extends Component {
                     </div>
                     </div>
                 }
-                {this._renderSubComp()}
+                {this.renderSubComp()}
             </div>
 
         );

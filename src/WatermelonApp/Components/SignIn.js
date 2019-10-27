@@ -7,7 +7,7 @@ import signin from "../style/signin.css";
 import username from "../img/username.png";
 import psw from "../img/psw.png";
 
-import { LocalStorageGetter, LocalStorageSetter } from '../Shortcut';
+import { LocalStorageGetter, LocalStorageSetter } from '../shortcut';
 
 class SignIn extends Component {
 

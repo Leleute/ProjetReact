@@ -9,7 +9,7 @@ import icoEmail from "../img/name.png";
 import icoTrashOption from '../img/ico_trash.png';
 import icoOperation from '../img/ico_operation.png';
 
-import { LocalStorageGetter, LocalStorageSetter } from '../Shortcut';
+import { LocalStorageGetter, LocalStorageSetter } from '../shortcut';
 
 class UserManagerMenu extends Component {
     constructor(props) {
@@ -74,7 +74,7 @@ class UserManagerMenu extends Component {
                 {this.state.user != '' && !this.state.user.is_admin &&
                     <section>
                         <div className='section-header'><img src={icoOperation} className="ico" /><span >Operation</span></div>
-                        <div className="operation"><img src={icoTrashOption} className="ico_non_reverse" onClick={this.deleteUser} id="ico-margin" /><p>Delete the selected user</p></div>
+                        <div className="operation"><img src={icoTrashOption} className="ico-non-reverse" onClick={this.deleteUser} id="ico-margin" /><p>Delete the selected user</p></div>
                     </section>}
                 {this.state.user != '' && this.state.user.is_admin &&
                     <section>

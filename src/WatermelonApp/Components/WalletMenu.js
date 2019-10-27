@@ -17,7 +17,7 @@ import icoCardEditOption from '../img/ico_edit.png';
 import icoCardAddOption from '../img/ico_add.png';
 import icoCardTickOption from '../img/ico_tick.png';
 import icoCardCrossption from '../img/ico_cross.png';
-import { LocalStorageGetter, LocalStorageSetter } from '../Shortcut';
+import { LocalStorageGetter, LocalStorageSetter } from '../shortcut';
 
 
 class WalletMenu extends Component {
@@ -27,9 +27,9 @@ class WalletMenu extends Component {
         this.state = {
             copyCards: '',
             emptyCard: {
-                last_4: '',
+                last4: '',
                 brand: '',
-                expired_at: '',
+                expiredAt: '',
             },
             displayC: false,
             displayPI: false,
@@ -125,10 +125,10 @@ class WalletMenu extends Component {
     }
 
     confirmCreation(event) {
-        if (this.state.emptyCard.last_4 < 0 || this.state.emptyCard.last_4 > 9999 || this.state.emptyCard.last_4 == "" || this.state.emptyCard.brand == "" || this.state.emptyCard.expired_at == "") {
+        if (this.state.emptyCard.last4 < 0 || this.state.emptyCard.last4 > 9999 || this.state.emptyCard.last4 == "" || this.state.emptyCard.brand == "" || this.state.emptyCard.expiredAt == "") {
             alert("Data are not correct, check again");
         }
-        else if (this.state.emptyCard.expired_at < '2019-10-28') {
+        else if (this.state.emptyCard.expiredAt < '2019-10-28') {
             alert("This card is already expired")
         }
         else {
@@ -140,9 +140,9 @@ class WalletMenu extends Component {
             idcard++;
             let newCard = {
                 id: idcard,
-                last_4: this.state.emptyCard.last_4,
+                last_4: this.state.emptyCard.last4,
                 brand: this.state.emptyCard.brand,
-                expired_at: this.state.emptyCard.expired_at,
+                expired_at: this.state.emptyCard.expiredAt,
                 user_id: LocalStorageGetter("connectedUser").id
             }
             let allCards = LocalStorageGetter("cards");
@@ -159,8 +159,8 @@ class WalletMenu extends Component {
 
             this.setState({ boolAdd: !this.state.boolAdd });
             this.state.emptyCard.brand = '';
-            this.state.emptyCard.expired_at = '';
-            this.state.emptyCard.last_4 = '';
+            this.state.emptyCard.expiredAt = '';
+            this.state.emptyCard.last4 = '';
         }
     }
 
@@ -168,8 +168,8 @@ class WalletMenu extends Component {
         this.setState({ boolAdd: !this.state.boolAdd });
 
         this.state.emptyCard.brand = '';
-        this.state.emptyCard.expired_at = '';
-        this.state.emptyCard.last_4 = '';
+        this.state.emptyCard.expiredAt = '';
+        this.state.emptyCard.last4 = '';
     }
 
 
@@ -182,14 +182,14 @@ class WalletMenu extends Component {
         if (event.target.name == 'brand') {
             this.state.emptyCard.brand = event.target.value;
         } else if (event.target.name == 'expired_at') {
-            this.state.emptyCard.expired_at = event.target.value;
+            this.state.emptyCard.expiredAt = event.target.value;
         } else if (event.target.name == 'last_four') {
             if (isNaN(event.target.value)) {
                 alert(event.target.value + " is not a number");
                 event.target.value = null;
             }
             else {
-                this.state.emptyCard.last_4 = event.target.value;
+                this.state.emptyCard.last4 = event.target.value;
             }
         }
     }
@@ -379,20 +379,20 @@ class WalletMenu extends Component {
                                     {!this.state.boolEdit && <li><img src={icoCardL4} className="ico" /> <p className="display-value">**** **** **** {object.last_4}</p></li>}
                                     {this.state.boolEdit && this.state.idEdit != object.id && <li><img src={icoCardL4} className="ico" /> <p className="display-value">**** **** **** {object.last_4}</p></li>}
                                     {this.state.boolEdit && this.state.idEdit == object.id && <li><img src={icoCardL4} className="ico" /> <input type="text" name="last_four" defaultValue={object.last_4} onChange={this.updateCardData} /></li>}
-                                    {!this.state.boolEdit && <img src={icoCardEditOption} id='ico-margin' className="ico_non_reverse" name={object.id} onClick={this.editCard} />}
-                                    {this.state.boolEdit && this.state.idEdit == object.id && <img src={icoCardEditOption} id='ico-margin' className="ico_non_reverse" name={object.id} onClick={this.confirmEdit} />}
-                                    {!this.state.boolEdit && <img src={icoCardTrashOption} id='ico-margin' className="ico_non_reverse" name={object.id} onClick={this.deleteCardsLocalStorage} />}
+                                    {!this.state.boolEdit && <img src={icoCardEditOption} id='ico-margin' className="ico-non-reverse" name={object.id} onClick={this.editCard} />}
+                                    {this.state.boolEdit && this.state.idEdit == object.id && <img src={icoCardEditOption} id='ico-margin' className="ico-non-reverse" name={object.id} onClick={this.confirmEdit} />}
+                                    {!this.state.boolEdit && <img src={icoCardTrashOption} id='ico-margin' className="ico-non-reverse" name={object.id} onClick={this.deleteCardsLocalStorage} />}
                                 </div>
                             );
                         }, this)}
                     </div>}
-                    {!this.state.boolEdit && !this.state.boolAdd && this.state.displayC && <img src={icoCardAddOption} className="ico_non_reverse" onClick={this.createCard} />}
+                    {!this.state.boolEdit && !this.state.boolAdd && this.state.displayC && <img src={icoCardAddOption} className="ico-non-reverse" onClick={this.createCard} />}
                     {this.state.boolAdd && <form>
                         <li><img src={icoCardBrand} className="ico" /><span>Brand</span><input type="text" name="brand" onChange={this.updateInputValue} /></li>
                         <li><img src={icoCardDate} className="ico" /><span>Expiration date</span><input type="date" name="expired_at" onChange={this.updateInputValue} /></li>
                         <li><img src={icoCardL4} className="ico" /><span>Last four digit</span><input type="number" name="last_four" onChange={this.updateInputValue} /></li>
-                        <img src={icoCardTickOption} className="ico_non_reverse" onClick={this.confirmCreation} />
-                        <img src={icoCardCrossption} className="ico_non_reverse" onClick={this.abordCreation} />
+                        <img src={icoCardTickOption} className="ico-non-reverse" onClick={this.confirmCreation} />
+                        <img src={icoCardCrossption} className="ico-non-reverse" onClick={this.abordCreation} />
                     </form>}
                 </section>
 

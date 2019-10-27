@@ -20,7 +20,7 @@ import icoSignOut from '../img/ico_sign_out.png';
 import icoUserManager from '../img/ico_manager_users.png';
 import icoTransferManager from '../img/ico_manager_transaction.png';
 import logo from '../img/logo.png';
-import { LocalStorageGetter } from '../Shortcut';
+import { LocalStorageGetter } from '../shortcut';
 
 class Wallet extends Component {
     constructor(props) {

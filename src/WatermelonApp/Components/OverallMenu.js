@@ -7,7 +7,7 @@ import icoCardBrand from '../img/ico_card_brand.png';
 import icoEuro from '../img/ico_euro.png';
 import username from "../img/username.png";
 import name from "../img/name.png";
-import { LocalStorageGetter } from '../Shortcut';
+import { LocalStorageGetter } from '../shortcut';
 
 class OverallMenu extends Component {
 

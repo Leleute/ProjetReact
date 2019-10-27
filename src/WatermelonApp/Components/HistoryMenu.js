@@ -12,7 +12,7 @@ import icoMinus from '../img/ico_minus.png';
 import icoTransferIn from '../img/ico_transfer_in.png';
 import icoTransferOut from '../img/ico_transfer_out.png';
 
-import { LocalStorageGetter } from '../Shortcut';
+import { LocalStorageGetter } from '../shortcut';
 
 class HistoryMenu extends Component {
 
@@ -62,7 +62,7 @@ class HistoryMenu extends Component {
                                 <div id="pay" className="history-container">
                                     {object.wallet_id == LocalStorageGetter('connectedWallet').id &&
                                         <div className="element">
-                                            <img src={icoAdd} className="ico_non_reverse" /> <img src={icoEuro} className="ico" /> <span className="display-value">{object.amount}</span>
+                                            <img src={icoAdd} className="ico-non-reverse" /> <img src={icoEuro} className="ico" /> <span className="display-value">{object.amount}</span>
                                         </div>
                                     }
                                 </div>
@@ -85,7 +85,7 @@ class HistoryMenu extends Component {
                                 <div id="pay" className="history-container">
                                     {object.wallet_id == LocalStorageGetter('connectedWallet').id &&
                                         <div className="element">
-                                            <img src={icoMinus} className="ico_non_reverse" /> <img src={icoEuro} className="ico" /> <span className="display-value">{object.amount}</span>
+                                            <img src={icoMinus} className="ico-non-reverse" /> <img src={icoEuro} className="ico" /> <span className="display-value">{object.amount}</span>
                                         </div>
                                     }
                                 </div>
@@ -108,7 +108,7 @@ class HistoryMenu extends Component {
                                 <div id="transfer" className="history-container">
                                     {object.credited_wallet_id = LocalStorageGetter('connectedWallet').id &&
                                         <div className="element">
-                                            <img src={icoTransferIn} className="ico_non_reverse" /> <img src={icoEuro} className="ico" /> <span className="display-value">{object.amount} from {this.getName(object.debited_wallet_id)}</span>
+                                            <img src={icoTransferIn} className="ico-non-reverse" /> <img src={icoEuro} className="ico" /> <span className="display-value">{object.amount} from {this.getName(object.debited_wallet_id)}</span>
                                         </div>
                                     }
                                 </div>
@@ -128,7 +128,7 @@ class HistoryMenu extends Component {
                                 <div id="transfer" className="history-container">
                                     {object.debited_wallet_id == LocalStorageGetter('connectedWallet').id &&
                                         <div className="element">
-                                            <img src={icoTransferOut} className="ico_non_reverse" /> <img src={icoEuro} className="ico" /> <span className="display-value">{object.amount} to {this.getName(object.credited_wallet_id)}</span>
+                                            <img src={icoTransferOut} className="ico-non-reverse" /> <img src={icoEuro} className="ico" /> <span className="display-value">{object.amount} to {this.getName(object.credited_wallet_id)}</span>
                                         </div>
                                     }
                                 </div>

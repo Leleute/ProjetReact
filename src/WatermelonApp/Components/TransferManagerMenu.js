@@ -11,7 +11,7 @@ import icoTrashOption from '../img/ico_trash.png';
 import icoOperation from '../img/ico_operation.png';
 
 
-import { LocalStorageGetter, LocalStorageSetter } from '../Shortcut';
+import { LocalStorageGetter, LocalStorageSetter } from '../shortcut';
 
 class TransferManagerMenu extends Component {
     constructor(props) {
@@ -139,22 +139,22 @@ class TransferManagerMenu extends Component {
                                     {object.id != this.state.idTransfer && (!this.getUser(object.credited_wallet_id).is_admin && !this.getUser(object.debited_wallet_id).is_admin) &&
                                         <div className="element" name="false" onClick={((e) => this.setTransfer(e, object))}>
                                             <div className="item"> <img src={icoEuro} className="ico" /> <span className="display-value" id="amount">{object.amount}</span></div>
-                                            <div className="item" id="list"><img src={icoTransferOut} id="ico-stable" className="ico_non_reverse" /> <span className="display-value"> {this.getName(object.debited_wallet_id)}</span></div>
-                                            <div className="item" id="list"> <img src={icoTransferIn} id="ico-stable" className="ico_non_reverse" /> <span className="display-value"> {this.getName(object.credited_wallet_id)}</span></div>
+                                            <div className="item" id="list"><img src={icoTransferOut} id="ico-stable" className="ico-non-reverse" /> <span className="display-value"> {this.getName(object.debited_wallet_id)}</span></div>
+                                            <div className="item" id="list"> <img src={icoTransferIn} id="ico-stable" className="ico-non-reverse" /> <span className="display-value"> {this.getName(object.credited_wallet_id)}</span></div>
                                         </div>
                                     }
                                     {object.id == this.state.idTransfer && (!this.getUser(object.credited_wallet_id).is_admin && !this.getUser(object.debited_wallet_id).is_admin) &&
                                         <div className="element" id="element-selected" name="false" onClick={((e) => this.setTransfer(e, object))}>
                                             <div className="item"> <img src={icoEuro} className="ico" /> <span className="display-value" id="amount">{object.amount}</span></div>
-                                            <div className="item" id="list"><img src={icoTransferOut} id="ico-stable" className="ico_non_reverse" /> <span className="display-value"> {this.getName(object.debited_wallet_id)}</span></div>
-                                            <div className="item" id="list"> <img src={icoTransferIn} id="ico-stable" className="ico_non_reverse" /> <span className="display-value"> {this.getName(object.credited_wallet_id)}</span></div>
+                                            <div className="item" id="list"><img src={icoTransferOut} id="ico-stable" className="ico-non-reverse" /> <span className="display-value"> {this.getName(object.debited_wallet_id)}</span></div>
+                                            <div className="item" id="list"> <img src={icoTransferIn} id="ico-stable" className="ico-non-reverse" /> <span className="display-value"> {this.getName(object.credited_wallet_id)}</span></div>
                                         </div>
                                     }
                                     {(this.getUser(object.credited_wallet_id).is_admin || this.getUser(object.debited_wallet_id).is_admin) &&
                                         <div className="element" id="admin-selected" name="true" onClick={((e) => this.setTransferAdmin(e, object))}>
                                             <div className="item"> <img src={icoEuro} className="ico" /> <span className="display-value" id="amount">{object.amount}</span></div>
-                                            <div className="item" id="list"><img src={icoTransferOut} id="ico-stable" className="ico_non_reverse" /> <span className="display-value"> {this.getName(object.debited_wallet_id)}</span></div>
-                                            <div className="item" id="list"> <img src={icoTransferIn} id="ico-stable" className="ico_non_reverse" /> <span className="display-value"> {this.getName(object.credited_wallet_id)}</span></div>
+                                            <div className="item" id="list"><img src={icoTransferOut} id="ico-stable" className="ico-non-reverse" /> <span className="display-value"> {this.getName(object.debited_wallet_id)}</span></div>
+                                            <div className="item" id="list"> <img src={icoTransferIn} id="ico-stable" className="ico-non-reverse" /> <span className="display-value"> {this.getName(object.credited_wallet_id)}</span></div>
                                         </div>
                                     }
                                 </div>
@@ -172,7 +172,7 @@ class TransferManagerMenu extends Component {
                     {!this.state.isAdmin &&
                         <section>
                             <div className='section-header'><img src={icoOperation} className="ico" /><span >Operation</span></div>
-                            <div className="operation"><img src={icoTrashOption} className="ico_non_reverse" id="ico-margin" onClick={this.deleteTransfer} /><p>Delete the selected transfer</p></div>
+                            <div className="operation"><img src={icoTrashOption} className="ico-non-reverse" id="ico-margin" onClick={this.deleteTransfer} /><p>Delete the selected transfer</p></div>
                         </section>}
                     {this.state.isAdmin &&
                         <section>
