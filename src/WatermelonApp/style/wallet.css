@@ -140,14 +140,14 @@ body {
     margin-right: auto;     
 }
 
-.container .ico_non_reverse {
+.container .ico-non-reverse {
     height: 50px;
     vertical-align: middle; 
     margin-left: auto;
     margin-right: auto;  
 }
 
-.container .ico_non_reverse:hover{
+.container .ico-non-reverse:hover{
     height: 60px;    
 
 }
