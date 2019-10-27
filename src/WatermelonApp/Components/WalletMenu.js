@@ -66,27 +66,32 @@ class WalletMenu extends Component {
     }
 
     editCardsLocalStorage(idCard) {
-        let connectedCards = LocalStorageGetter("connectedCard");
-        connectedCards.map((card) => {
-            if (card.id == idCard) {
-                card.brand = this.state.copyCards.brand;
-                card.expired_at = this.state.copyCards.expired_at;
-                card.last_4 = this.state.copyCards.last_4;
-                LocalStorageSetter("connectedCard", connectedCards);
-            }
-        });
+        if (this.state.copyCards.last_4 < 0 || this.state.copyCards.last_4 > 9999 || this.state.copyCards.brand == "" || this.state.copyCards.expired_at == "") {
+            alert("Data are not correct, check again");
+        }
+        else {
+            let connectedCards = LocalStorageGetter("connectedCard");
+            connectedCards.map((card) => {
+                if (card.id == idCard) {
+                    card.brand = this.state.copyCards.brand;
+                    card.expired_at = this.state.copyCards.expired_at;
+                    card.last_4 = this.state.copyCards.last_4;
+                    LocalStorageSetter("connectedCard", connectedCards);
+                }
+            });
 
-        let cards = LocalStorageGetter("cards");
-        cards.map((card) => {
-            if (card.id == idCard) {
-                card.brand = this.state.copyCards.brand;
-                card.expired_at = this.state.copyCards.expired_at;
-                card.last_4 = this.state.copyCards.last_4;
-                LocalStorageSetter("cards", cards);
-            }
-        });
-        console.log("AFTER MODIF");
-        console.log(LocalStorageGetter("cards"));
+            let cards = LocalStorageGetter("cards");
+            cards.map((card) => {
+                if (card.id == idCard) {
+                    card.brand = this.state.copyCards.brand;
+                    card.expired_at = this.state.copyCards.expired_at;
+                    card.last_4 = this.state.copyCards.last_4;
+                    LocalStorageSetter("cards", cards);
+                }
+            });
+            console.log("AFTER MODIF");
+            console.log(LocalStorageGetter("cards"));
+        }
     }
 
     deleteCardsLocalStorage(event) {
@@ -117,35 +122,43 @@ class WalletMenu extends Component {
     }
 
     confirmCreation(event) {
-        let cards = LocalStorageGetter("cards");
-        let idcard = 0;
-        cards.map((card) => {
-            if (card.id > idcard) idcard = card.id;
-        });
-        idcard++;
-        let newCard = {
-            id: idcard,
-            last_4: this.state.emptyCard.last_4,
-            brand: this.state.emptyCard.brand,
-            expired_at: this.state.emptyCard.expired_at,
-            user_id: LocalStorageGetter("connectedUser").id
+        if (this.state.emptyCard.last_4 < 0 || this.state.emptyCard.last_4 > 9999 || this.state.emptyCard.brand == "" || this.state.emptyCard.expired_at == "")
+        {
+            console.log(this.state.emptyCard.brand);
+            console.log(this.state.emptyCard.expired_at);
+            alert("Data are not correct, check again");
         }
-        let allCards = LocalStorageGetter("cards");
-        allCards.push(newCard);
-        LocalStorageSetter("cards", allCards);
+        else {
+            let cards = LocalStorageGetter("cards");
+            let idcard = 0;
+            cards.map((card) => {
+                if (card.id > idcard) idcard = card.id;
+            });
+            idcard++;
+            let newCard = {
+                id: idcard,
+                last_4: this.state.emptyCard.last_4,
+                brand: this.state.emptyCard.brand,
+                expired_at: this.state.emptyCard.expired_at,
+                user_id: LocalStorageGetter("connectedUser").id
+            }
+            let allCards = LocalStorageGetter("cards");
+            allCards.push(newCard);
+            LocalStorageSetter("cards", allCards);
 
-        let connectedCard = LocalStorageGetter('connectedCard');
-        connectedCard.push(newCard);
-        LocalStorageSetter('connectedCard', connectedCard);
+            let connectedCard = LocalStorageGetter('connectedCard');
+            connectedCard.push(newCard);
+            LocalStorageSetter('connectedCard', connectedCard);
 
 
-        console.log(LocalStorageGetter('connectedCard', connectedCard));
-        this.forceUpdate();
+            console.log(LocalStorageGetter('connectedCard', connectedCard));
+            this.forceUpdate();
 
-        this.setState({ boolAdd: !this.state.boolAdd });
-        this.state.emptyCard.brand = '';
-        this.state.emptyCard.expired_at = '';
-        this.state.emptyCard.last_4 = '';
+            this.setState({ boolAdd: !this.state.boolAdd });
+            this.state.emptyCard.brand = '';
+            this.state.emptyCard.expired_at = '';
+            this.state.emptyCard.last_4 = '';
+        }
     }
 
     abordCreation(event) {
@@ -168,9 +181,19 @@ class WalletMenu extends Component {
         } else if (event.target.name == 'expired_at') {
             this.state.emptyCard.expired_at = event.target.value;
         } else if (event.target.name == 'last_four') {
-            this.state.emptyCard.last_4 = event.target.value;
+                this.state.emptyCard.last_4 = event.target.value;
         }
     }
+    /*
+    updateInputPayIn(event) {
+        if (isNaN(event.target.value)) {
+            alert(event.target.value + " is not a number");
+        } else if (Number(event.target.value) < Number(0)) {
+            alert(event.target.value + " must be greater than 0");
+        } else {
+            this.setState({ valuePayIn: event.target.value });
+        }
+    }*/
 
     updateCardData(event) {
         if (event.target.name == 'brand') {

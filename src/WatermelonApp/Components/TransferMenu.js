@@ -71,6 +71,7 @@ class TransferMenu extends Component {
             LocalStorageSetter("wallet", listWallet);
             LocalStorageSetter("connectedWallet", walletPresent);
             alert("Transfert fonctionnel");
+            this.setState({ amount: 0 });
         } else {
             alert("Please choose a card and/or select an amount")
         }
