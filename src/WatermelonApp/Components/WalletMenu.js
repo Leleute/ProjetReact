@@ -66,8 +66,11 @@ class WalletMenu extends Component {
     }
 
     editCardsLocalStorage(idCard) {
-        if (this.state.copyCards.last_4 < 0 || this.state.copyCards.last_4 > 9999 || this.state.copyCards.brand == "" || this.state.copyCards.expired_at == "") {
+        if (this.state.copyCards.last_4 < 0 || this.state.copyCards.last_4 == "" || this.state.copyCards.last_4 > 9999 || this.state.copyCards.brand == "" || this.state.copyCards.expired_at == "") {
             alert("Data are not correct, check again");
+        }
+        else if (this.state.copyCards.expired_at < '2019-10-28') {
+            alert("This card is already expired")
         }
         else {
             let connectedCards = LocalStorageGetter("connectedCard");
@@ -122,11 +125,11 @@ class WalletMenu extends Component {
     }
 
     confirmCreation(event) {
-        if (this.state.emptyCard.last_4 < 0 || this.state.emptyCard.last_4 > 9999 || this.state.emptyCard.brand == "" || this.state.emptyCard.expired_at == "")
-        {
-            console.log(this.state.emptyCard.brand);
-            console.log(this.state.emptyCard.expired_at);
+        if (this.state.emptyCard.last_4 < 0 || this.state.emptyCard.last_4 > 9999 || this.state.emptyCard.last_4 == "" || this.state.emptyCard.brand == "" || this.state.emptyCard.expired_at == "") {
             alert("Data are not correct, check again");
+        }
+        else if (this.state.emptyCard.expired_at < '2019-10-28') {
+            alert("This card is already expired")
         }
         else {
             let cards = LocalStorageGetter("cards");
@@ -181,19 +184,15 @@ class WalletMenu extends Component {
         } else if (event.target.name == 'expired_at') {
             this.state.emptyCard.expired_at = event.target.value;
         } else if (event.target.name == 'last_four') {
+            if (isNaN(event.target.value)) {
+                alert(event.target.value + " is not a number");
+                event.target.value = null;
+            }
+            else {
                 this.state.emptyCard.last_4 = event.target.value;
+            }
         }
     }
-    /*
-    updateInputPayIn(event) {
-        if (isNaN(event.target.value)) {
-            alert(event.target.value + " is not a number");
-        } else if (Number(event.target.value) < Number(0)) {
-            alert(event.target.value + " must be greater than 0");
-        } else {
-            this.setState({ valuePayIn: event.target.value });
-        }
-    }*/
 
     updateCardData(event) {
         if (event.target.name == 'brand') {
@@ -201,7 +200,13 @@ class WalletMenu extends Component {
         } else if (event.target.name == 'expired_at') {
             this.state.copyCards.expired_at = event.target.value;
         } else if (event.target.name == 'last_four') {
-            this.state.copyCards.last_4 = event.target.value;
+            if (isNaN(event.target.value)) {
+                alert(event.target.value + " is not a number");
+                event.target.value = null;
+            }
+            else {
+                this.state.copyCards.last_4 = event.target.value;
+            }
         }
     }
 
@@ -283,7 +288,6 @@ class WalletMenu extends Component {
                     LocalStorageSetter("wallet", newWallets);
                     console.log(LocalStorageGetter("wallet"));
                 }
-
             });
             let payouts = LocalStorageGetter("payout");
             let idpayout = 0;
@@ -315,8 +319,6 @@ class WalletMenu extends Component {
         } else {
             alert("Please choose a card and/or select an amount")
         }
-
-
     }
 
     updateInputPayIn(event) {

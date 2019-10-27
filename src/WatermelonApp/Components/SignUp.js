@@ -31,7 +31,7 @@ class SignUp extends Component {
     }
 
     back = () => {
-        this.setState({back:true});
+        this.setState({ back: true });
         this.props.connected(false);
     }
 
@@ -72,7 +72,7 @@ class SignUp extends Component {
             this.props.connected(true);
             LocalStorageSetter("connectedUser", newUser);
             //Creation du wallet
-            let newWallet = {id: this.state.id, balance: 0, user_id: this.state.id};
+            let newWallet = { id: this.state.id, balance: 0, user_id: this.state.id };
             let allwallets = LocalStorageGetter("wallet");
             allwallets.push(newWallet);
             LocalStorageSetter("wallet", allwallets);
@@ -98,7 +98,7 @@ class SignUp extends Component {
                 {this.props.display && !this.props.showMe &&
                     <div className="signup-form">
                         <div className="option-section">
-                        <header>Please provide your information to sign-up</header>
+                            <header>Please provide your information to sign-up</header>
                         </div>
                         <div className="option-section">
                             <img src={name} className="logo" /><span>Last name</span>

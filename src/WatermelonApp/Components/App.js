@@ -11,10 +11,10 @@ import payout from '../../database/payout';
 import wallet from '../../database/wallet';
 import transfer from '../../database/transfer';
 
-//localStorage.clear();
+localStorage.clear();
 
 if (LocalStorageGetter("users") == null) {
-  LocalStorageSetter("users", users);
+    LocalStorageSetter("users", users);
 }
 if (LocalStorageGetter("cards") == null) {
     LocalStorageSetter("cards", cards);
@@ -33,44 +33,44 @@ if (LocalStorageGetter("transfer") == null) {
 }
 
 class App extends Component {
-  
-  constructor(props) {
-    super(props);
-    this.state = {
-      connected: false,
-    };
-    this.handleChangeValue = this.handleChangeValue.bind(this);
-  }
 
-  componentDidMount(){
-    document.title = "Watermelon Wallet"
-  }
-  
-  handleChangeValue = (value) => {
-    this.setState({
-      connected: value
-    });
-  }
+    constructor(props) {
+        super(props);
+        this.state = {
+            connected: false,
+        };
+        this.handleChangeValue = this.handleChangeValue.bind(this);
+    }
+
+    componentDidMount() {
+        document.title = "Watermelon Wallet"
+    }
+
+    handleChangeValue = (value) => {
+        this.setState({
+            connected: value
+        });
+    }
 
 
-  render() {
-    return (
-      <div>
-        {!this.state.connected &&
-          <div className="App">
-            <header className="App-header">
-              <p className="App-message">
-                Welcome to Watermelon Wallet App!
+    render() {
+        return (
+            <div>
+                {!this.state.connected &&
+                    <div className="App">
+                        <header className="App-header">
+                            <p className="App-message">
+                                Welcome to Watermelon Wallet App!
           </p>
-              <Connection value={this.handleChangeValue}/>
-            </header>
-          </div>}
-        {this.state.connected &&
-          <Wallet/>}
-      </div>
+                            <Connection value={this.handleChangeValue} />
+                        </header>
+                    </div>}
+                {this.state.connected &&
+                    <Wallet />}
+            </div>
 
-    );
-  }
+        );
+    }
 
 }
 

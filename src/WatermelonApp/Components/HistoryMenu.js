@@ -31,12 +31,12 @@ class HistoryMenu extends Component {
     getName(idWallet) {
         let name;
         LocalStorageGetter("users").map((user) => {
-            if (user.id == idWallet) { 
+            if (user.id == idWallet) {
                 name = user.last_name.toUpperCase() + " " + user.first_name;
-                
-            }            
-        }); 
-        return (<span id="return">{name}</span>)  
+
+            }
+        });
+        return (<span id="return">{name}</span>)
     }
 
     display(compName, e) {
@@ -115,7 +115,7 @@ class HistoryMenu extends Component {
                             );
                         }, this)}
                     </div>}
-                    {LocalStorageGetter('connectedTransfIn').length == 0 && this.state.displayT && 
+                    {LocalStorageGetter('connectedTransfIn').length == 0 && this.state.displayT &&
                         <div id="transfer" className="history-container">
                             <div className="element">
                                 <span className="display-none">No money has been received.</span>
@@ -135,7 +135,7 @@ class HistoryMenu extends Component {
                             );
                         }, this)}
                     </div>}
-                    {LocalStorageGetter('connectedTransfOut').length == 0 && this.state.displayT && 
+                    {LocalStorageGetter('connectedTransfOut').length == 0 && this.state.displayT &&
                         <div id="transfer" className="history-container">
                             <div className="element">
                                 <span className="display-none">No money has been sent.</span>

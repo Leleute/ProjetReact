@@ -37,10 +37,10 @@ class SettingsMenu extends Component {
         });
         LocalStorageSetter("users", postDelete);
         this.setState({ idUser: '' });
-        
+
         this.props.isDeleted(true);
     }
-    
+
 
     display = (e) => {
         this.setState({ boolEdit: !this.state.boolEdit })

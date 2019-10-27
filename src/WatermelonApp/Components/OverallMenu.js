@@ -38,8 +38,8 @@ class OverallMenu extends Component {
                                     return (
                                         <li><img src={icoCardBrand} className="ico" /> <p className="display-value">{object.brand.toUpperCase()} **** **** **** {object.last_4} [{object.expired_at.slice(0, 10)}]</p></li>
                                     );
-                                })  }
-                        </div>
+                                })}
+                            </div>
                         </div>
                     </section>
                 </div>
