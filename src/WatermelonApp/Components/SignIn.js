@@ -7,7 +7,7 @@ import signin from "../style/signin.css";
 import username from "../img/username.png";
 import psw from "../img/psw.png";
 
-import { LocalStorageGetter, LocalStorageSetter } from '../shortcut';
+import { localStorageGetter, localStorageSetter } from '../shortcut';
 
 class SignIn extends Component {
 
@@ -31,7 +31,7 @@ class SignIn extends Component {
 
     connection = () => {
         var connexionfonctionne = false;
-        let users = LocalStorageGetter("users");
+        let users = localStorageGetter("users");
 
         let connectedUser;
         //Get user
@@ -49,54 +49,54 @@ class SignIn extends Component {
             alert("Those infomations do not correspond to an account, please try again");
         } else {
             let connectedWallet;
-            let wallets = LocalStorageGetter("wallet");
+            let wallets = localStorageGetter("wallet");
             wallets.map((wallet) => {
                 if (wallet.user_id == connectedUser.id) {
                     connectedWallet = wallet;
                 }
             });
             var connectedPayin = new Array();
-            let payins = LocalStorageGetter("payin");
+            let payins = localStorageGetter("payin");
             payins.map((payin) => {
                 if (payin.wallet_id == connectedWallet.id) {
                     connectedPayin.push(payin);
                 }
             });
             var connectedPayout = new Array();
-            let payouts = LocalStorageGetter("payout");
+            let payouts = localStorageGetter("payout");
             payouts.map((payout) => {
                 if (payout.wallet_id == connectedWallet.id) {
                     connectedPayout.push(payout);
                 }
             });
             var connectedCard = new Array();
-            let cards = LocalStorageGetter("cards");
+            let cards = localStorageGetter("cards");
             cards.map((card) => {
                 if (card.user_id == connectedUser.id) {
                     connectedCard.push(card);
                 }
             });
             var connectedTransfIn = new Array();
-            let transIns = LocalStorageGetter("transfer");
+            let transIns = localStorageGetter("transfer");
             transIns.map((transIn) => {
                 if (transIn.credited_wallet_id == connectedWallet.id) {
                     connectedTransfIn.push(transIn);
                 }
             });
             var connectedTransfOut = new Array();
-            let transOuts = LocalStorageGetter("transfer");
+            let transOuts = localStorageGetter("transfer");
             transOuts.map((transOut) => {
                 if (transOut.debited_wallet_id == connectedWallet.id) {
                     connectedTransfOut.push(transOut);
                 }
             });
-            LocalStorageSetter("connectedUser", connectedUser);
-            LocalStorageSetter("connectedWallet", connectedWallet);
-            LocalStorageSetter("connectedPayin", connectedPayin);
-            LocalStorageSetter("connectedPayout", connectedPayout);
-            LocalStorageSetter("connectedCard", connectedCard);
-            LocalStorageSetter("connectedTransfIn", connectedTransfIn);
-            LocalStorageSetter("connectedTransfOut", connectedTransfOut);
+            localStorageSetter("connectedUser", connectedUser);
+            localStorageSetter("connectedWallet", connectedWallet);
+            localStorageSetter("connectedPayin", connectedPayin);
+            localStorageSetter("connectedPayout", connectedPayout);
+            localStorageSetter("connectedCard", connectedCard);
+            localStorageSetter("connectedTransfIn", connectedTransfIn);
+            localStorageSetter("connectedTransfOut", connectedTransfOut);
 
         }
     }

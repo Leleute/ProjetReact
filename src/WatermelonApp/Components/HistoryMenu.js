@@ -12,7 +12,7 @@ import icoMinus from '../img/ico_minus.png';
 import icoTransferIn from '../img/ico_transfer_in.png';
 import icoTransferOut from '../img/ico_transfer_out.png';
 
-import { LocalStorageGetter } from '../shortcut';
+import { localStorageGetter } from '../shortcut';
 
 class HistoryMenu extends Component {
 
@@ -30,7 +30,7 @@ class HistoryMenu extends Component {
 
     getName(idWallet) {
         let name;
-        LocalStorageGetter("users").map((user) => {
+        localStorageGetter("users").map((user) => {
             if (user.id == idWallet) {
                 name = user.last_name.toUpperCase() + " " + user.first_name;
 
@@ -56,11 +56,11 @@ class HistoryMenu extends Component {
                 <header><img src={icoHistory} className="ico" /><span>HISTORY</span></header>
                 <section className="section-action" id="min-width" onClick={this.display.bind(this, 'payin')}>
                     <div className='section-header'><img src={icoPayIn} className="ico" /><span >Pay-in</span></div>
-                    {LocalStorageGetter('connectedPayin').length != 0 && <div>
-                        {this.state.displayPI && LocalStorageGetter('connectedPayin').map(function (object, i) {
+                    {localStorageGetter('connectedPayin').length != 0 && <div>
+                        {this.state.displayPI && localStorageGetter('connectedPayin').map(function (object, i) {
                             return (
                                 <div id="pay" className="history-container">
-                                    {object.wallet_id == LocalStorageGetter('connectedWallet').id &&
+                                    {object.wallet_id == localStorageGetter('connectedWallet').id &&
                                         <div className="element">
                                             <img src={icoAdd} className="ico-non-reverse" /> <img src={icoEuro} className="ico" /> <span className="display-value">{object.amount}</span>
                                         </div>
@@ -69,7 +69,7 @@ class HistoryMenu extends Component {
                             );
                         }, this)}
                     </div>}
-                    {LocalStorageGetter('connectedPayin').length == 0 && this.state.displayPI &&
+                    {localStorageGetter('connectedPayin').length == 0 && this.state.displayPI &&
                         <div className="history-container">
                             <div className="element">
                                 <span className="display-none">No pay-in has been found.</span>
@@ -79,11 +79,11 @@ class HistoryMenu extends Component {
                 </section>
                 <section className="section-action" id="min-width" onClick={this.display.bind(this, 'payout')}>
                     <div className='section-header'><img src={icoPayOut} className="ico" /><span >Pay-out</span></div>
-                    {LocalStorageGetter('connectedPayout').length != 0 && <div>
-                        {this.state.displayPO && LocalStorageGetter('connectedPayout').map(function (object, i) {
+                    {localStorageGetter('connectedPayout').length != 0 && <div>
+                        {this.state.displayPO && localStorageGetter('connectedPayout').map(function (object, i) {
                             return (
                                 <div id="pay" className="history-container">
-                                    {object.wallet_id == LocalStorageGetter('connectedWallet').id &&
+                                    {object.wallet_id == localStorageGetter('connectedWallet').id &&
                                         <div className="element">
                                             <img src={icoMinus} className="ico-non-reverse" /> <img src={icoEuro} className="ico" /> <span className="display-value">{object.amount}</span>
                                         </div>
@@ -92,7 +92,7 @@ class HistoryMenu extends Component {
                             );
                         }, this)}
                     </div>}
-                    {LocalStorageGetter('connectedPayout').length == 0 && this.state.displayPO &&
+                    {localStorageGetter('connectedPayout').length == 0 && this.state.displayPO &&
                         <div className="history-container">
                             <div className="element">
                                 <span className="display-none">No pay-out has been found.</span>
@@ -102,11 +102,11 @@ class HistoryMenu extends Component {
                 </section>
                 <section className="section-action" id="min-width" onClick={this.display.bind(this, 'transfer')}>
                     <div className='section-header'><img src={icoTransfer} className="ico" /><span >Transfer</span></div>
-                    {LocalStorageGetter('connectedTransfIn').length != 0 && <div>
-                        {this.state.displayT && LocalStorageGetter('connectedTransfIn').map(function (object, i) {
+                    {localStorageGetter('connectedTransfIn').length != 0 && <div>
+                        {this.state.displayT && localStorageGetter('connectedTransfIn').map(function (object, i) {
                             return (
                                 <div id="transfer" className="history-container">
-                                    {object.credited_wallet_id = LocalStorageGetter('connectedWallet').id &&
+                                    {object.credited_wallet_id = localStorageGetter('connectedWallet').id &&
                                         <div className="element">
                                             <img src={icoTransferIn} className="ico-non-reverse" /> <img src={icoEuro} className="ico" /> <span className="display-value">{object.amount} from {this.getName(object.debited_wallet_id)}</span>
                                         </div>
@@ -115,18 +115,18 @@ class HistoryMenu extends Component {
                             );
                         }, this)}
                     </div>}
-                    {LocalStorageGetter('connectedTransfIn').length == 0 && this.state.displayT &&
+                    {localStorageGetter('connectedTransfIn').length == 0 && this.state.displayT &&
                         <div id="transfer" className="history-container">
                             <div className="element">
                                 <span className="display-none">No money has been received.</span>
                             </div>
                         </div>
                     }
-                    {LocalStorageGetter('connectedTransfOut').length != 0 && <div>
-                        {this.state.displayT && LocalStorageGetter('connectedTransfOut').map(function (object, i) {
+                    {localStorageGetter('connectedTransfOut').length != 0 && <div>
+                        {this.state.displayT && localStorageGetter('connectedTransfOut').map(function (object, i) {
                             return (
                                 <div id="transfer" className="history-container">
-                                    {object.debited_wallet_id == LocalStorageGetter('connectedWallet').id &&
+                                    {object.debited_wallet_id == localStorageGetter('connectedWallet').id &&
                                         <div className="element">
                                             <img src={icoTransferOut} className="ico-non-reverse" /> <img src={icoEuro} className="ico" /> <span className="display-value">{object.amount} to {this.getName(object.credited_wallet_id)}</span>
                                         </div>
@@ -135,7 +135,7 @@ class HistoryMenu extends Component {
                             );
                         }, this)}
                     </div>}
-                    {LocalStorageGetter('connectedTransfOut').length == 0 && this.state.displayT &&
+                    {localStorageGetter('connectedTransfOut').length == 0 && this.state.displayT &&
                         <div id="transfer" className="history-container">
                             <div className="element">
                                 <span className="display-none">No money has been sent.</span>

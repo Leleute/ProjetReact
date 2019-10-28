@@ -17,7 +17,7 @@ import icoCardEditOption from '../img/ico_edit.png';
 import icoCardAddOption from '../img/ico_add.png';
 import icoCardTickOption from '../img/ico_tick.png';
 import icoCardCrossption from '../img/ico_cross.png';
-import { LocalStorageGetter, LocalStorageSetter } from '../shortcut';
+import { localStorageGetter, localStorageSetter } from '../shortcut';
 
 
 class WalletMenu extends Component {
@@ -73,32 +73,32 @@ class WalletMenu extends Component {
             alert("This card is already expired")
         }
         else {
-            let connectedCards = LocalStorageGetter("connectedCard");
+            let connectedCards = localStorageGetter("connectedCard");
             connectedCards.map((card) => {
                 if (card.id == idCard) {
                     card.brand = this.state.copyCards.brand;
                     card.expired_at = this.state.copyCards.expired_at;
                     card.last_4 = this.state.copyCards.last_4;
-                    LocalStorageSetter("connectedCard", connectedCards);
+                    localStorageSetter("connectedCard", connectedCards);
                 }
             });
 
-            let cards = LocalStorageGetter("cards");
+            let cards = localStorageGetter("cards");
             cards.map((card) => {
                 if (card.id == idCard) {
                     card.brand = this.state.copyCards.brand;
                     card.expired_at = this.state.copyCards.expired_at;
                     card.last_4 = this.state.copyCards.last_4;
-                    LocalStorageSetter("cards", cards);
+                    localStorageSetter("cards", cards);
                 }
             });
             console.log("AFTER MODIF");
-            console.log(LocalStorageGetter("cards"));
+            console.log(localStorageGetter("cards"));
         }
     }
 
     deleteCardsLocalStorage(event) {
-        let connectedCards = LocalStorageGetter("connectedCard");
+        let connectedCards = localStorageGetter("connectedCard");
         if (connectedCards.length > 1) {
             let postDelete = new Array();
             connectedCards.map((card) => {
@@ -107,9 +107,9 @@ class WalletMenu extends Component {
                 }
 
             });
-            LocalStorageSetter("connectedCard", postDelete);
+            localStorageSetter("connectedCard", postDelete);
 
-            let allCards = LocalStorageGetter("cards");
+            let allCards = localStorageGetter("cards");
             postDelete = new Array();
             allCards.map((card) => {
                 if (card.id != event.target.name) {
@@ -117,7 +117,7 @@ class WalletMenu extends Component {
                 }
 
             });
-            LocalStorageSetter("cards", postDelete);
+            localStorageSetter("cards", postDelete);
             this.forceUpdate();
         } else {
             alert("You must have at least one credit card registered");
@@ -132,7 +132,7 @@ class WalletMenu extends Component {
             alert("This card is already expired")
         }
         else {
-            let cards = LocalStorageGetter("cards");
+            let cards = localStorageGetter("cards");
             let idcard = 0;
             cards.map((card) => {
                 if (card.id > idcard) idcard = card.id;
@@ -143,18 +143,18 @@ class WalletMenu extends Component {
                 last_4: this.state.emptyCard.last4,
                 brand: this.state.emptyCard.brand,
                 expired_at: this.state.emptyCard.expiredAt,
-                user_id: LocalStorageGetter("connectedUser").id
+                user_id: localStorageGetter("connectedUser").id
             }
-            let allCards = LocalStorageGetter("cards");
+            let allCards = localStorageGetter("cards");
             allCards.push(newCard);
-            LocalStorageSetter("cards", allCards);
+            localStorageSetter("cards", allCards);
 
-            let connectedCard = LocalStorageGetter('connectedCard');
+            let connectedCard = localStorageGetter('connectedCard');
             connectedCard.push(newCard);
-            LocalStorageSetter('connectedCard', connectedCard);
+            localStorageSetter('connectedCard', connectedCard);
 
 
-            console.log(LocalStorageGetter('connectedCard', connectedCard));
+            console.log(localStorageGetter('connectedCard', connectedCard));
             this.forceUpdate();
 
             this.setState({ boolAdd: !this.state.boolAdd });
@@ -175,7 +175,7 @@ class WalletMenu extends Component {
 
     confirmEdit(event) {
         this.editCardsLocalStorage(event.target.name);
-        this.setState({ boolEdit: false, idEdit: '', copyCards: '', card: LocalStorageGetter('connectedCard') });
+        this.setState({ boolEdit: false, idEdit: '', copyCards: '', card: localStorageGetter('connectedCard') });
     }
 
     updateInputValue(event) {
@@ -215,7 +215,7 @@ class WalletMenu extends Component {
     }
 
     editCard(event) {
-        LocalStorageGetter("connectedCard").map((card) => {
+        localStorageGetter("connectedCard").map((card) => {
             if (card.id == event.target.name) {
                 this.setState({ copyCards: card });
             }
@@ -227,20 +227,20 @@ class WalletMenu extends Component {
         if (this.state.selectedCCPI != '' && this.state.valuePayIn != '') {
             console.log(this.state.valuePayIn);
             console.log(this.state.selectedCCPI);
-            let newWallet = LocalStorageGetter("connectedWallet");
+            let newWallet = localStorageGetter("connectedWallet");
             newWallet.balance = parseInt(newWallet.balance) + (parseInt(this.state.valuePayIn)) * 100;
-            LocalStorageSetter("connectedWallet", newWallet);
+            localStorageSetter("connectedWallet", newWallet);
             console.log(newWallet);
-            let newWallets = LocalStorageGetter("wallet");
+            let newWallets = localStorageGetter("wallet");
             newWallets.map((w) => {
                 if (w.id == newWallet.id) {
                     w.balance = newWallet.balance;
-                    LocalStorageSetter("wallet", newWallets);
-                    console.log(LocalStorageGetter("wallet"));
+                    localStorageSetter("wallet", newWallets);
+                    console.log(localStorageGetter("wallet"));
                 }
 
             });
-            let payins = LocalStorageGetter("payin");
+            let payins = localStorageGetter("payin");
             let idpayin = 0;
             payins.map((payin) => {
                 if (payin.id > idpayin) idpayin = payin.id;
@@ -248,23 +248,23 @@ class WalletMenu extends Component {
             idpayin++;
             let newPayin = {
                 id: idpayin,
-                wallet_id: LocalStorageGetter("connectedWallet").id,
+                wallet_id: localStorageGetter("connectedWallet").id,
                 amount: parseInt(this.state.valuePayIn)
             }
-            let allPayins = LocalStorageGetter("payin");
+            let allPayins = localStorageGetter("payin");
             allPayins.push(newPayin);
-            LocalStorageSetter("payin", allPayins);
-            console.log(LocalStorageGetter("payin"));
+            localStorageSetter("payin", allPayins);
+            console.log(localStorageGetter("payin"));
 
             var connectedPayin = new Array();
-            payins = LocalStorageGetter("payin");
+            payins = localStorageGetter("payin");
             payins.map((payin) => {
-                if (payin.wallet_id == LocalStorageGetter("connectedWallet").id) {
+                if (payin.wallet_id == localStorageGetter("connectedWallet").id) {
                     connectedPayin.push(payin);
                 }
             });
-            LocalStorageSetter("connectedPayin", connectedPayin);
-            console.log(LocalStorageGetter("connectedPayin"));
+            localStorageSetter("connectedPayin", connectedPayin);
+            console.log(localStorageGetter("connectedPayin"));
 
             this.setState({ valuePayIn: '', selectedCCPI: '', displayPI: false })
         } else {
@@ -277,19 +277,19 @@ class WalletMenu extends Component {
         console.log(this.state.valuePayOut);
         console.log(this.state.selectedCCPI);
         if (this.state.selectedCCPO != '' && this.state.valuePayOut != '') {
-            let newWallet = LocalStorageGetter("connectedWallet");
+            let newWallet = localStorageGetter("connectedWallet");
             newWallet.balance = parseInt(newWallet.balance) - (parseInt(this.state.valuePayOut)) * 100;
-            LocalStorageSetter("connectedWallet", newWallet);
+            localStorageSetter("connectedWallet", newWallet);
             console.log(newWallet);
-            let newWallets = LocalStorageGetter("wallet");
+            let newWallets = localStorageGetter("wallet");
             newWallets.map((w) => {
                 if (w.id == newWallet.id) {
                     w.balance = newWallet.balance;
-                    LocalStorageSetter("wallet", newWallets);
-                    console.log(LocalStorageGetter("wallet"));
+                    localStorageSetter("wallet", newWallets);
+                    console.log(localStorageGetter("wallet"));
                 }
             });
-            let payouts = LocalStorageGetter("payout");
+            let payouts = localStorageGetter("payout");
             let idpayout = 0;
             payouts.map((payout) => {
                 if (payout.id > idpayout) idpayout = payout.id;
@@ -297,23 +297,23 @@ class WalletMenu extends Component {
             idpayout++;
             let newPayout = {
                 id: idpayout,
-                wallet_id: LocalStorageGetter("connectedWallet").id,
+                wallet_id: localStorageGetter("connectedWallet").id,
                 amount: parseInt(this.state.valuePayOut)
             }
-            let allPayouts = LocalStorageGetter("payout");
+            let allPayouts = localStorageGetter("payout");
             allPayouts.push(newPayout);
-            LocalStorageSetter("payout", allPayouts);
-            console.log(LocalStorageGetter("payout"));
+            localStorageSetter("payout", allPayouts);
+            console.log(localStorageGetter("payout"));
 
             var connectedPayout = new Array();
-            payouts = LocalStorageGetter("payout");
+            payouts = localStorageGetter("payout");
             payouts.map((payout) => {
-                if (payout.wallet_id == LocalStorageGetter("connectedWallet").id) {
+                if (payout.wallet_id == localStorageGetter("connectedWallet").id) {
                     connectedPayout.push(payout);
                 }
             });
-            LocalStorageSetter("connectedPayout", connectedPayout);
-            console.log(LocalStorageGetter("connectedPayout"));
+            localStorageSetter("connectedPayout", connectedPayout);
+            console.log(localStorageGetter("connectedPayout"));
 
             this.setState({ valuePayOut: '', selectedCCPO: '', displayPO: false })
         } else {
@@ -335,7 +335,7 @@ class WalletMenu extends Component {
             alert(event.target.value + " is not a number");
         } else if (Number(event.target.value) < Number(0)) {
             alert(event.target.value + " must be greater than 0");
-        } else if (Number(event.target.value) > Number(Math.trunc(LocalStorageGetter("connectedWallet").balance / 100))) {
+        } else if (Number(event.target.value) > Number(Math.trunc(localStorageGetter("connectedWallet").balance / 100))) {
             alert(event.target.value + " must not exceed wallet's balance");
         } else {
             this.setState({ valuePayOut: event.target.value });
@@ -366,8 +366,8 @@ class WalletMenu extends Component {
                 <header><img src={icoWallet} className="ico" /><span>MY WALLET</span></header>
                 <section className="section-action" id="min-width">
                     <div className='section-header' onClick={this.display.bind(this, 'card')}><img src={icoCard} className="ico" /><span >My Cards</span></div>
-                    {LocalStorageGetter('connectedCard').length != 0 && <div>
-                        {this.state.displayC && LocalStorageGetter('connectedCard').map(function (object, i) {
+                    {localStorageGetter('connectedCard').length != 0 && <div>
+                        {this.state.displayC && localStorageGetter('connectedCard').map(function (object, i) {
                             return (
                                 <div className='card-description'>
                                     {!this.state.boolEdit && <li><img src={icoCardBrand} className="ico" /> <p className="display-value">{object.brand.toUpperCase()}</p></li>}
@@ -399,11 +399,11 @@ class WalletMenu extends Component {
 
                 <section className="section-action" id="min-width">
                     <div className='section-header' onClick={this.display.bind(this, 'payin')}><img src={icoPayIn} className="ico" /><span >Pay-In</span></div>
-                    {LocalStorageGetter('connectedCard').length != 0 && <div>
+                    {localStorageGetter('connectedCard').length != 0 && <div>
                         {this.state.displayPI && <div className='payin-description'>
                             <img src={ico1} className="ico_number" /> <p>Select a credit card</p>
                             <div className="card-description">
-                                {LocalStorageGetter('connectedCard').map(function (object, i) {
+                                {localStorageGetter('connectedCard').map(function (object, i) {
                                     return (
                                         <div onChange={this.setSelectedCardPayIn.bind(this)}>
                                             <li> <input type="radio" name="card_selected_payin" value={object.id} /><img src={icoCardBrand} className="ico" /> <p className="display-value">{object.brand.toUpperCase()} **** **** **** {object.last_4}</p></li>
@@ -418,7 +418,7 @@ class WalletMenu extends Component {
                             <div className="submit" onClick={this.proceedPayIn}>Confirm</div>
                         </div>}
                     </div>}
-                    {this.state.displayPI && LocalStorageGetter('connectedCard').length == 0 &&
+                    {this.state.displayPI && localStorageGetter('connectedCard').length == 0 &&
                         <div className="element">
                             <span className="display-none">You need at least one credit card registered to pay-in</span>
                         </div>}
@@ -427,11 +427,11 @@ class WalletMenu extends Component {
 
                 <section className="section-action" id="min-width">
                     <div className='section-header' onClick={this.display.bind(this, 'payout')}><img src={icoPayOut} className="ico" /><span >Pay-Out</span></div>
-                    {LocalStorageGetter('connectedCard').length != 0 && <div>
+                    {localStorageGetter('connectedCard').length != 0 && <div>
                         {this.state.displayPO && <div className='payout-description'>
                             <img src={ico1} className="ico_number" /> <p>Select a credit card</p>
                             <div className="card-description">
-                                {LocalStorageGetter('connectedCard').map(function (object, i) {
+                                {localStorageGetter('connectedCard').map(function (object, i) {
                                     return (
                                         <div onChange={this.setSelectedCardPayOut.bind(this)}>
                                             <li> <input type="radio" name="card_selected_payin" value={object.id} /><img src={icoCardBrand} className="ico" /> <p className="display-value">{object.brand.toUpperCase()} **** **** **** {object.last_4}</p></li>
@@ -446,7 +446,7 @@ class WalletMenu extends Component {
                             <div className="submit" onClick={this.proceedPayOut}>Confirm</div>
                         </div>}
                     </div>}
-                    {this.state.displayPO && LocalStorageGetter('connectedCard').length == 0 &&
+                    {this.state.displayPO && localStorageGetter('connectedCard').length == 0 &&
                         <div className="element">
                             <span className="display-none">You need at least one credit card registered to pay-out</span>
                         </div>}

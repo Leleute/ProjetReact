@@ -8,7 +8,7 @@ import { Redirect, Link } from 'react-router-dom';
 import username from "../img/username.png";
 import psw from "../img/psw.png";
 import name from "../img/name.png"
-import { LocalStorageGetter, LocalStorageSetter } from '../shortcut';
+import { localStorageGetter, localStorageSetter } from '../shortcut';
 
 
 class SignUp extends Component {
@@ -43,7 +43,7 @@ class SignUp extends Component {
 
     accountCreation = () => {
 
-        let users = LocalStorageGetter("users");
+        let users = localStorageGetter("users");
         var creavalide = true;
         users.map((user) => {
             //Verification que l'email n'est pas deja inscrite
@@ -62,28 +62,28 @@ class SignUp extends Component {
             //Creation du compte
             let newUser = { id: this.state.id, last_name: this.state.last_name, first_name: this.state.first_name, email: this.state.email, password: this.state.password, is_admin: this.state.isAdmin };
 
-            let allUsers = LocalStorageGetter("users");
+            let allUsers = localStorageGetter("users");
             allUsers.push(newUser);
             console.log(newUser);
-            LocalStorageSetter("users", allUsers);
+            localStorageSetter("users", allUsers);
             alert("Creation valide !");
             this.setState({ connected: true });
             this.setState({ back: true });
             this.props.connected(true);
-            LocalStorageSetter("connectedUser", newUser);
+            localStorageSetter("connectedUser", newUser);
             //Creation du wallet
             let newWallet = { id: this.state.id, balance: 0, user_id: this.state.id };
-            let allwallets = LocalStorageGetter("wallet");
+            let allwallets = localStorageGetter("wallet");
             allwallets.push(newWallet);
-            LocalStorageSetter("wallet", allwallets);
-            LocalStorageSetter("connectedWallet", newWallet);
+            localStorageSetter("wallet", allwallets);
+            localStorageSetter("connectedWallet", newWallet);
 
 
-            LocalStorageSetter("connectedPayin", new Array());
-            LocalStorageSetter("connectedPayout", new Array());
-            LocalStorageSetter("connectedCard", new Array());
-            LocalStorageSetter("connectedTransfIn", new Array());
-            LocalStorageSetter("connectedTransfOut", new Array());
+            localStorageSetter("connectedPayin", new Array());
+            localStorageSetter("connectedPayout", new Array());
+            localStorageSetter("connectedCard", new Array());
+            localStorageSetter("connectedTransfIn", new Array());
+            localStorageSetter("connectedTransfOut", new Array());
 
         }
         else {

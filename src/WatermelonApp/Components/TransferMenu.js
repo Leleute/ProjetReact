@@ -11,7 +11,7 @@ import ico1 from '../img/ico_1.png';
 import ico2 from '../img/ico_2.png';
 import icoCardBrand from '../img/ico_card_brand.png';
 
-import { LocalStorageGetter, LocalStorageSetter } from '../shortcut';
+import { localStorageGetter, localStorageSetter } from '../shortcut';
 
 class TransferMenu extends Component {
 
@@ -31,33 +31,33 @@ class TransferMenu extends Component {
         if (this.state.amount != '' && this.state.idCreditCard != '' && this.state.idReceiver) {
             /// --------------------------------------------------------
             let idtransfer = 0;
-            let listTransfer = LocalStorageGetter("transfer");
+            let listTransfer = localStorageGetter("transfer");
             listTransfer.map((t) => {
                 if (t.id > idtransfer) idtransfer = t.id;
             });
 
             let newTransfer = {
                 id: idtransfer + 1,
-                debited_wallet_id: LocalStorageGetter("connectedWallet").id,
+                debited_wallet_id: localStorageGetter("connectedWallet").id,
                 credited_wallet_id: this.state.idReceiver,
                 amount: parseInt(this.state.amount)
             }
             listTransfer.push(newTransfer);
-            LocalStorageSetter("transfer", listTransfer);
-            let actifTransf = LocalStorageGetter("connectedTransfOut");
+            localStorageSetter("transfer", listTransfer);
+            let actifTransf = localStorageGetter("connectedTransfOut");
             actifTransf.push(newTransfer);
-            LocalStorageSetter("connectedTransfOut", actifTransf);
+            localStorageSetter("connectedTransfOut", actifTransf);
 
             //recuperation du wallet cible
             let balanceCible = 0;
-            let listWallet = LocalStorageGetter("wallet");
+            let listWallet = localStorageGetter("wallet");
             listWallet.map((w) => {
                 if (w.id == this.state.idReceiver) {
                     balanceCible = w.balance;
                 }
             });
             this.state.amount = this.state.amount * 100;
-            let walletPresent = LocalStorageGetter("connectedWallet");
+            let walletPresent = localStorageGetter("connectedWallet");
             walletPresent.balance = parseInt(walletPresent.balance) - parseInt(this.state.amount);
             balanceCible = parseInt(balanceCible) + parseInt(this.state.amount);
             listWallet.map((w) => {
@@ -68,8 +68,8 @@ class TransferMenu extends Component {
                     w.balance = balanceCible;
                 }
             });
-            LocalStorageSetter("wallet", listWallet);
-            LocalStorageSetter("connectedWallet", walletPresent);
+            localStorageSetter("wallet", listWallet);
+            localStorageSetter("connectedWallet", walletPresent);
             alert("Transfert fonctionnel");
             this.setState({ amount: 0 });
         } else {
@@ -83,7 +83,7 @@ class TransferMenu extends Component {
             alert(event.target.value + " is not a number");
         } else if (Number(event.target.value) < Number(0)) {
             alert(event.target.value + " must be greater than 0");
-        } else if (Number(event.target.value) > Number(((LocalStorageGetter("connectedWallet").balance) / 100).toFixed(2))) {
+        } else if (Number(event.target.value) > Number(((localStorageGetter("connectedWallet").balance) / 100).toFixed(2))) {
             alert(event.target.value + " must not exceed wallet's balance");
         }
         else {
@@ -108,18 +108,18 @@ class TransferMenu extends Component {
             <div className="container">
                 <header><img src={icoTransfer} className="ico" /><span>TRANSFER</span></header>
                 <section>
-                    {LocalStorageGetter('connectedCard').length != 0 && <div>
+                    {localStorageGetter('connectedCard').length != 0 && <div>
                         <div className='section-header'><img src={icoTransferReceiver} className="ico" /><span >Transfer receiver</span></div>
-                        {LocalStorageGetter('users').map(function (object, i) {
+                        {localStorageGetter('users').map(function (object, i) {
                             return (
                                 <div className="user-choice"> {console.log(object)}
-                                    {object.id != LocalStorageGetter('connectedUser').id && object.id != this.state.idReceiver &&
+                                    {object.id != localStorageGetter('connectedUser').id && object.id != this.state.idReceiver &&
                                         <div className="element" name={object.id} onClick={((e) => this.setReceiver(e, object))}>
                                             <div className="item"><img src={icoUsername} className="ico" /> <p className="display-value">{object.last_name.toUpperCase()} {object.first_name}</p></div>
                                             <div className="item"><img src={icoEmail} className="ico" /><p className="display-value"> {object.email}</p></div>
                                         </div>
                                     }
-                                    {object.id != LocalStorageGetter('connectedUser').id && object.id == this.state.idReceiver &&
+                                    {object.id != localStorageGetter('connectedUser').id && object.id == this.state.idReceiver &&
                                         <div className="selected" name={object.id} onClick={((e) => this.setReceiver(e, object))}>
                                             <div className="item"><img src={icoUsername} className="ico" /> <p className="display-value">{object.last_name.toUpperCase()} {object.first_name}</p></div>
                                             <div className="item"><img src={icoEmail} className="ico" /><p className="display-value"> {object.email}</p></div>
@@ -129,7 +129,7 @@ class TransferMenu extends Component {
                             );
                         }, this)}
                     </div>}
-                    {LocalStorageGetter('connectedCard').length == 0 &&
+                    {localStorageGetter('connectedCard').length == 0 &&
                         <div className="element">
                             <span className="display-none">You need at least one credit card registered to transfer money.</span>
                         </div>
@@ -141,7 +141,7 @@ class TransferMenu extends Component {
                         <div className='payin-description'>
                             <img src={ico1} className="ico_number" /> <p>Select a credit card</p>
                             <div className="card-description">
-                                {LocalStorageGetter('connectedCard').map(function (object, i) {
+                                {localStorageGetter('connectedCard').map(function (object, i) {
                                     return (
                                         <div onChange={this.setSelectedCard.bind(this)}>
                                             <li> <input type="radio" name="card_selected_payin" value={object.id} /><img src={icoCardBrand} className="ico" /> <p className="display-value">{object.brand.toUpperCase()} **** **** **** {object.last_4}</p></li>

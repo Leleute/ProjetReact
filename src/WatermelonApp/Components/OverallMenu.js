@@ -7,7 +7,7 @@ import icoCardBrand from '../img/ico_card_brand.png';
 import icoEuro from '../img/ico_euro.png';
 import username from "../img/username.png";
 import name from "../img/name.png";
-import { LocalStorageGetter } from '../shortcut';
+import { localStorageGetter } from '../shortcut';
 
 class OverallMenu extends Component {
 
@@ -23,18 +23,18 @@ class OverallMenu extends Component {
                     <section id="inline-section">
                         <div className='section-header'>BALANCE</div>
                         <img src={icoEuro} className='ico' />
-                        {typeof LocalStorageGetter("connectedWallet") !== "undefined" && <span className="ico-text">{Math.trunc(LocalStorageGetter("connectedWallet").balance / 100)}</span>}
+                        {typeof localStorageGetter("connectedWallet") !== "undefined" && <span className="ico-text">{Math.trunc(localStorageGetter("connectedWallet").balance / 100)}</span>}
                     </section>
                     <section id="inline-section">
                         <div className='section-header'>ACCOUNT</div>
-                        <li><img src={username} className="ico" /><p className="overall-field">{LocalStorageGetter("connectedUser").last_name.toUpperCase()} {LocalStorageGetter("connectedUser").first_name}</p></li>
-                        <li><img src={name} className="ico" /><p className="overall-field"> {LocalStorageGetter("connectedUser").email}</p></li>
+                        <li><img src={username} className="ico" /><p className="overall-field">{localStorageGetter("connectedUser").last_name.toUpperCase()} {localStorageGetter("connectedUser").first_name}</p></li>
+                        <li><img src={name} className="ico" /><p className="overall-field"> {localStorageGetter("connectedUser").email}</p></li>
                     </section>
                     <section id="inline-section">
                         <div className='section-header'>CARDS</div>
                         <div className='payout-description'>
                             <div className="card-description" id="border-bottom-less">
-                                {LocalStorageGetter('connectedCard').map(function (object, i) {
+                                {localStorageGetter('connectedCard').map(function (object, i) {
                                     return (
                                         <li><img src={icoCardBrand} className="ico" /> <p className="display-value">{object.brand.toUpperCase()} **** **** **** {object.last_4} [{object.expired_at.slice(0, 10)}]</p></li>
                                     );

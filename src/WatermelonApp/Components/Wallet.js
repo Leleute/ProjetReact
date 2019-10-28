@@ -20,20 +20,20 @@ import icoSignOut from '../img/ico_sign_out.png';
 import icoUserManager from '../img/ico_manager_users.png';
 import icoTransferManager from '../img/ico_manager_transaction.png';
 import logo from '../img/logo.png';
-import { LocalStorageGetter } from '../shortcut';
+import { localStorageGetter } from '../shortcut';
 
 class Wallet extends Component {
     constructor(props) {
         super(props);
         this.state = {
             menuOption: 0,
-            wallet: LocalStorageGetter("connectedWallet"),
-            user: LocalStorageGetter("connectedUser"),
-            payin: LocalStorageGetter("connectedPayin"),
-            payout: LocalStorageGetter("connectedPayout"),
-            card: LocalStorageGetter("connectedCard"),
-            transferIn: LocalStorageGetter("connectedTransfIn"),
-            transferOut: LocalStorageGetter("connectedTransfOut")
+            wallet: localStorageGetter("connectedWallet"),
+            user: localStorageGetter("connectedUser"),
+            payin: localStorageGetter("connectedPayin"),
+            payout: localStorageGetter("connectedPayout"),
+            card: localStorageGetter("connectedCard"),
+            transferIn: localStorageGetter("connectedTransfIn"),
+            transferOut: localStorageGetter("connectedTransfOut")
         }
 
     }
@@ -72,8 +72,8 @@ class Wallet extends Component {
                         <li onClick={this.changeMenu.bind(this, 2)}><img src={icoTransfer} /><span>Transfer</span></li>
                         <li onClick={this.changeMenu.bind(this, 3)}><img src={icoHistory} /><span>History</span></li>
                         <div className="list-bottom">
-                            {LocalStorageGetter("connectedUser").is_admin && <li id="admin" onClick={this.changeMenu.bind(this, 6)}><img id="text-ico-below" src={icoUserManager} /><span id="text-ico-below">User Manager</span></li>}
-                            {LocalStorageGetter("connectedUser").is_admin && <li id="admin" onClick={this.changeMenu.bind(this, 7)}><img id="text-ico-below" src={icoTransferManager} /><span id="text-ico-below">Transfer Manager</span></li>}
+                            {localStorageGetter("connectedUser").is_admin && <li id="admin" onClick={this.changeMenu.bind(this, 6)}><img id="text-ico-below" src={icoUserManager} /><span id="text-ico-below">User Manager</span></li>}
+                            {localStorageGetter("connectedUser").is_admin && <li id="admin" onClick={this.changeMenu.bind(this, 7)}><img id="text-ico-below" src={icoTransferManager} /><span id="text-ico-below">Transfer Manager</span></li>}
                             <li onClick={this.changeMenu.bind(this, 4)}><img src={icoSettings} /><span>Account</span></li>
                             <li onClick={this.changeMenu.bind(this, 5)}><img src={icoSignOut} /><span>Sign-out</span></li>
                         </div>

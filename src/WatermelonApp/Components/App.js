@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Connection from "./Connection";
 import Wallet from "./Wallet"
-import { LocalStorageGetter, LocalStorageSetter } from '../shortcut';
+import { localStorageGetter, localStorageSetter } from '../shortcut';
 import '../style/App.css';
 
 import users from '../../database/users';
@@ -11,25 +11,23 @@ import payout from '../../database/payout';
 import wallet from '../../database/wallet';
 import transfer from '../../database/transfer';
 
-localStorage.clear();
-
-if (LocalStorageGetter("users") == null) {
-    LocalStorageSetter("users", users);
+if (localStorageGetter("users") == null) {
+    localStorageSetter("users", users);
 }
-if (LocalStorageGetter("cards") == null) {
-    LocalStorageSetter("cards", cards);
+if (localStorageGetter("cards") == null) {
+    localStorageSetter("cards", cards);
 }
-if (LocalStorageGetter("payin") == null) {
-    LocalStorageSetter("payin", payin);
+if (localStorageGetter("payin") == null) {
+    localStorageSetter("payin", payin);
 }
-if (LocalStorageGetter("payout") == null) {
-    LocalStorageSetter("payout", payout);
+if (localStorageGetter("payout") == null) {
+    localStorageSetter("payout", payout);
 }
-if (LocalStorageGetter("wallet") == null) {
-    LocalStorageSetter("wallet", wallet);
+if (localStorageGetter("wallet") == null) {
+    localStorageSetter("wallet", wallet);
 }
-if (LocalStorageGetter("transfer") == null) {
-    LocalStorageSetter("transfer", transfer);
+if (localStorageGetter("transfer") == null) {
+    localStorageSetter("transfer", transfer);
 }
 
 class App extends Component {
