@@ -80,7 +80,6 @@ class TransferManagerMenu extends Component {
 
     deleteTransfer(event) {
         //idTransfer
-        alert(this.state.idTransfer);
         let walletReceiverid = 0;
         let walletSenderid = 0;
         let amount = 0;
