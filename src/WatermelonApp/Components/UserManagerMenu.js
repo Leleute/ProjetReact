@@ -9,13 +9,7 @@ import icoEmail from "../img/name.png";
 import icoTrashOption from '../img/ico_trash.png';
 import icoOperation from '../img/ico_operation.png';
 
-<<<<<<< HEAD
 import { localStorageGetter, localStorageSetter } from '../shortcut';
-=======
-import {
-    localStorageGetter, localStorageSetter
-} from '../shortcut';
->>>>>>> master
 
 class UserManagerMenu extends Component {
     constructor(props) {
@@ -29,17 +23,10 @@ class UserManagerMenu extends Component {
 
     deleteUser(event) {
         let allUsers = localStorageGetter("users");
-<<<<<<< HEAD
-        let postDelete = new Array();
-        allUsers.map((u) => {
+        let postDelete = [];
+        allUsers.forEach((u) => {
             if (u.id != this.state.user.id) {
                 postDelete.push(u);
-=======
-        let postDelete = [];
-        allUsers.forEach(element => {
-            if (element.id !== this.state.user.id) {
-                postDelete.push(element);
->>>>>>> master
             }
         });
         localStorageSetter("users", postDelete);
@@ -58,11 +45,7 @@ class UserManagerMenu extends Component {
             <div className="container">
                 <header id="admin-background"><img alt="img" src={icoManagerUser} className="ico" /><span id="admin-text-color">USER MANAGER</span></header>
                 <section>
-<<<<<<< HEAD
                     <div className='section-header'><img src={icoUsers} className="ico" /><span >Users & Administrators</span></div>
-=======
-                    <div className='section-header'><img alt="img" src={icoUsers} className="ico" /><span >Users & Administrators</span></div>
->>>>>>> master
                     {localStorageGetter('users').map(function (object, i) {
                         return (
                             <div className="user-choice">

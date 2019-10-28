@@ -18,22 +18,13 @@ class OverallMenu extends Component {
                 <div id="inline">
                     <section id="inline-section">
                         <div className='section-header'>BALANCE</div>
-<<<<<<< HEAD
-                        <img src={icoEuro} className='ico' />
-=======
-                        <img alt="img" src={icoEuro} className='ico' />
->>>>>>> master
+                        <img alt="img"src={icoEuro} className='ico' />
                         {typeof localStorageGetter("connectedWallet") !== "undefined" && <span className="ico-text">{Math.trunc(localStorageGetter("connectedWallet").balance / 100)}</span>}
                     </section>
                     <section id="inline-section">
                         <div className='section-header'>ACCOUNT</div>
-<<<<<<< HEAD
-                        <li><img src={username} className="ico" /><p className="overall-field">{localStorageGetter("connectedUser").last_name.toUpperCase()} {localStorageGetter("connectedUser").first_name}</p></li>
-                        <li><img src={name} className="ico" /><p className="overall-field"> {localStorageGetter("connectedUser").email}</p></li>
-=======
-                        <li><img alt="img" src={username} className="ico" /><p className="overall-field">{localStorageGetter("connectedUser").last_name.toUpperCase()} {localStorageGetter("connectedUser").first_name}</p></li>
-                        <li><img alt="img" src={name} className="ico" /><p className="overall-field"> {localStorageGetter("connectedUser").email}</p></li>
->>>>>>> master
+                        <li><img alt="img"src={username} className="ico" /><p className="overall-field">{localStorageGetter("connectedUser").last_name.toUpperCase()} {localStorageGetter("connectedUser").first_name}</p></li>
+                        <li><img alt="img"src={name} className="ico" /><p className="overall-field"> {localStorageGetter("connectedUser").email}</p></li>
                     </section>
                     <section id="inline-section">
                         <div className='section-header'>CARDS</div>

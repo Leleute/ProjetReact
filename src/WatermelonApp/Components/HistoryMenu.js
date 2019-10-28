@@ -12,12 +12,7 @@ import icoMinus from '../img/ico_minus.png';
 import icoTransferIn from '../img/ico_transfer_in.png';
 import icoTransferOut from '../img/ico_transfer_out.png';
 
-<<<<<<< HEAD
 import { localStorageGetter } from '../shortcut';
-=======
-import {localStorageGetter
-} from '../shortcut';
->>>>>>> master
 
 class HistoryMenu extends Component {
 
@@ -35,13 +30,8 @@ class HistoryMenu extends Component {
 
     getName(idWallet) {
         let name;
-<<<<<<< HEAD
-        localStorageGetter("users").map((user) => {
-            if (user.id == idWallet) {
-=======
         localStorageGetter("users").forEach((user) => {
-            if (user.id === idWallet) {
->>>>>>> master
+            if (user.id == idWallet) {
                 name = user.last_name.toUpperCase() + " " + user.first_name;
 
             }
@@ -65,21 +55,12 @@ class HistoryMenu extends Component {
             <div className="container">
                 <header><img alt="img" src={icoHistory} className="ico" /><span>HISTORY</span></header>
                 <section className="section-action" id="min-width" onClick={this.display.bind(this, 'payin')}>
-<<<<<<< HEAD
                     <div className='section-header'><img src={icoPayIn} className="ico" /><span >Pay-in</span></div>
                     {localStorageGetter('connectedPayin').length != 0 && <div>
                         {this.state.displayPI && localStorageGetter('connectedPayin').map(function (object, i) {
                             return (
                                 <div id="pay" className="history-container">
                                     {object.wallet_id == localStorageGetter('connectedWallet').id &&
-=======
-                    <div className='section-header'><img alt="img" src={icoPayIn} className="ico" /><span >Pay-in</span></div>
-                    {localStorageGetter('connectedPayin').length !== 0 && <div>
-                        {this.state.displayPI && localStorageGetter('connectedPayin').map(function (object, i) {
-                            return (
-                                <div id="pay" className="history-container">
-                                    {object.wallet_id === localStorageGetter('connectedWallet').id &&
->>>>>>> master
                                         <div className="element">
                                             <img src={icoAdd} alt="img" className="ico-non-reverse" /> <img alt="img" src={icoEuro} className="ico" /> <span className="display-value">{object.amount}</span>
                                         </div>
@@ -88,11 +69,7 @@ class HistoryMenu extends Component {
                             );
                         }, this)}
                     </div>}
-<<<<<<< HEAD
                     {localStorageGetter('connectedPayin').length == 0 && this.state.displayPI &&
-=======
-                    {localStorageGetter('connectedPayin').length === 0 && this.state.displayPI &&
->>>>>>> master
                         <div className="history-container">
                             <div className="element">
                                 <span className="display-none">No pay-in has been found.</span>
@@ -101,21 +78,12 @@ class HistoryMenu extends Component {
                     }
                 </section>
                 <section className="section-action" id="min-width" onClick={this.display.bind(this, 'payout')}>
-<<<<<<< HEAD
                     <div className='section-header'><img src={icoPayOut} className="ico" /><span >Pay-out</span></div>
                     {localStorageGetter('connectedPayout').length != 0 && <div>
                         {this.state.displayPO && localStorageGetter('connectedPayout').map(function (object, i) {
                             return (
                                 <div id="pay" className="history-container">
                                     {object.wallet_id == localStorageGetter('connectedWallet').id &&
-=======
-                    <div className='section-header'><img alt="img" src={icoPayOut} className="ico" /><span >Pay-out</span></div>
-                    {localStorageGetter('connectedPayout').length !== 0 && <div>
-                        {this.state.displayPO && localStorageGetter('connectedPayout').map(function (object, i) {
-                            return (
-                                <div id="pay" className="history-container">
-                                    {object.wallet_id === localStorageGetter('connectedWallet').id &&
->>>>>>> master
                                         <div className="element">
                                             <img src={icoMinus} alt="img" className="ico-non-reverse" /> <img alt="img" src={icoEuro} className="ico" /> <span className="display-value">{object.amount}</span>
                                         </div>
@@ -124,11 +92,7 @@ class HistoryMenu extends Component {
                             );
                         }, this)}
                     </div>}
-<<<<<<< HEAD
                     {localStorageGetter('connectedPayout').length == 0 && this.state.displayPO &&
-=======
-                    {localStorageGetter('connectedPayout').length === 0 && this.state.displayPO &&
->>>>>>> master
                         <div className="history-container">
                             <div className="element">
                                 <span className="display-none">No pay-out has been found.</span>
@@ -137,13 +101,8 @@ class HistoryMenu extends Component {
                     }
                 </section>
                 <section className="section-action" id="min-width" onClick={this.display.bind(this, 'transfer')}>
-<<<<<<< HEAD
                     <div className='section-header'><img src={icoTransfer} className="ico" /><span >Transfer</span></div>
                     {localStorageGetter('connectedTransfIn').length != 0 && <div>
-=======
-                    <div className='section-header'><img alt="img" src={icoTransfer} className="ico" /><span >Transfer</span></div>
-                    {localStorageGetter('connectedTransfIn').length !== 0 && <div>
->>>>>>> master
                         {this.state.displayT && localStorageGetter('connectedTransfIn').map(function (object, i) {
                             return (
                                 <div id="transfer" className="history-container">
@@ -156,30 +115,18 @@ class HistoryMenu extends Component {
                             );
                         }, this)}
                     </div>}
-<<<<<<< HEAD
                     {localStorageGetter('connectedTransfIn').length == 0 && this.state.displayT &&
-=======
-                    {localStorageGetter('connectedTransfIn').length === 0 && this.state.displayT &&
->>>>>>> master
                         <div id="transfer" className="history-container">
                             <div className="element">
                                 <span className="display-none">No money has been received.</span>
                             </div>
                         </div>
                     }
-<<<<<<< HEAD
                     {localStorageGetter('connectedTransfOut').length != 0 && <div>
                         {this.state.displayT && localStorageGetter('connectedTransfOut').map(function (object, i) {
                             return (
                                 <div id="transfer" className="history-container">
                                     {object.debited_wallet_id == localStorageGetter('connectedWallet').id &&
-=======
-                    {localStorageGetter('connectedTransfOut').length !== 0 && <div>
-                        {this.state.displayT && localStorageGetter('connectedTransfOut').map(function (object, i) {
-                            return (
-                                <div id="transfer" className="history-container">
-                                    {object.debited_wallet_id === localStorageGetter('connectedWallet').id &&
->>>>>>> master
                                         <div className="element">
                                             <img src={icoTransferOut} alt="img" className="ico-non-reverse" /> <img alt="img" src={icoEuro} className="ico" /> <span className="display-value">{object.amount} to {this.getName(object.credited_wallet_id)}</span>
                                         </div>
@@ -188,11 +135,7 @@ class HistoryMenu extends Component {
                             );
                         }, this)}
                     </div>}
-<<<<<<< HEAD
                     {localStorageGetter('connectedTransfOut').length == 0 && this.state.displayT &&
-=======
-                    {localStorageGetter('connectedTransfOut').length === 0 && this.state.displayT &&
->>>>>>> master
                         <div id="transfer" className="history-container">
                             <div className="element">
                                 <span className="display-none">No money has been sent.</span>

@@ -5,12 +5,7 @@ import '../style/signin.css';
 import username from "../img/username.png";
 import psw from "../img/psw.png";
 
-<<<<<<< HEAD
 import { localStorageGetter, localStorageSetter } from '../shortcut';
-=======
-import {localStorageGetter, localStorageSetter
-} from '../shortcut';
->>>>>>> master
 
 class SignIn extends Component {
 
@@ -53,83 +48,43 @@ class SignIn extends Component {
         } else {
             let connectedWallet;
             let wallets = localStorageGetter("wallet");
-<<<<<<< HEAD
-            wallets.map((wallet) => {
-                if (wallet.user_id == connectedUser.id) {
-                    connectedWallet = wallet;
-                }
-            });
-            var connectedPayin = new Array();
-            let payins = localStorageGetter("payin");
-            payins.map((payin) => {
-                if (payin.wallet_id == connectedWallet.id) {
-                    connectedPayin.push(payin);
-                }
-            });
-            var connectedPayout = new Array();
-            let payouts = localStorageGetter("payout");
-            payouts.map((payout) => {
-                if (payout.wallet_id == connectedWallet.id) {
-                    connectedPayout.push(payout);
-                }
-            });
-            var connectedCard = new Array();
-            let cards = localStorageGetter("cards");
-            cards.map((card) => {
-                if (card.user_id == connectedUser.id) {
-                    connectedCard.push(card);
-                }
-            });
-            var connectedTransfIn = new Array();
-            let transIns = localStorageGetter("transfer");
-            transIns.map((transIn) => {
-                if (transIn.credited_wallet_id == connectedWallet.id) {
-                    connectedTransfIn.push(transIn);
-                }
-            });
-            var connectedTransfOut = new Array();
-            let transOuts = localStorageGetter("transfer");
-            transOuts.map((transOut) => {
-                if (transOut.debited_wallet_id == connectedWallet.id) {
-=======
             wallets.forEach((wallet) => {
-                if (wallet.user_id === connectedUser.id) {
+                if (wallet.user_id == connectedUser.id) {
                     connectedWallet = wallet;
                 }
             });
             var connectedPayin = [];
             let payins = localStorageGetter("payin");
             payins.forEach((payin) => {
-                if (payin.wallet_id === connectedWallet.id) {
+                if (payin.wallet_id == connectedWallet.id) {
                     connectedPayin.push(payin);
                 }
             });
             var connectedPayout = [];
             let payouts = localStorageGetter("payout");
             payouts.forEach((payout) => {
-                if (payout.wallet_id === connectedWallet.id) {
+                if (payout.wallet_id == connectedWallet.id) {
                     connectedPayout.push(payout);
                 }
             });
             var connectedCard = [];
             let cards = localStorageGetter("cards");
             cards.forEach((card) => {
-                if (card.user_id === connectedUser.id) {
+                if (card.user_id == connectedUser.id) {
                     connectedCard.push(card);
                 }
             });
             var connectedTransfIn = [];
             let transIns = localStorageGetter("transfer");
             transIns.forEach((transIn) => {
-                if (transIn.credited_wallet_id === connectedWallet.id) {
+                if (transIn.credited_wallet_id == connectedWallet.id) {
                     connectedTransfIn.push(transIn);
                 }
             });
             var connectedTransfOut = [];
             let transOuts = localStorageGetter("transfer");
             transOuts.forEach((transOut) => {
-                if (transOut.debited_wallet_id === connectedWallet.id) {
->>>>>>> master
+                if (transOut.debited_wallet_id == connectedWallet.id) {
                     connectedTransfOut.push(transOut);
                 }
             });

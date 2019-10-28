@@ -5,12 +5,7 @@ import '../style/signup.css';
 import username from "../img/username.png";
 import psw from "../img/psw.png";
 import name from "../img/name.png"
-<<<<<<< HEAD
 import { localStorageGetter, localStorageSetter } from '../shortcut';
-=======
-import {localStorageGetter, localStorageSetter
-} from '../shortcut';
->>>>>>> master
 
 
 class SignUp extends Component {
@@ -79,21 +74,12 @@ class SignUp extends Component {
             allwallets.push(newWallet);
             localStorageSetter("wallet", allwallets);
             localStorageSetter("connectedWallet", newWallet);
-
-
-<<<<<<< HEAD
-            localStorageSetter("connectedPayin", new Array());
-            localStorageSetter("connectedPayout", new Array());
-            localStorageSetter("connectedCard", new Array());
-            localStorageSetter("connectedTransfIn", new Array());
-            localStorageSetter("connectedTransfOut", new Array());
-=======
+            
             localStorageSetter("connectedPayin", []);
             localStorageSetter("connectedPayout", []);
             localStorageSetter("connectedCard", []);
             localStorageSetter("connectedTransfIn", []);
             localStorageSetter("connectedTransfOut", []);
->>>>>>> master
 
         }
         else {

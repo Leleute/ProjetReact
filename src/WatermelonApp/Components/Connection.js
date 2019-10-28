@@ -47,10 +47,10 @@ class Connection extends Component {
                 {this.state.showMe &&
                     <div className="connection-header">
                         <div className="option-section" onClick={this.handleClick.bind(this, 'signin')}>
-                            <img src={signIn} alt="img" className="logo" />Sign in
+                            <img alt="img" src={signIn} alt="img" className="logo" />Sign in
                     </div>
                         <div className="option-section" onClick={this.handleClick.bind(this, 'signup')}>
-                            <img src={signUp} alt="img" className="logo" />Sign up
+                            <img alt="img" src={signUp} alt="img" className="logo" />Sign up
                     </div>
                     </div>
                 }
