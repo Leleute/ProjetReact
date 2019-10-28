@@ -72,7 +72,7 @@ class WalletMenu extends Component {
         var str = '' + this.state.copyCards.last_4;
 
         if (str.length != 4) {
-            alert("Only the last four numbers are needed");
+            alert("4 numbers are needed");
         } else if (this.state.copyCards.last_4 < 0 || this.state.copyCards.last_4 == "" || this.state.copyCards.last_4 > 9999 || this.state.copyCards.brand == "" || this.state.copyCards.expired_at == "") {
             alert("Data are not correct, check again");
         }
@@ -133,7 +133,7 @@ class WalletMenu extends Component {
         var str = '' + this.state.emptyCard.last4;
 
         if (str.length != 4) {
-            alert("Only the last four numbers are needed");
+            alert("4 numbers are needed");
         } else if (this.state.emptyCard.last4 < 0 || this.state.emptyCard.last4 > 9999 || this.state.emptyCard.last4 == "" || this.state.emptyCard.brand == "" || this.state.emptyCard.expiredAt == "") {
             alert("Data are not correct, check again");
         }
