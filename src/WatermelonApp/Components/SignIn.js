@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
 
-import Connection from "./Connection"
-
-import signin from "../style/signin.css";
-
 import username from "../img/username.png";
 import psw from "../img/psw.png";
 
@@ -36,8 +32,8 @@ class SignIn extends Component {
 
         let connectedUser;
         //Get user
-        users.map((user) => {
-            if (this.state.email != '' && this.state.password != '' && this.state.email == user.email && this.state.password == user.password) {
+        users.forEach((user) => {
+            if (this.state.email !== '' && this.state.password !== '' && this.state.email === user.email && this.state.password === user.password) {
                 connexionfonctionne = true;
                 connectedUser = user;
                 this.setState({ back: true });
@@ -46,48 +42,48 @@ class SignIn extends Component {
 
         });
 
-        if (connexionfonctionne == false) {
+        if (connexionfonctionne === false) {
             alert("Those infomations do not correspond to an account, please try again");
         } else {
             let connectedWallet;
             let wallets = localStorageGetter("wallet");
-            wallets.map((wallet) => {
-                if (wallet.user_id == connectedUser.id) {
+            wallets.forEach((wallet) => {
+                if (wallet.user_id === connectedUser.id) {
                     connectedWallet = wallet;
                 }
             });
-            var connectedPayin = new Array();
+            var connectedPayin = [];
             let payins = localStorageGetter("payin");
-            payins.map((payin) => {
-                if (payin.wallet_id == connectedWallet.id) {
+            payins.forEach((payin) => {
+                if (payin.wallet_id === connectedWallet.id) {
                     connectedPayin.push(payin);
                 }
             });
-            var connectedPayout = new Array();
+            var connectedPayout = [];
             let payouts = localStorageGetter("payout");
-            payouts.map((payout) => {
-                if (payout.wallet_id == connectedWallet.id) {
+            payouts.forEach((payout) => {
+                if (payout.wallet_id === connectedWallet.id) {
                     connectedPayout.push(payout);
                 }
             });
-            var connectedCard = new Array();
+            var connectedCard = [];
             let cards = localStorageGetter("cards");
-            cards.map((card) => {
-                if (card.user_id == connectedUser.id) {
+            cards.forEach((card) => {
+                if (card.user_id === connectedUser.id) {
                     connectedCard.push(card);
                 }
             });
-            var connectedTransfIn = new Array();
+            var connectedTransfIn = [];
             let transIns = localStorageGetter("transfer");
-            transIns.map((transIn) => {
-                if (transIn.credited_wallet_id == connectedWallet.id) {
+            transIns.forEach((transIn) => {
+                if (transIn.credited_wallet_id === connectedWallet.id) {
                     connectedTransfIn.push(transIn);
                 }
             });
-            var connectedTransfOut = new Array();
+            var connectedTransfOut = [];
             let transOuts = localStorageGetter("transfer");
-            transOuts.map((transOut) => {
-                if (transOut.debited_wallet_id == connectedWallet.id) {
+            transOuts.forEach((transOut) => {
+                if (transOut.debited_wallet_id === connectedWallet.id) {
                     connectedTransfOut.push(transOut);
                 }
             });
@@ -119,11 +115,11 @@ class SignIn extends Component {
                             <header>Please provide your information to sign-in</header>
                         </div>
                         <div className="option-section">
-                            <img src={username} className="logo" /><span>Email</span>
+                            <img src={username} alt="img" className="logo" /><span>Email</span>
                             <input className="input-entry" name="email" onChange={this.saveData} type="text"></input>
                         </div>
                         <div className="option-section">
-                            <img src={psw} className="logo" /><span>Password</span>
+                            <img src={psw} alt="img" className="logo" /><span>Password</span>
                             <input className="input-entry" name="password" onChange={this.saveData} type="password"></input>
                         </div>
                         <div className="button-list">

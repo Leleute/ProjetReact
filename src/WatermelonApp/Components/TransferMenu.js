@@ -29,11 +29,11 @@ class TransferMenu extends Component {
     }
 
     proceedTransfer(event) {
-        if (this.state.amount != '' && this.state.idCreditCard != '' && this.state.idReceiver) {
+        if (this.state.amount !== '' && this.state.idCreditCard !== '' && this.state.idReceiver) {
             /// --------------------------------------------------------
             let idtransfer = 0;
             let listTransfer = localStorageGetter("transfer");
-            listTransfer.map((t) => {
+            listTransfer.forEach((t) => {
                 if (t.id > idtransfer) idtransfer = t.id;
             });
 
@@ -52,20 +52,20 @@ class TransferMenu extends Component {
             //recuperation du wallet cible
             let balanceCible = 0;
             let listWallet = localStorageGetter("wallet");
-            listWallet.map((w) => {
-                if (w.id == this.state.idReceiver) {
+            listWallet.forEach((w) => {
+                if (w.id === this.state.idReceiver) {
                     balanceCible = w.balance;
                 }
             });
-            this.state.amount = this.state.amount * 100;
+            this.setState({amount : this.state.amount*100});
             let walletPresent = localStorageGetter("connectedWallet");
             walletPresent.balance = parseInt(walletPresent.balance) - parseInt(this.state.amount);
             balanceCible = parseInt(balanceCible) + parseInt(this.state.amount);
-            listWallet.map((w) => {
-                if (w.id == walletPresent.id) {
+            listWallet.forEach((w) => {
+                if (w.id === walletPresent.id) {
                     w.balance = walletPresent.balance;
                 }
-                if (w.id == this.state.idReceiver) {
+                if (w.id === this.state.idReceiver) {
                     w.balance = balanceCible;
                 }
             });
@@ -97,7 +97,7 @@ class TransferMenu extends Component {
     }
 
     setReceiver = (e, object) => {
-        if (object.id != this.state.idReceiver) {
+        if (object.id !== this.state.idReceiver) {
             this.setState({ idReceiver: object.id });
         } else {
             this.setState({ idReceiver: '' });
@@ -107,52 +107,52 @@ class TransferMenu extends Component {
     render() {
         return (
             <div className="container">
-                <header><img src={icoTransfer} className="ico" /><span>TRANSFER</span></header>
+                <header><img alt="img" src={icoTransfer} className="ico" /><span>TRANSFER</span></header>
                 <section>
-                    {localStorageGetter('connectedCard').length != 0 && <div>
-                        <div className='section-header'><img src={icoTransferReceiver} className="ico" /><span >Transfer receiver</span></div>
+                    {localStorageGetter('connectedCard').length !== 0 && <div>
+                        <div className='section-header'><img alt="img" src={icoTransferReceiver} className="ico" /><span >Transfer receiver</span></div>
                         {localStorageGetter('users').map(function (object, i) {
                             return (
                                 <div className="user-choice"> {console.log(object)}
-                                    {object.id != localStorageGetter('connectedUser').id && object.id != this.state.idReceiver &&
+                                    {object.id !== localStorageGetter('connectedUser').id && object.id !== this.state.idReceiver &&
                                         <div className="element" name={object.id} onClick={((e) => this.setReceiver(e, object))}>
-                                            <div className="item"><img src={icoUsername} className="ico" /> <p className="display-value">{object.last_name.toUpperCase()} {object.first_name}</p></div>
-                                            <div className="item"><img src={icoEmail} className="ico" /><p className="display-value"> {object.email}</p></div>
+                                            <div className="item"><img alt="img" src={icoUsername} className="ico" /> <p className="display-value">{object.last_name.toUpperCase()} {object.first_name}</p></div>
+                                            <div className="item"><img alt="img" src={icoEmail} className="ico" /><p className="display-value"> {object.email}</p></div>
                                         </div>
                                     }
-                                    {object.id != localStorageGetter('connectedUser').id && object.id == this.state.idReceiver &&
+                                    {object.id !== localStorageGetter('connectedUser').id && object.id === this.state.idReceiver &&
                                         <div className="selected" name={object.id} onClick={((e) => this.setReceiver(e, object))}>
-                                            <div className="item"><img src={icoUsername} className="ico" /> <p className="display-value">{object.last_name.toUpperCase()} {object.first_name}</p></div>
-                                            <div className="item"><img src={icoEmail} className="ico" /><p className="display-value"> {object.email}</p></div>
+                                            <div className="item"><img alt="img" src={icoUsername} className="ico" /> <p className="display-value">{object.last_name.toUpperCase()} {object.first_name}</p></div>
+                                            <div className="item"><img alt="img" src={icoEmail} className="ico" /><p className="display-value"> {object.email}</p></div>
                                         </div>
                                     }
                                 </div>
                             );
                         }, this)}
                     </div>}
-                    {localStorageGetter('connectedCard').length == 0 &&
+                    {localStorageGetter('connectedCard').length === 0 &&
                         <div className="element">
                             <span className="display-none">You need at least one credit card registered to transfer money.</span>
                         </div>
                     }
                 </section>
-                {this.state.idReceiver != '' &&
+                {this.state.idReceiver !== '' &&
                     <section>
-                        <div className='section-header'><img src={icoEuro} className="ico" /><span >Payment option</span></div>
+                        <div className='section-header'><img alt="img" src={icoEuro} className="ico" /><span >Payment option</span></div>
                         <div className='payin-description'>
-                            <img src={ico1} className="ico_number" /> <p>Select a credit card</p>
+                            <img src={ico1} alt="img" className="ico_number" /> <p>Select a credit card</p>
                             <div className="card-description">
                                 {localStorageGetter('connectedCard').map(function (object, i) {
                                     return (
                                         <div onChange={this.setSelectedCard.bind(this)}>
-                                            <li> <input type="radio" name="card_selected_payin" value={object.id} /><img src={icoCardBrand} className="ico" /> <p className="display-value">{object.brand.toUpperCase()} **** **** **** {object.last_4}</p></li>
+                                            <li> <input type="radio" name="card_selected_payin" value={object.id} /><img alt="img" src={icoCardBrand} className="ico" /> <p className="display-value">{object.brand.toUpperCase()} **** **** **** {object.last_4}</p></li>
                                         </div>
                                     );
                                 }, this)}
                             </div>
-                            <img src={ico2} className="ico_number" /> <p>Select an amount of money</p>
+                            <img src={ico2} alt="img" className="ico_number" /> <p>Select an amount of money</p>
                             <div className="section-element">
-                                <img src={icoEuro} className="ico" /><span>Amount</span><input name='amount' type="text" value={this.state.amount} onChange={this.updateInputAmount} />
+                                <img alt="img" src={icoEuro} className="ico" /><span>Amount</span><input name='amount' type="text" value={this.state.amount} onChange={this.updateInputAmount} />
                             </div>
                             <div className="submit" onClick={this.proceedTransfer}>Confirm</div>
                         </div>

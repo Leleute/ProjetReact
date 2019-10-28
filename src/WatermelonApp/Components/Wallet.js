@@ -44,50 +44,36 @@ class Wallet extends Component {
 
     changeMenu(choice, e) {
         this.setState({ menuOption: choice });
-        console.log("this.state.wallet")
-        console.log(this.state.wallet);
-        console.log("this.state.user")
-        console.log(this.state.user);
-        console.log("this.state.payin");
-        console.log(this.state.payin);
-        console.log("this.state.payout");
-        console.log(this.state.payout);
-        console.log("this.state.card");
-        console.log(this.state.card);
-        console.log("this.state.transferIn");
-        console.log(this.state.transferIn);
-        console.log("this.state.transferOut");
-        console.log(this.state.transferOut);
     }
 
     render() {
         return (
             <div className="wallet">
-                {this.state.menuOption != 5 &&
+                {this.state.menuOption !== 5 &&
                     <div className="navigation">
                         <div className="logo-element">
-                            <img src={logo} className="logo" /><span className="logo-text">Watermelon</span>
+                            <img src={logo} alt="img" className="logo" /><span className="logo-text">Watermelon</span>
                         </div>
-                        <li onClick={this.changeMenu.bind(this, 0)}><img src={icoOverall} /><span>Overall</span></li>
-                        <li onClick={this.changeMenu.bind(this, 1)}><img src={icoWallet} /><span>Wallet</span></li>
-                        <li onClick={this.changeMenu.bind(this, 2)}><img src={icoTransfer} /><span>Transfer</span></li>
-                        <li onClick={this.changeMenu.bind(this, 3)}><img src={icoHistory} /><span>History</span></li>
+                        <li onClick={this.changeMenu.bind(this, 0)}><img alt="img" src={icoOverall} /><span>Overall</span></li>
+                        <li onClick={this.changeMenu.bind(this, 1)}><img alt="img" src={icoWallet} /><span>Wallet</span></li>
+                        <li onClick={this.changeMenu.bind(this, 2)}><img alt="img" src={icoTransfer} /><span>Transfer</span></li>
+                        <li onClick={this.changeMenu.bind(this, 3)}><img alt="img" src={icoHistory} /><span>History</span></li>
                         <div className="list-bottom">
-                            {localStorageGetter("connectedUser").is_admin && <li id="admin" onClick={this.changeMenu.bind(this, 6)}><img id="text-ico-below" src={icoUserManager} /><span id="text-ico-below">User Manager</span></li>}
-                            {localStorageGetter("connectedUser").is_admin && <li id="admin" onClick={this.changeMenu.bind(this, 7)}><img id="text-ico-below" src={icoTransferManager} /><span id="text-ico-below">Transfer Manager</span></li>}
-                            <li onClick={this.changeMenu.bind(this, 4)}><img src={icoSettings} /><span>Account</span></li>
-                            <li onClick={this.changeMenu.bind(this, 5)}><img src={icoSignOut} /><span>Sign-out</span></li>
+                            {localStorageGetter("connectedUser").is_admin && <li id="admin" onClick={this.changeMenu.bind(this, 6)}><img alt="img" id="text-ico-below" src={icoUserManager} /><span id="text-ico-below">User Manager</span></li>}
+                            {localStorageGetter("connectedUser").is_admin && <li id="admin" onClick={this.changeMenu.bind(this, 7)}><img alt="img" id="text-ico-below" src={icoTransferManager} /><span id="text-ico-below">Transfer Manager</span></li>}
+                            <li onClick={this.changeMenu.bind(this, 4)}><img alt="img" src={icoSettings} /><span>Account</span></li>
+                            <li onClick={this.changeMenu.bind(this, 5)}><img alt="img" src={icoSignOut} /><span>Sign-out</span></li>
                         </div>
                     </div>}
                 <div>
-                    {this.state.menuOption == 0 && <OverallMenu />}
-                    {this.state.menuOption == 1 && <WalletMenu />}
-                    {this.state.menuOption == 2 && <TransferMenu />}
-                    {this.state.menuOption == 3 && <HistoryMenu />}
-                    {this.state.menuOption == 4 && <SettingsMenu isDeleted={this.logOut} />}
-                    {this.state.menuOption == 6 && <UserManagerMenu />}
-                    {this.state.menuOption == 7 && <TransferManagerMenu />}
-                    {this.state.menuOption == 5 && <App />}
+                    {this.state.menuOption === 0 && <OverallMenu />}
+                    {this.state.menuOption === 1 && <WalletMenu />}
+                    {this.state.menuOption === 2 && <TransferMenu />}
+                    {this.state.menuOption === 3 && <HistoryMenu />}
+                    {this.state.menuOption === 4 && <SettingsMenu isDeleted={this.logOut} />}
+                    {this.state.menuOption === 6 && <UserManagerMenu />}
+                    {this.state.menuOption === 7 && <TransferManagerMenu />}
+                    {this.state.menuOption === 5 && <App />}
                 </div>
             </div>
         );
