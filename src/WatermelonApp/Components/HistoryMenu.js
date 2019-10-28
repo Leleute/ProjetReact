@@ -33,10 +33,13 @@ class HistoryMenu extends Component {
         localStorageGetter("users").forEach((user) => {
             if (user.id == idWallet) {
                 name = user.last_name.toUpperCase() + " " + user.first_name;
-
             }
         });
-        return (<span id="return">{name}</span>)
+        if (name != undefined) {
+            return (<span id="return">{name}</span>)
+        } else {
+            return (<span id="return">[DELETED ACCOUNT]</span>)
+        }
     }
 
     display(compName, e) {
