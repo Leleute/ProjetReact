@@ -7,7 +7,9 @@ import psw from "../img/psw.png";
 import name from "../img/name.png"
 import { localStorageGetter, localStorageSetter } from '../shortcut';
 
-
+/*
+    Sign up component is managing the new registration of a user - entry point of the application
+*/
 class SignUp extends Component {
 
     constructor(props) {

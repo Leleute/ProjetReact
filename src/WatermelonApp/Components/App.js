@@ -29,7 +29,9 @@ if (localStorageGetter("wallet") == null) {
 if (localStorageGetter("transfer") == null) {
     localStorageSetter("transfer", transfer);
 }
-
+/*
+    Root component of the app - this is the component where all the others are called directly or indirectly
+*/
 class App extends Component {
 
     constructor(props) {

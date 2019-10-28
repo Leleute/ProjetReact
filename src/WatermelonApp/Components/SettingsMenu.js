@@ -13,8 +13,9 @@ import icoDelete from '../img/ico_delete.png';
 
 import { localStorageGetter, localStorageSetter } from '../shortcut';
 
-
-
+/*
+    Settings component is managing all the information about the user account and data - it's an option menu of the wallet
+*/
 class SettingsMenu extends Component {
 
     constructor(props) {

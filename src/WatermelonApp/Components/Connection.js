@@ -7,6 +7,10 @@ import '../style/connection.css';
 import signIn from '../img/sign_in.png';
 import signUp from '../img/sign_up.png';
 
+/*
+    Connection component is displaying the different option of connection (Sign up/Sign in)
+*/
+
 class Connection extends Component {
     constructor(props) {
         super(props);

@@ -11,6 +11,10 @@ import icoOperation from '../img/ico_operation.png';
 
 import { localStorageGetter, localStorageSetter } from '../shortcut';
 
+/*
+    UserManager component is managing all the users that are registered in Watermelon application - it's an option menu of the wallet only available for the administrators
+    An administrator can delete any user account (but no administrator account)
+*/
 class UserManagerMenu extends Component {
     constructor(props) {
         super(props);

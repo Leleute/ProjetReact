@@ -13,6 +13,10 @@ import icoOperation from '../img/ico_operation.png';
 
 import { localStorageGetter, localStorageSetter } from '../shortcut';
 
+/*
+    TransferManager component is managing all the transfer that have been done in Watermelon application - it's an option menu of the wallet only available for the administrators
+    An administrator can delete a transfer that does not involve any administrator
+*/
 class TransferManagerMenu extends Component {
     constructor(props) {
         super(props);
@@ -145,32 +149,32 @@ class TransferManagerMenu extends Component {
     render() {
         return (
             <div className="container">
-                <header ><img alt="img"src={icoManagerTransfer} className="ico" /><span id="admin-text-color">TRANSFER MANAGER</span></header>
+                <header ><img alt="img" src={icoManagerTransfer} className="ico" /><span id="admin-text-color">TRANSFER MANAGER</span></header>
                 <section>
-                    <div className='section-header'><img alt="img"src={icoTransfer} className="ico" /><span >User & Administrator Transfers</span></div>
+                    <div className='section-header'><img alt="img" src={icoTransfer} className="ico" /><span >User & Administrator Transfers</span></div>
                     {localStorageGetter("transfer").length != 0 && <div>
                         {localStorageGetter("transfer").map(function (object, i) {
                             return (
                                 <div className="transfer-choice">
                                     {object.id != this.state.idTransfer && (!this.getUser(object.credited_wallet_id) && !this.getUser(object.debited_wallet_id)) &&
                                         <div className="element" name="false" onClick={((e) => this.setTransfer(e, object))}>
-                                            <div className="item"> <img alt="img"src={icoEuro} className="ico" /> <span className="display-value" id="amount">{object.amount}</span></div>
-                                            <div className="item" id="list"><img alt="img"src={icoTransferOut} id="ico-stable" className="ico-non-reverse" /> <span className="display-value"> {this.getName(object.debited_wallet_id)}</span></div>
-                                            <div className="item" id="list"> <img alt="img"src={icoTransferIn} id="ico-stable" className="ico-non-reverse" /> <span className="display-value"> {this.getName(object.credited_wallet_id)}</span></div>
+                                            <div className="item"> <img alt="img" src={icoEuro} className="ico" /> <span className="display-value" id="amount">{object.amount}</span></div>
+                                            <div className="item" id="list"><img alt="img" src={icoTransferOut} id="ico-stable" className="ico-non-reverse" /> <span className="display-value"> {this.getName(object.debited_wallet_id)}</span></div>
+                                            <div className="item" id="list"> <img alt="img" src={icoTransferIn} id="ico-stable" className="ico-non-reverse" /> <span className="display-value"> {this.getName(object.credited_wallet_id)}</span></div>
                                         </div>
                                     }
                                     {object.id == this.state.idTransfer && (!this.getUser(object.credited_wallet_id) && !this.getUser(object.debited_wallet_id)) &&
                                         <div className="element" id="element-selected" name="false" onClick={((e) => this.setTransfer(e, object))}>
-                                            <div className="item"> <img alt="img"src={icoEuro} className="ico" /> <span className="display-value" id="amount">{object.amount}</span></div>
-                                            <div className="item" id="list"><img alt="img"src={icoTransferOut} id="ico-stable" className="ico-non-reverse" /> <span className="display-value"> {this.getName(object.debited_wallet_id)}</span></div>
-                                            <div className="item" id="list"> <img alt="img"src={icoTransferIn} id="ico-stable" className="ico-non-reverse" /> <span className="display-value"> {this.getName(object.credited_wallet_id)}</span></div>
+                                            <div className="item"> <img alt="img" src={icoEuro} className="ico" /> <span className="display-value" id="amount">{object.amount}</span></div>
+                                            <div className="item" id="list"><img alt="img" src={icoTransferOut} id="ico-stable" className="ico-non-reverse" /> <span className="display-value"> {this.getName(object.debited_wallet_id)}</span></div>
+                                            <div className="item" id="list"> <img alt="img" src={icoTransferIn} id="ico-stable" className="ico-non-reverse" /> <span className="display-value"> {this.getName(object.credited_wallet_id)}</span></div>
                                         </div>
                                     }
                                     {(this.getUser(object.credited_wallet_id) || this.getUser(object.debited_wallet_id)) &&
                                         <div className="element" id="admin-selected" name="true" onClick={((e) => this.setTransferAdmin(e, object))}>
-                                            <div className="item"> <img alt="img"src={icoEuro} className="ico" /> <span className="display-value" id="amount">{object.amount}</span></div>
-                                            <div className="item" id="list"><img alt="img"src={icoTransferOut} id="ico-stable" className="ico-non-reverse" /> <span className="display-value"> {this.getName(object.debited_wallet_id)}</span></div>
-                                            <div className="item" id="list"> <img alt="img"src={icoTransferIn} id="ico-stable" className="ico-non-reverse" /> <span className="display-value"> {this.getName(object.credited_wallet_id)}</span></div>
+                                            <div className="item"> <img alt="img" src={icoEuro} className="ico" /> <span className="display-value" id="amount">{object.amount}</span></div>
+                                            <div className="item" id="list"><img alt="img" src={icoTransferOut} id="ico-stable" className="ico-non-reverse" /> <span className="display-value"> {this.getName(object.debited_wallet_id)}</span></div>
+                                            <div className="item" id="list"> <img alt="img" src={icoTransferIn} id="ico-stable" className="ico-non-reverse" /> <span className="display-value"> {this.getName(object.credited_wallet_id)}</span></div>
                                         </div>
                                     }
                                 </div>
@@ -187,12 +191,12 @@ class TransferManagerMenu extends Component {
                 {this.state.idTransfer != '' && <div>
                     {!this.state.isAdmin &&
                         <section>
-                            <div className='section-header'><img alt="img"src={icoOperation} className="ico" /><span >Operation</span></div>
-                            <div className="operation"><img alt="img"src={icoTrashOption} className="ico-non-reverse" id="ico-margin" onClick={this.deleteTransfer} /><p>Delete the selected transfer</p></div>
+                            <div className='section-header'><img alt="img" src={icoOperation} className="ico" /><span >Operation</span></div>
+                            <div className="operation"><img alt="img" src={icoTrashOption} className="ico-non-reverse" id="ico-margin" onClick={this.deleteTransfer} /><p>Delete the selected transfer</p></div>
                         </section>}
                     {this.state.isAdmin &&
                         <section>
-                            <div className='section-header'><img alt="img"src={icoOperation} className="ico" /><span >Operation</span></div>
+                            <div className='section-header'><img alt="img" src={icoOperation} className="ico" /><span >Operation</span></div>
                             <div className="operation"><p id="red">Impossible to delete a transfer involving an administrator</p></div>
                         </section>}
                 </div>}

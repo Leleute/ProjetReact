@@ -22,6 +22,11 @@ import icoTransferManager from '../img/ico_manager_transaction.png';
 import logo from '../img/logo.png';
 import { localStorageGetter } from '../shortcut';
 
+
+/*
+   Wallet component is the root component for the wallet
+   He is displaying the navbar and he is displaying all the different menu component when called
+*/
 class Wallet extends Component {
     constructor(props) {
         super(props);

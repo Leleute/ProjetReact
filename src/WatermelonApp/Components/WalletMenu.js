@@ -19,7 +19,11 @@ import icoCardTickOption from '../img/ico_tick.png';
 import icoCardCrossption from '../img/ico_cross.png';
 import { localStorageGetter, localStorageSetter } from '../shortcut';
 
+/*
+    WalletMenu component is managing the pay-in, pay-out and transfer operations a user can do on his account - it's an option menu of the wallet
+    He is also managing the cards a user does possess which means he can create, edit or delete a card
 
+*/
 class WalletMenu extends Component {
 
     constructor(props) {

@@ -9,6 +9,10 @@ import username from "../img/username.png";
 import name from "../img/name.png";
 import { localStorageGetter } from '../shortcut';
 
+
+/*
+   Overall component is displaying all basic information about a user - it's the homepage of the wallet
+*/
 class OverallMenu extends Component {
 
     render() {

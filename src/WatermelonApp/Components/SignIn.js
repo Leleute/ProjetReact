@@ -6,7 +6,9 @@ import username from "../img/username.png";
 import psw from "../img/psw.png";
 
 import { localStorageGetter, localStorageSetter } from '../shortcut';
-
+/*
+    Sign in component is managing the connection of every users to his wallet - entry point of the application
+*/
 class SignIn extends Component {
 
     constructor(props) {

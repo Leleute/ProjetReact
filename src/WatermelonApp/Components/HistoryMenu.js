@@ -14,6 +14,9 @@ import icoTransferOut from '../img/ico_transfer_out.png';
 
 import { localStorageGetter } from '../shortcut';
 
+/*
+    History component is managing the pay-in, pay-out and transfer operations a user have done since the creation of his account - it's an option menu of the wallet
+*/
 class HistoryMenu extends Component {
 
     constructor(props) {
