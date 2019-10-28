@@ -62,9 +62,6 @@ class App extends Component {
                             </p>
                             <Connection value={this.handleChangeValue} />
                         </header>
-                        <div className="footer">
-                        <p>CLASS</p>
-                        </div>
                     </div>}
                 {this.state.connected &&
                     <Wallet />}
