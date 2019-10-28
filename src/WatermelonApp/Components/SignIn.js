@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import '../style/signin.css';
+
 import username from "../img/username.png";
 import psw from "../img/psw.png";
 
