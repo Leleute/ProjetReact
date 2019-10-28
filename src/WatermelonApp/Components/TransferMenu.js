@@ -111,7 +111,7 @@ class TransferMenu extends Component {
                         <div className='section-header'><img alt="img"src={icoTransferReceiver} className="ico" /><span >Transfer receiver</span></div>
                         {localStorageGetter('users').map(function (object, i) {
                             return (
-                                <div className="user-choice"> {console.log(object)}
+                                <div className="user-choice">
                                     {object.id != localStorageGetter('connectedUser').id && object.id != this.state.idReceiver &&
                                         <div className="element" name={object.id} onClick={((e) => this.setReceiver(e, object))}>
                                             <div className="item"><img alt="img"src={icoUsername} className="ico" /> <p className="display-value">{object.last_name.toUpperCase()} {object.first_name}</p></div>

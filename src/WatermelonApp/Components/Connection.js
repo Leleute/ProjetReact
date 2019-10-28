@@ -32,7 +32,6 @@ class Connection extends Component {
     }
 
     handleClick(compName, e) {
-        console.log(compName);
         this.setState({ render: compName });
         this.setState({ showMe: !this.state.showMe })
     }

@@ -14,7 +14,7 @@ import icoOperation from '../img/ico_operation.png';
 import { localStorageGetter, localStorageSetter } from '../shortcut';
 
 /*
-    TransferManager component is managing all the transfer that have been done in Watermelon application - it's an option menu of the wallet only available for the administrators
+    TransferManager component is managing all the transfers that have been done in Watermelon application - it's an option menu of the wallet only available for the administrators
     An administrator can delete a transfer that does not involve any administrator
 */
 class TransferManagerMenu extends Component {
@@ -43,8 +43,6 @@ class TransferManagerMenu extends Component {
         if (foundUser == "undefined") {
             foundUser = false;
         }
-        console.log("foundUser");
-        console.log(foundUser)
         return foundUser;
     }
 
@@ -88,10 +86,6 @@ class TransferManagerMenu extends Component {
             if (t.id == this.state.idTransfer) {
                 walletSenderid = t.debited_wallet_id;
                 walletReceiverid = t.credited_wallet_id;
-                console.log("walletSenderid");
-                console.log(walletSenderid);
-                console.log("walletReceiverid");
-                console.log(walletReceiverid);
                 amount = t.amount * 100;
             }
         });
@@ -186,7 +180,6 @@ class TransferManagerMenu extends Component {
                         </div>
                     }
                 </section>
-                {console.log(this.state)}
                 {this.state.idTransfer != '' && <div>
                     {!this.state.isAdmin &&
                         <section>

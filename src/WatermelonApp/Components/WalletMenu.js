@@ -25,7 +25,6 @@ import { localStorageGetter, localStorageSetter } from '../shortcut';
 
 */
 class WalletMenu extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -70,7 +69,11 @@ class WalletMenu extends Component {
     }
 
     editCardsLocalStorage(idCard) {
-        if (this.state.copyCards.last_4 < 0 || this.state.copyCards.last_4 == "" || this.state.copyCards.last_4 > 9999 || this.state.copyCards.brand == "" || this.state.copyCards.expired_at == "") {
+        var str = '' + this.state.copyCards.last_4;
+
+        if (str.length != 4) {
+            alert("Only the last four numbers are needed");
+        } else if (this.state.copyCards.last_4 < 0 || this.state.copyCards.last_4 == "" || this.state.copyCards.last_4 > 9999 || this.state.copyCards.brand == "" || this.state.copyCards.expired_at == "") {
             alert("Data are not correct, check again");
         }
         else if (this.state.copyCards.expired_at < '2019-10-28') {
@@ -96,8 +99,6 @@ class WalletMenu extends Component {
                     localStorageSetter("cards", cards);
                 }
             });
-            console.log("AFTER MODIF");
-            console.log(localStorageGetter("cards"));
         }
     }
 
@@ -129,9 +130,14 @@ class WalletMenu extends Component {
     }
 
     confirmCreation(event) {
-        if (this.state.emptyCard.last4 < 0 || this.state.emptyCard.last4 > 9999 || this.state.emptyCard.last4 == "" || this.state.emptyCard.brand == "" || this.state.emptyCard.expiredAt == "") {
+        var str = '' + this.state.copyCards.last_4;
+
+        if (str.length != 4) {
+            alert("Only the last four numbers are needed");
+        } else if (this.state.emptyCard.last4 < 0 || this.state.emptyCard.last4 > 9999 || this.state.emptyCard.last4 == "" || this.state.emptyCard.brand == "" || this.state.emptyCard.expiredAt == "") {
             alert("Data are not correct, check again");
         }
+       
         else if (this.state.emptyCard.expiredAt < '2019-10-28') {
             alert("This card is already expired")
         }
@@ -157,9 +163,7 @@ class WalletMenu extends Component {
             connectedCard.push(newCard);
             localStorageSetter('connectedCard', connectedCard);
 
-
-            console.log(localStorageGetter('connectedCard', connectedCard));
-            this.forceUpdate();
+           this.forceUpdate();
 
             this.setState({ boolAdd: !this.state.boolAdd });
             this.state.emptyCard.brand = '';
@@ -229,18 +233,14 @@ class WalletMenu extends Component {
 
     proceedPayIn(event) {
         if (this.state.selectedCCPI != '' && this.state.valuePayIn != '') {
-            console.log(this.state.valuePayIn);
-            console.log(this.state.selectedCCPI);
             let newWallet = localStorageGetter("connectedWallet");
             newWallet.balance = parseInt(newWallet.balance) + (parseInt(this.state.valuePayIn)) * 100;
             localStorageSetter("connectedWallet", newWallet);
-            console.log(newWallet);
             let newWallets = localStorageGetter("wallet");
             newWallets.forEach((w) => {
                 if (w.id == newWallet.id) {
                     w.balance = newWallet.balance;
                     localStorageSetter("wallet", newWallets);
-                    console.log(localStorageGetter("wallet"));
                 }
 
             });
@@ -258,7 +258,6 @@ class WalletMenu extends Component {
             let allPayins = localStorageGetter("payin");
             allPayins.push(newPayin);
             localStorageSetter("payin", allPayins);
-            console.log(localStorageGetter("payin"));
 
             var connectedPayin = [];
             payins = localStorageGetter("payin");
@@ -268,7 +267,6 @@ class WalletMenu extends Component {
                 }
             });
             localStorageSetter("connectedPayin", connectedPayin);
-            console.log(localStorageGetter("connectedPayin"));
 
             this.setState({ valuePayIn: '', selectedCCPI: '', displayPI: false })
         } else {
@@ -278,19 +276,15 @@ class WalletMenu extends Component {
     }
 
     proceedPayOut(event) {
-        console.log(this.state.valuePayOut);
-        console.log(this.state.selectedCCPI);
         if (this.state.selectedCCPO != '' && this.state.valuePayOut != '') {
             let newWallet = localStorageGetter("connectedWallet");
             newWallet.balance = parseInt(newWallet.balance) - (parseInt(this.state.valuePayOut)) * 100;
             localStorageSetter("connectedWallet", newWallet);
-            console.log(newWallet);
-            let newWallets = localStorageGetter("wallet");
+             let newWallets = localStorageGetter("wallet");
             newWallets.forEach((w) => {
                 if (w.id == newWallet.id) {
                     w.balance = newWallet.balance;
                     localStorageSetter("wallet", newWallets);
-                    console.log(localStorageGetter("wallet"));
                 }
             });
             let payouts = localStorageGetter("payout");
@@ -307,7 +301,6 @@ class WalletMenu extends Component {
             let allPayouts = localStorageGetter("payout");
             allPayouts.push(newPayout);
             localStorageSetter("payout", allPayouts);
-            console.log(localStorageGetter("payout"));
 
             var connectedPayout = [];
             payouts = localStorageGetter("payout");
@@ -317,7 +310,6 @@ class WalletMenu extends Component {
                 }
             });
             localStorageSetter("connectedPayout", connectedPayout);
-            console.log(localStorageGetter("connectedPayout"));
 
             this.setState({ valuePayOut: '', selectedCCPO: '', displayPO: false })
         } else {

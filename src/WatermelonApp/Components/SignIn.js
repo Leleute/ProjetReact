@@ -48,7 +48,6 @@ class SignIn extends Component {
         if (connexionfonctionne == false) {
             alert("Those infomation do not correspond to an account, please try again");
         } else {
-            console.log(localStorageGetter("wallet"));
             let connectedWallet;
             let wallets = localStorageGetter("wallet");
             wallets.forEach((wallet) => {
@@ -91,9 +90,7 @@ class SignIn extends Component {
                     connectedTransfOut.push(transOut);
                 }
             });
-            console.log(connectedWallet);
-            console.log(localStorageGetter("wallet"));
-            console.log(localStorageGetter("cards"));
+        
             localStorageSetter("connectedUser", connectedUser);
             localStorageSetter("connectedWallet", connectedWallet);
             localStorageSetter("connectedPayin", connectedPayin);
@@ -114,7 +111,6 @@ class SignIn extends Component {
 
 
     render() {
-        console.log(this);
         return (
             <div>
                 {this.props.display && !this.props.showMe &&

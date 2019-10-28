@@ -69,7 +69,6 @@ class SettingsMenu extends Component {
                     users.forEach((u) => {
                         if (u.id == localStorageGetter("connectedUser").id) {
                             u.last_name = this.state.copyUser.last_name;
-                            console.log(u);
                             localStorageSetter("users", users);
                             localStorageSetter("connectedUser", u);
                         }
@@ -80,7 +79,6 @@ class SettingsMenu extends Component {
                     users.forEach((u) => {
                         if (u.id == localStorageGetter("connectedUser").id) {
                             u.first_name = this.state.copyUser.first_name;
-                            console.log(u);
                             localStorageSetter("users", users);
                             localStorageSetter("connectedUser", u);
 
@@ -92,7 +90,6 @@ class SettingsMenu extends Component {
                     users.forEach((u) => {
                         if (u.id == localStorageGetter("connectedUser").id) {
                             u.email = this.state.copyUser.email;
-                            console.log(u);
                             localStorageSetter("users", users);
                             localStorageSetter("connectedUser", u);
                         }
@@ -103,7 +100,6 @@ class SettingsMenu extends Component {
                     users.forEach((u) => {
                         if (u.id == localStorageGetter("connectedUser").id) {
                             u.password = this.state.copyUser.password;
-                            console.log(u);
                             localStorageSetter("users", users);
                             localStorageSetter("connectedUser", u);
                         }

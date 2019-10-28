@@ -62,7 +62,6 @@ class SignUp extends Component {
 
             let allUsers = localStorageGetter("users");
             allUsers.push(newUser);
-            console.log(newUser);
             localStorageSetter("users", allUsers);
             this.setState({ connected: true });
             this.setState({ back: true });
@@ -88,7 +87,6 @@ class SignUp extends Component {
     }
 
     render() {
-        console.log(this.props)
         return (
             <div>
                 {this.props.display && !this.props.showMe &&
