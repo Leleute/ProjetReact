@@ -45,13 +45,13 @@ class SettingsMenu extends Component {
     }
 
     updateInputValue = (e) => {
-        if (e.target.name === 'last_name') {           
+        if (e.target.name == 'last_name') {           
             this.state.copyUser.last_name = e.target.value;
-        } else if (e.target.name === 'first_name') {
+        } else if (e.target.name == 'first_name') {
             this.state.copyUser.first_name = e.target.value;
-        } else if (e.target.name === 'email') {
+        } else if (e.target.name == 'email') {
             this.state.copyUser.email = e.target.value;
-        } else if (e.target.name === 'password') {
+        } else if (e.target.name == 'password') {
             this.state.copyUser.password = e.target.value;
         } else {
             this.state.copyUser.is_admin = e.target.value;
@@ -73,7 +73,7 @@ class SettingsMenu extends Component {
                             localStorageSetter("connectedUser", u);
                         }
                     })
-                } else if (data === 'first_name') {
+                } else if (data == 'first_name') {
                     //Modifier local storage pour le user (à partir de la valeur copyUser) puis reload user dans state avec celui modifier dans localStorage
                     let users = localStorageGetter("users");
                     users.forEach((u) => {
@@ -85,7 +85,7 @@ class SettingsMenu extends Component {
 
                         }
                     })
-                } else if (data === 'email') {
+                } else if (data == 'email') {
                     //Modifier local storage pour le user (à partir de la valeur copyUser) puis reload user dans state avec celui modifier dans localStorage
                     let users = localStorageGetter("users");
                     users.forEach((u) => {
@@ -96,7 +96,7 @@ class SettingsMenu extends Component {
                             localStorageSetter("connectedUser", u);
                         }
                     })
-                } else if (data === 'password') {
+                } else if (data == 'password') {
                     //Modifier local storage pour le user (à partir de la valeur copyUser) puis reload user dans state avec celui modifier dans localStorage
                     let users = localStorageGetter("users");
                     users.forEach((u) => {

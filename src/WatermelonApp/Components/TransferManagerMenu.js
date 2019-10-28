@@ -59,7 +59,6 @@ class TransferManagerMenu extends Component {
     }
 
     setTransfer = (e, object) => {
-
         if (object.id != this.state.idTransfer) {
             this.setState({ idTransfer: object.id, isAdmin: false });
         } else {
@@ -77,14 +76,19 @@ class TransferManagerMenu extends Component {
 
     deleteTransfer(event) {
         //idTransfer
+        alert(this.state.idTransfer);
         let walletReceiverid = 0;
         let walletSenderid = 0;
         let amount = 0;
         let listTransfer = localStorageGetter("transfer")
         listTransfer.forEach((t) => {
-            if (t.id = this.state.idTransfer) {
+            if (t.id == this.state.idTransfer) {
                 walletSenderid = t.debited_wallet_id;
                 walletReceiverid = t.credited_wallet_id;
+                console.log("walletSenderid");
+                console.log(walletSenderid);
+                console.log("walletReceiverid");
+                console.log(walletReceiverid);
                 amount = t.amount * 100;
             }
         });

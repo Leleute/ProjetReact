@@ -34,7 +34,7 @@ class SignIn extends Component {
         let connectedUser;
         //Get user
         users.forEach((user) => {
-            if (this.state.email !== '' && this.state.password !== '' && this.state.email === user.email && this.state.password === user.password) {
+            if (this.state.email !== '' && this.state.password !== '' && this.state.email == user.email && this.state.password == user.password) {
                 connexionfonctionne = true;
                 connectedUser = user;
                 this.setState({ back: true });
@@ -44,9 +44,9 @@ class SignIn extends Component {
         });
 
         if (connexionfonctionne == false) {
-            alert("Those infomations do not correspond to an account, please try again");
+            alert("Those infomation do not correspond to an account, please try again");
         } else {
-
+            console.log(localStorageGetter("wallet"));
             let connectedWallet;
             let wallets = localStorageGetter("wallet");
             wallets.forEach((wallet) => {
@@ -89,8 +89,8 @@ class SignIn extends Component {
                     connectedTransfOut.push(transOut);
                 }
             });
-            console.log(connectedUser);
-            console.log(connectedCard);
+            console.log(connectedWallet);
+            console.log(localStorageGetter("wallet"));
             console.log(localStorageGetter("cards"));
             localStorageSetter("connectedUser", connectedUser);
             localStorageSetter("connectedWallet", connectedWallet);
@@ -99,6 +99,7 @@ class SignIn extends Component {
             localStorageSetter("connectedCard", connectedCard);
             localStorageSetter("connectedTransfIn", connectedTransfIn);
             localStorageSetter("connectedTransfOut", connectedTransfOut);
+           
 
         }
     }

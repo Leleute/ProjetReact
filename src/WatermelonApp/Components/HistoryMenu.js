@@ -40,9 +40,9 @@ class HistoryMenu extends Component {
     }
 
     display(compName, e) {
-        if (compName === 'transfer') {
+        if (compName == 'transfer') {
             this.setState({ displayT: !this.state.displayT })
-        } else if (compName === 'payin') {
+        } else if (compName == 'payin') {
             this.setState({ displayPI: !this.state.displayPI })
         } else {
             this.setState({ displayPO: !this.state.displayPO })

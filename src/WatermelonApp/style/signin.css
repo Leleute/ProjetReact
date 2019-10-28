@@ -45,7 +45,7 @@
     padding: 5px 2em 5  px 2em;
 }
 
-.button-list button {
+.signin-form button {
     background-image: linear-gradient(to right top, #053709, #236114, #488d1b, #75bc1c, #a8eb12);
     padding: 0em 2em 0em 2em;
     color:white;
@@ -54,7 +54,7 @@
     margin-bottom:0.5em;  
 }
 
-.button-list button:hover{
+.signin-form button:hover{
     background-image: linear-gradient(to right top, #08002a, #020942, #000b5a, #000973, #0c008c);
     cursor: pointer;
 }

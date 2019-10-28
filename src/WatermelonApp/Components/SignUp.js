@@ -43,7 +43,7 @@ class SignUp extends Component {
         var creavalide = true;
         users.forEach((user) => {
             //Verification que l'email n'est pas deja inscrite
-            if (user.email === this.state.email) { creavalide = false }
+            if (user.email == this.state.email) { creavalide = false }
         });
         //Mise en place de l'ID
         var newId = 0;
@@ -54,7 +54,7 @@ class SignUp extends Component {
         });
         newId++;
         this.setState({id : newId});
-        if (creavalide === true) {
+        if (creavalide == true) {
             //Creation du compte
             let newUser = { id: newId, last_name: this.state.last_name, first_name: this.state.first_name, email: this.state.email, password: this.state.password, is_admin: this.state.isAdmin };
 
@@ -62,18 +62,17 @@ class SignUp extends Component {
             allUsers.push(newUser);
             console.log(newUser);
             localStorageSetter("users", allUsers);
-            alert("Creation valide !");
             this.setState({ connected: true });
             this.setState({ back: true });
             this.props.connected(true);
             localStorageSetter("connectedUser", newUser);
             //Creation du wallet
-            let newWallet = { id: this.state.id, balance: 0, user_id: this.state.id };
+            let newWallet = { id: newId, balance: 0, user_id: newId };
             let allwallets = localStorageGetter("wallet");
             allwallets.push(newWallet);
+
             localStorageSetter("wallet", allwallets);
-            localStorageSetter("connectedWallet", newWallet);
-            
+            localStorageSetter("connectedWallet", newWallet);      
             localStorageSetter("connectedPayin", []);
             localStorageSetter("connectedPayout", []);
             localStorageSetter("connectedCard", []);
@@ -82,7 +81,7 @@ class SignUp extends Component {
 
         }
         else {
-            alert("Un compte utilise deja cette adresse email");
+            alert("An account is already using this email address");
         }
     }
 

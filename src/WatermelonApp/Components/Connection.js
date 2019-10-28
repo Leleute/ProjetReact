@@ -20,7 +20,7 @@ class Connection extends Component {
     }
 
     handleChangeValue = (connected) => {
-        if (connected === true) {
+        if (connected == true) {
             this.props.value(true);
         } else {
             this.setState({ showMe: true })

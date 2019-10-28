@@ -65,14 +65,14 @@ class Wallet extends Component {
                         </div>
                     </div>}
                 <div>
-                    {this.state.menuOption === 0 && <OverallMenu />}
-                    {this.state.menuOption === 1 && <WalletMenu />}
-                    {this.state.menuOption === 2 && <TransferMenu />}
-                    {this.state.menuOption === 3 && <HistoryMenu />}
-                    {this.state.menuOption === 4 && <SettingsMenu isDeleted={this.logOut} />}
-                    {this.state.menuOption === 6 && <UserManagerMenu />}
-                    {this.state.menuOption === 7 && <TransferManagerMenu />}
-                    {this.state.menuOption === 5 && <App />}
+                    {this.state.menuOption == 0 && <OverallMenu />}
+                    {this.state.menuOption == 1 && <WalletMenu />}
+                    {this.state.menuOption == 2 && <TransferMenu />}
+                    {this.state.menuOption == 3 && <HistoryMenu />}
+                    {this.state.menuOption == 4 && <SettingsMenu isDeleted={this.logOut} />}
+                    {this.state.menuOption == 6 && <UserManagerMenu />}
+                    {this.state.menuOption == 7 && <TransferManagerMenu />}
+                    {this.state.menuOption == 5 && <App />}
                 </div>
             </div>
         );

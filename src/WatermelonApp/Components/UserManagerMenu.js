@@ -55,7 +55,7 @@ class UserManagerMenu extends Component {
                                         <div className="item"><img alt="img" src={icoEmail} className="ico" /><p className="display-value"> {object.email}</p></div>
                                     </div>
                                 }
-                                {!object.is_admin && object.id === this.state.user.id &&
+                                {!object.is_admin && object.id == this.state.user.id &&
                                     <div className="element" id="element-selected" name={object.id} onClick={((e) => this.setUser(e, object))}>
                                         <div className="item"><img alt="img" src={icoUsername} className="ico" /> <p className="display-value">{object.last_name.toUpperCase()} {object.first_name}</p></div>
                                         <div className="item"><img alt="img" src={icoEmail} className="ico" /><p className="display-value"> {object.email}</p></div>
