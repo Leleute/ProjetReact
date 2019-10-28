@@ -14,7 +14,6 @@ class SignUp extends Component {
         super(props);
         this.state = {
             render: '',
-            id: 1,
             lastname: "",
             firstname: "",
             email: "",
@@ -57,7 +56,7 @@ class SignUp extends Component {
         this.setState({id : newId});
         if (creavalide === true) {
             //Creation du compte
-            let newUser = { id: this.state.id, last_name: this.state.last_name, first_name: this.state.first_name, email: this.state.email, password: this.state.password, is_admin: this.state.isAdmin };
+            let newUser = { id: newId, last_name: this.state.last_name, first_name: this.state.first_name, email: this.state.email, password: this.state.password, is_admin: this.state.isAdmin };
 
             let allUsers = localStorageGetter("users");
             allUsers.push(newUser);
