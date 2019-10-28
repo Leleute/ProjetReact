@@ -48,3 +48,11 @@
     font-family: 'Haettenschweiler' , 'Arial Narrow Bold', sans-serif;
     font-size:0.8em;
 }
+
+#return-deleted {
+    color:red;
+    text-decoration: none;
+    font-style: italic;
+    font-family: 'Haettenschweiler' , 'Arial Narrow Bold', sans-serif;
+    font-size:0.8em;
+}

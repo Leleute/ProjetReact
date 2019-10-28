@@ -56,7 +56,7 @@ class TransferManagerMenu extends Component {
         if (name != undefined) {
             return (<span id="return">{name}</span>)
         } else {
-            return (<span id="return">[DELETED ACCOUNT]</span>)
+            return (<span id="return-deleted">[DELETED ACCOUNT]</span>)
         }
     }
 
