@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 
-import Connection from "./Connection"
-
-import signup from "../style/signup.css";
-import { Redirect, Link } from 'react-router-dom';
+import '../style/signup.css';
 
 import username from "../img/username.png";
 import psw from "../img/psw.png";
 import name from "../img/name.png"
+<<<<<<< HEAD
 import { localStorageGetter, localStorageSetter } from '../shortcut';
+=======
+import {localStorageGetter, localStorageSetter
+} from '../shortcut';
+>>>>>>> master
 
 
 class SignUp extends Component {
@@ -45,20 +47,20 @@ class SignUp extends Component {
 
         let users = localStorageGetter("users");
         var creavalide = true;
-        users.map((user) => {
+        users.forEach((user) => {
             //Verification que l'email n'est pas deja inscrite
-            if (user.email == this.state.email) { creavalide = false }
+            if (user.email === this.state.email) { creavalide = false }
         });
         //Mise en place de l'ID
         var newId = 0;
-        users.map((user) => {
+        users.forEach((user) => {
             if (user.id > newId) {
                 newId = user.id;
             }
         });
         newId++;
-        this.state.id = newId;
-        if (creavalide == true) {
+        this.setState({id : newId});
+        if (creavalide === true) {
             //Creation du compte
             let newUser = { id: this.state.id, last_name: this.state.last_name, first_name: this.state.first_name, email: this.state.email, password: this.state.password, is_admin: this.state.isAdmin };
 
@@ -79,11 +81,19 @@ class SignUp extends Component {
             localStorageSetter("connectedWallet", newWallet);
 
 
+<<<<<<< HEAD
             localStorageSetter("connectedPayin", new Array());
             localStorageSetter("connectedPayout", new Array());
             localStorageSetter("connectedCard", new Array());
             localStorageSetter("connectedTransfIn", new Array());
             localStorageSetter("connectedTransfOut", new Array());
+=======
+            localStorageSetter("connectedPayin", []);
+            localStorageSetter("connectedPayout", []);
+            localStorageSetter("connectedCard", []);
+            localStorageSetter("connectedTransfIn", []);
+            localStorageSetter("connectedTransfOut", []);
+>>>>>>> master
 
         }
         else {
@@ -101,19 +111,19 @@ class SignUp extends Component {
                             <header>Please provide your information to sign-up</header>
                         </div>
                         <div className="option-section">
-                            <img src={name} className="logo" /><span>Last name</span>
+                            <img alt="img" src={name} className="logo" /><span>Last name</span>
                             <input className="input-entry" name="last_name" onChange={this.saveData} type="text"></input>
                         </div>
                         <div className="option-section">
-                            <img src={name} className="logo" /><span>First name</span>
+                            <img src={name} alt="img" className="logo" /><span>First name</span>
                             <input className="input-entry" name="first_name" onChange={this.saveData} type="text"></input>
                         </div>
                         <div className="option-section">
-                            <img src={username} className="logo" /><span>Email</span>
+                            <img src={username} alt="img" className="logo" /><span>Email</span>
                             <input className="input-entry" name="email" onChange={this.saveData} type="email"></input>
                         </div>
                         <div className="option-section">
-                            <img src={psw} className="logo" /><span>Password</span>
+                            <img src={psw} alt="img" className="logo" /><span>Password</span>
                             <input className="input-entry" name="password" onChange={this.saveData} type="password"></input>
                         </div>
                         <div className="button-list">

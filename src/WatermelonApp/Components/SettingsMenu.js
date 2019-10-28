@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 
 import '../style/settingsmenu.css';
 
-import App from './App';
-
 import icoSettings from '../img/ico_settings.png';
 import username from "../img/username.png";
 import psw from "../img/psw.png";
@@ -13,7 +11,12 @@ import icoEdit from '../img/ico_edit.png';
 import icoModify from '../img/ico_modify.png';
 import icoDelete from '../img/ico_delete.png';
 
+<<<<<<< HEAD
 import { localStorageGetter, localStorageSetter } from '../shortcut';
+=======
+import {localStorageGetter, localStorageSetter
+} from '../shortcut';
+>>>>>>> master
 
 
 
@@ -29,9 +32,15 @@ class SettingsMenu extends Component {
 
     deleteAccount = (e) => {
         let allUsers = localStorageGetter("users");
+<<<<<<< HEAD
         let postDelete = new Array();
         allUsers.map((u) => {
             if (u.id != localStorageGetter("connectedUser").id) {
+=======
+        let postDelete = [];
+        allUsers.forEach((u) => {
+            if (u.id !== localStorageGetter("connectedUser").id) {
+>>>>>>> master
                 postDelete.push(u);
             }
         });
@@ -47,21 +56,28 @@ class SettingsMenu extends Component {
     }
 
     updateInputValue = (e) => {
-        if (e.target.name == 'last_name') {
-            this.state.copyUser.last_name = e.target.value;
-        } else if (e.target.name == 'first_name') {
-            this.state.copyUser.first_name = e.target.value;
-        } else if (e.target.name == 'email') {
-            this.state.copyUser.email = e.target.value;
-        } else if (e.target.name == 'password') {
-            this.state.copyUser.password = e.target.value;
+        const changes = this.state.copyUser.slice() 
+        if (e.target.name === 'last_name') {           
+            changes.last_name = e.target.value;
+            this.setState({copyUser: changes});
+        } else if (e.target.name === 'first_name') {
+            changes.first_name = e.target.value;
+            this.setState({copyUser: changes});
+        } else if (e.target.name === 'email') {
+            changes.email = e.target.value;
+            this.setState({copyUser: changes});
+        } else if (e.target.name === 'password') {
+            changes.password = e.target.value;
+            this.setState({copyUser: changes});
         } else {
-            this.state.copyUser.is_admin = e.target.value;
+            changes.is_admin = e.target.value;
+            this.setState({copyUser: changes});
         }
     }
 
     saveChanges(data, e) {
         let allUsers = localStorageGetter("users");
+<<<<<<< HEAD
         allUsers.map((it) => {
             if (it.id == localStorageGetter("connectedUser").id)
                 if (data == 'last_name') {
@@ -69,17 +85,31 @@ class SettingsMenu extends Component {
                     let users = localStorageGetter("users");
                     users.map((u) => {
                         if (u.id == localStorageGetter("connectedUser").id) {
+=======
+        allUsers.forEach((it) => {
+            if (it.id === localStorageGetter("connectedUser").id)
+                if (data === 'last_name') {
+                    //Modifier local storage pour le user (à partir de la valeur copyUser) puis reload user dans state avec celui modifier dans localStorage
+                    let users = localStorageGetter("users");
+                    users.forEach((u) => {
+                        if (u.id === localStorageGetter("connectedUser").id) {
+>>>>>>> master
                             u.last_name = this.state.copyUser.last_name;
                             console.log(u);
                             localStorageSetter("users", users);
                             localStorageSetter("connectedUser", u);
                         }
                     })
-                } else if (data == 'first_name') {
+                } else if (data === 'first_name') {
                     //Modifier local storage pour le user (à partir de la valeur copyUser) puis reload user dans state avec celui modifier dans localStorage
                     let users = localStorageGetter("users");
+<<<<<<< HEAD
                     users.map((u) => {
                         if (u.id == localStorageGetter("connectedUser").id) {
+=======
+                    users.forEach((u) => {
+                        if (u.id === localStorageGetter("connectedUser").id) {
+>>>>>>> master
                             u.first_name = this.state.copyUser.first_name;
                             console.log(u);
                             localStorageSetter("users", users);
@@ -87,22 +117,32 @@ class SettingsMenu extends Component {
 
                         }
                     })
-                } else if (data == 'email') {
+                } else if (data === 'email') {
                     //Modifier local storage pour le user (à partir de la valeur copyUser) puis reload user dans state avec celui modifier dans localStorage
                     let users = localStorageGetter("users");
+<<<<<<< HEAD
                     users.map((u) => {
                         if (u.id == localStorageGetter("connectedUser").id) {
+=======
+                    users.forEach((u) => {
+                        if (u.id === localStorageGetter("connectedUser").id) {
+>>>>>>> master
                             u.email = this.state.copyUser.email;
                             console.log(u);
                             localStorageSetter("users", users);
                             localStorageSetter("connectedUser", u);
                         }
                     })
-                } else if (data == 'password') {
+                } else if (data === 'password') {
                     //Modifier local storage pour le user (à partir de la valeur copyUser) puis reload user dans state avec celui modifier dans localStorage
                     let users = localStorageGetter("users");
+<<<<<<< HEAD
                     users.map((u) => {
                         if (u.id == localStorageGetter("connectedUser").id) {
+=======
+                    users.forEach((u) => {
+                        if (u.id === localStorageGetter("connectedUser").id) {
+>>>>>>> master
                             u.password = this.state.copyUser.password;
                             console.log(u);
                             localStorageSetter("users", users);
@@ -120,20 +160,29 @@ class SettingsMenu extends Component {
     render() {
         return (
             <div className="container">
-                <header><img src={icoSettings} className="ico" /><span>MY ACCOUNT</span></header>
+                <header><img alt="img" src={icoSettings} className="ico" /><span>MY ACCOUNT</span></header>
                 <section className="section-action" id="min-width">
-                    <div className='section-header' onClick={this.display}><img src={icoModify} className="ico" /><span >Edit my account</span></div>
+                    <div className='section-header' onClick={this.display}><img alt="img" src={icoModify} className="ico" /><span >Edit my account</span></div>
                     {this.state.boolEdit && <div className='settings-container'>
+<<<<<<< HEAD
                         <li><img src={username} className="ico" /><span>Last Name</span><input name='last_name' type="text" defaultValue={localStorageGetter("connectedUser").last_name} onChange={e => this.updateInputValue(e)} /><img src={icoEdit} onClick={this.saveChanges.bind(this, 'last_name')} className="ico-edit" /></li>
                         <li><img src={username} className="ico" /><span>First Name</span><input name='first_name' type="text" defaultValue={localStorageGetter("connectedUser").first_name} onChange={e => this.updateInputValue(e)} /><img src={icoEdit} onClick={this.saveChanges.bind(this, 'first_name')} className="ico-edit" /></li>
                         <li><img src={name} className="ico" /><span>Email</span><input name='email' type="text" defaultValue={localStorageGetter("connectedUser").email} onChange={e => this.updateInputValue(e)} /><img src={icoEdit} onClick={this.saveChanges.bind(this, 'email')} className="ico-edit" /></li>
                         <li><img src={psw} className="ico" /><span>Password</span><input name='password' type="password" defaultValue={localStorageGetter("connectedUser").password} onChange={e => this.updateInputValue(e)} /><img src={icoEdit} onClick={this.saveChanges.bind(this, 'password')} className="ico-edit" /></li>
                         {localStorageGetter("connectedUser").is_admin && <li><img src={admin} className="ico" /><span>Admin rights</span><input name='is_admin' type="text" value="Yes" /></li>}
                         {!localStorageGetter("connectedUser").is_admin && <li><img src={admin} className="ico" /><span>Admin rights</span><input name='is_admin' type="text" value="No" /></li>}
+=======
+                        <li><img src={username} alt="img" className="ico" /><span>Last Name</span><input name='last_name' type="text" defaultValue={localStorageGetter("connectedUser").last_name} onChange={e => this.updateInputValue(e)} /><img src={icoEdit} alt="img" onClick={this.saveChanges.bind(this, 'last_name')} className="ico-edit" /></li>
+                        <li><img src={username} alt="img" className="ico" /><span>First Name</span><input name='first_name' type="text" defaultValue={localStorageGetter("connectedUser").first_name} onChange={e => this.updateInputValue(e)} /><img src={icoEdit} alt="img" onClick={this.saveChanges.bind(this, 'first_name')} className="ico-edit" /></li>
+                        <li><img src={name} alt="img" className="ico" /><span>Email</span><input name='email' type="text" defaultValue={localStorageGetter("connectedUser").email} onChange={e => this.updateInputValue(e)} /><img src={icoEdit} alt="img" onClick={this.saveChanges.bind(this, 'email')} className="ico-edit" /></li>
+                        <li><img src={psw} alt="img" className="ico" /><span>Password</span><input name='password' type="password" defaultValue={localStorageGetter("connectedUser").password} onChange={e => this.updateInputValue(e)} /><img src={icoEdit} alt="img" onClick={this.saveChanges.bind(this, 'password')} className="ico-edit" /></li>
+                        {localStorageGetter("connectedUser").is_admin && <li><img src={admin} alt="img" className="ico" /><span>Admin rights</span><input name='is_admin' type="text" value="Yes" /></li>}
+                        {!localStorageGetter("connectedUser").is_admin && <li><img src={admin} alt="img" className="ico" /><span>Admin rights</span><input name='is_admin' type="text" value="No" /></li>}
+>>>>>>> master
                     </div>}
                 </section>
                 <section className="section-action" onClick={this.deleteAccount} id="delete-account">
-                    <div className='section-header'><img src={icoDelete} className="ico" /><span>Delete my account</span></div>
+                    <div className='section-header'><img src={icoDelete} alt="img" className="ico" /><span>Delete my account</span></div>
                 </section>
             </div>
         );

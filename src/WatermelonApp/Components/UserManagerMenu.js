@@ -9,7 +9,13 @@ import icoEmail from "../img/name.png";
 import icoTrashOption from '../img/ico_trash.png';
 import icoOperation from '../img/ico_operation.png';
 
+<<<<<<< HEAD
 import { localStorageGetter, localStorageSetter } from '../shortcut';
+=======
+import {
+    localStorageGetter, localStorageSetter
+} from '../shortcut';
+>>>>>>> master
 
 class UserManagerMenu extends Component {
     constructor(props) {
@@ -23,10 +29,17 @@ class UserManagerMenu extends Component {
 
     deleteUser(event) {
         let allUsers = localStorageGetter("users");
+<<<<<<< HEAD
         let postDelete = new Array();
         allUsers.map((u) => {
             if (u.id != this.state.user.id) {
                 postDelete.push(u);
+=======
+        let postDelete = [];
+        allUsers.forEach(element => {
+            if (element.id !== this.state.user.id) {
+                postDelete.push(element);
+>>>>>>> master
             }
         });
         localStorageSetter("users", postDelete);
@@ -34,7 +47,7 @@ class UserManagerMenu extends Component {
     }
 
     setUser = (e, object) => {
-        if (object.id != this.state.user.id) {
+        if (object.id !== this.state.user.id) {
             this.setState({ user: object });
         } else {
             this.setState({ user: '' });
@@ -43,42 +56,46 @@ class UserManagerMenu extends Component {
     render() {
         return (
             <div className="container">
-                <header id="admin-background"><img src={icoManagerUser} className="ico" /><span id="admin-text-color">USER MANAGER</span></header>
+                <header id="admin-background"><img alt="img" src={icoManagerUser} className="ico" /><span id="admin-text-color">USER MANAGER</span></header>
                 <section>
+<<<<<<< HEAD
                     <div className='section-header'><img src={icoUsers} className="ico" /><span >Users & Administrators</span></div>
+=======
+                    <div className='section-header'><img alt="img" src={icoUsers} className="ico" /><span >Users & Administrators</span></div>
+>>>>>>> master
                     {localStorageGetter('users').map(function (object, i) {
                         return (
                             <div className="user-choice">
-                                {!object.is_admin && object.id != this.state.user.id &&
+                                {!object.is_admin && object.id !== this.state.user.id &&
                                     <div className="element" name={object.id} onClick={((e) => this.setUser(e, object))}>
-                                        <div className="item"><img src={icoUsername} className="ico" /> <p className="display-value">{object.last_name.toUpperCase()} {object.first_name}</p></div>
-                                        <div className="item"><img src={icoEmail} className="ico" /><p className="display-value"> {object.email}</p></div>
+                                        <div className="item"><img alt="img" src={icoUsername} className="ico" /> <p className="display-value">{object.last_name.toUpperCase()} {object.first_name}</p></div>
+                                        <div className="item"><img alt="img" src={icoEmail} className="ico" /><p className="display-value"> {object.email}</p></div>
                                     </div>
                                 }
-                                {!object.is_admin && object.id == this.state.user.id &&
+                                {!object.is_admin && object.id === this.state.user.id &&
                                     <div className="element" id="element-selected" name={object.id} onClick={((e) => this.setUser(e, object))}>
-                                        <div className="item"><img src={icoUsername} className="ico" /> <p className="display-value">{object.last_name.toUpperCase()} {object.first_name}</p></div>
-                                        <div className="item"><img src={icoEmail} className="ico" /><p className="display-value"> {object.email}</p></div>
+                                        <div className="item"><img alt="img" src={icoUsername} className="ico" /> <p className="display-value">{object.last_name.toUpperCase()} {object.first_name}</p></div>
+                                        <div className="item"><img alt="img" src={icoEmail} className="ico" /><p className="display-value"> {object.email}</p></div>
                                     </div>
                                 }
                                 {object.is_admin &&
                                     <div className="element" id="admin-selected" name={object.id} onClick={((e) => this.setUser(e, object))}>
-                                        <div className="item"><img src={icoUsername} className="ico" /> <p className="display-value">{object.last_name.toUpperCase()} {object.first_name}</p></div>
-                                        <div className="item"><img src={icoEmail} className="ico" /><p className="display-value"> {object.email}</p></div>
+                                        <div className="item"><img alt="img" src={icoUsername} className="ico" /> <p className="display-value">{object.last_name.toUpperCase()} {object.first_name}</p></div>
+                                        <div className="item"><img alt="img" src={icoEmail} className="ico" /><p className="display-value"> {object.email}</p></div>
                                     </div>
                                 }
                             </div>
                         );
                     }, this)}
                 </section>
-                {this.state.user != '' && !this.state.user.is_admin &&
+                {this.state.user !== '' && !this.state.user.is_admin &&
                     <section>
-                        <div className='section-header'><img src={icoOperation} className="ico" /><span >Operation</span></div>
-                        <div className="operation"><img src={icoTrashOption} className="ico-non-reverse" onClick={this.deleteUser} id="ico-margin" /><p>Delete the selected user</p></div>
+                        <div className='section-header'><img alt="img" src={icoOperation} className="ico" /><span >Operation</span></div>
+                        <div className="operation"><img alt="img" src={icoTrashOption} className="ico-non-reverse" onClick={this.deleteUser} id="ico-margin" /><p>Delete the selected user</p></div>
                     </section>}
-                {this.state.user != '' && this.state.user.is_admin &&
+                {this.state.user !== '' && this.state.user.is_admin &&
                     <section>
-                        <div className='section-header'><img src={icoOperation} className="ico" /><span >Operation</span></div>
+                        <div className='section-header'><img alt="img" src={icoOperation} className="ico" /><span >Operation</span></div>
                         <div className="operation"><p id="red">Impossible to delete an administrator</p></div>
                     </section>}
             </div>

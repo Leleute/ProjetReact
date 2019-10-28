@@ -8,7 +8,6 @@ import signIn from '../img/sign_in.png';
 import signUp from '../img/sign_up.png';
 
 class Connection extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -21,7 +20,7 @@ class Connection extends Component {
     }
 
     handleChangeValue = (connected) => {
-        if (connected == true) {
+        if (connected === true) {
             this.props.value(true);
         } else {
             this.setState({ showMe: true })
@@ -38,6 +37,7 @@ class Connection extends Component {
         switch (this.state.render) {
             case 'signin': return <SignIn connected={this.handleChangeValue} display={true} showMe={this.state.showMe} />
             case 'signup': return <SignUp connected={this.handleChangeValue} display={true} showMe={this.state.showMe} />
+            default : return null;
         }
     }
 
@@ -47,10 +47,10 @@ class Connection extends Component {
                 {this.state.showMe &&
                     <div className="connection-header">
                         <div className="option-section" onClick={this.handleClick.bind(this, 'signin')}>
-                            <img src={signIn} className="logo" />Sign in
+                            <img src={signIn} alt="img" className="logo" />Sign in
                     </div>
                         <div className="option-section" onClick={this.handleClick.bind(this, 'signup')}>
-                            <img src={signUp} className="logo" />Sign up
+                            <img src={signUp} alt="img" className="logo" />Sign up
                     </div>
                     </div>
                 }

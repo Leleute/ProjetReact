@@ -59,9 +59,12 @@ class App extends Component {
                         <header className="App-header">
                             <p className="App-message">
                                 Welcome to Watermelon Wallet App!
-          </p>
+                            </p>
                             <Connection value={this.handleChangeValue} />
                         </header>
+                        <div className="footer">
+                        <p>CLASS</p>
+                        </div>
                     </div>}
                 {this.state.connected &&
                     <Wallet />}
