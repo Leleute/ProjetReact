@@ -130,7 +130,7 @@ class WalletMenu extends Component {
     }
 
     confirmCreation(event) {
-        var str = '' + this.state.emptyCard.last_4;
+        var str = '' + this.state.emptyCard.last4;
 
         if (str.length != 4) {
             alert("Only the last four numbers are needed");
