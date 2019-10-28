@@ -58,7 +58,7 @@ class WalletMenu extends Component {
         this.confirmEdit = this.confirmEdit.bind(this);
 
         this.confirmCreation = this.confirmCreation.bind(this);
-        this.abordCreation = this.abordCreation.bind(this);
+        this.abortCreation = this.abortCreation.bind(this);
         this.updateInputValue = this.updateInputValue.bind(this);
 
         this.editCardsLocalStorage = this.editCardsLocalStorage.bind(this);
@@ -164,7 +164,7 @@ class WalletMenu extends Component {
         }
     }
 
-    abordCreation(event) {
+    abortCreation(event) {
         this.setState({ boolAdd: !this.state.boolAdd });
 
         this.state.emptyCard.brand = '';
@@ -392,7 +392,7 @@ class WalletMenu extends Component {
                         <li><img alt="img"src={icoCardDate} className="ico" /><span>Expiration date</span><input type="date" name="expired_at" onChange={this.updateInputValue} /></li>
                         <li><img alt="img"src={icoCardL4} className="ico" /><span>Last four digit</span><input type="number" name="last_four" onChange={this.updateInputValue} /></li>
                         <img alt="img"src={icoCardTickOption} id='ico-margin' className="ico-non-reverse" onClick={this.confirmCreation} />
-                        <img alt="img"src={icoCardCrossption} className="ico-non-reverse" onClick={this.abordCreation} />
+                        <img alt="img"src={icoCardCrossption} className="ico-non-reverse" onClick={this.abortCreation} />
                     </form>}
                 </section>
 
