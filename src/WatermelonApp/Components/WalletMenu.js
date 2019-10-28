@@ -391,7 +391,7 @@ class WalletMenu extends Component {
                         <li><img alt="img"src={icoCardBrand} className="ico" /><span>Brand</span><input type="text" name="brand" onChange={this.updateInputValue} /></li>
                         <li><img alt="img"src={icoCardDate} className="ico" /><span>Expiration date</span><input type="date" name="expired_at" onChange={this.updateInputValue} /></li>
                         <li><img alt="img"src={icoCardL4} className="ico" /><span>Last four digit</span><input type="number" name="last_four" onChange={this.updateInputValue} /></li>
-                        <img alt="img"src={icoCardTickOption} className="ico-non-reverse" onClick={this.confirmCreation} />
+                        <img alt="img"src={icoCardTickOption} id='ico-margin' className="ico-non-reverse" onClick={this.confirmCreation} />
                         <img alt="img"src={icoCardCrossption} className="ico-non-reverse" onClick={this.abordCreation} />
                     </form>}
                 </section>
