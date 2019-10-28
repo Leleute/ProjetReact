@@ -45,7 +45,7 @@ class UserManagerMenu extends Component {
             <div className="container">
                 <header id="admin-background"><img alt="img" src={icoManagerUser} className="ico" /><span id="admin-text-color">USER MANAGER</span></header>
                 <section>
-                    <div className='section-header'><img src={icoUsers} className="ico" /><span >Users & Administrators</span></div>
+                    <div className='section-header'><img alt="img" src={icoUsers} className="ico" /><span >Users & Administrators</span></div>
                     {localStorageGetter('users').map(function (object, i) {
                         return (
                             <div className="user-choice">
