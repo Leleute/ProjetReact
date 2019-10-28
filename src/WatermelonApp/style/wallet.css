@@ -263,6 +263,7 @@ body {
     width: 33%;
     display: inline-block;
     margin: auto;
+    cursor: pointer;
     padding: 0em 1em 0em 1em;
     vertical-align: middle;
     letter-spacing: 4px;
